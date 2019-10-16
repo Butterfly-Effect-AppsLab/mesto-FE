@@ -1,0 +1,24 @@
+<ion-header>
+ <ion-toolbar color="primary">
+   <ion-buttons slot="start">
+     <ion-back-button defaultHref="/home"></ion-back-button>
+   </ion-buttons>
+   <ion-title>Slovnaft bikes</ion-title>
+ </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+      <ion-list>
+        <ion-list-header>
+          Zoznam stanic Slovnaft bicyklov
+        </ion-list-header>
+
+        <ion-item *ngFor="let bike of results">
+          <ion-label>
+            <h2>{{ bike.Name }}</h2>
+            <p>Pocet bicyklov: {{ bike.DockNum }}</p>
+            <p>Pocet volnych bicyklov: {{ bike.BikeNum}}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+</ion-content>

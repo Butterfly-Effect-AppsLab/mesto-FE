@@ -1,1 +1,15 @@
+page-home {
+    #mapId {
+        width: 100%;
+        height: 100%;
+        background-color: red;
+        position: absolute;
+        z-index: 1;       
+      }
 
+      .center{
+    margin-left: auto;
+    margin-right: auto;
+    display: block !important;
+  }
+}

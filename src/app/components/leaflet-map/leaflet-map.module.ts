@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 
-import { MapPage } from './leaflet-map/leaflet-map.page';
+import { LeafletMapComponent } from './leaflet-map/leaflet-map.page';
 
 const routes: Routes = [
   {

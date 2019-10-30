@@ -17,16 +17,16 @@ import { SlovnaftService } from '../services/slovnaft.service';
   selector: 'app-bikes',
   templateUrl: 'bike.page.html'
 })
-export class BikePage {
+export class BikePage implements OnInit {
 
-  //results: Results[] = [];
+  // results: Results[] = [];
   public bikeData;
 
   constructor(private slovnaftService: SlovnaftService) {}
 
   ngOnInit() {
 
-    //const bikeObserve = this.slovnaftService.fetchData$();
+    // const bikeObserve = this.slovnaftService.fetchData$();
 
     this.bikeData = this.slovnaftService.getData().subscribe(
       (results: Results[]) => {
@@ -34,6 +34,7 @@ export class BikePage {
         this.results = resources;
       }
     );
+
     /*
     bikeObserve.subscribe((resultsData: Results[]) => {
         let resources = resultsData["Info"];

@@ -34,9 +34,7 @@ export class SlovnaftService {
         return response;
       })
     );
-
     return pom;
-
   }
 
 }

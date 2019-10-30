@@ -11,10 +11,26 @@ import { Observable } from 'rxjs';
   templateUrl: 'bikes-map.page.html'
 })
 
-export class BikesMapPage {
+export class BikesMapPage implements OnInit {
 
-  constructor(private geolocation: Geolocation,
-              private plt: Platform,
-              private slovnaftService: SlovnaftService) {}
+    results: Results[] = [];
+    public bikeData;
+
+    constructor(private geolocation: Geolocation,
+                private plt: Platform,
+                private slovnaftService: SlovnaftService
+                ) {}
+
+  ngOnInit() {
+    this.loadMarker();
+    this.bikeData = this.slovnaftService.getData().subscribe(
+      (results: Results[]) => {
+        let resources = results['Info'];
+        this.results = resources;
+        // console.log(this.results[0]);
+      }
+    );
+
+  }
 
 }

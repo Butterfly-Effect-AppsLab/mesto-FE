@@ -16,7 +16,7 @@ import { BikesMapPage } from './bikes-map/bikes-map.page';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { IonicStorageModule } from '@ionic/storage';
 
-import { HttpClientModule } from  '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({

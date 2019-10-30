@@ -1,16 +1,16 @@
-//hore angularovskle z core
+// hore angularovskle z core
 import { ToastController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 
-//potom ionicovske (vendor), napr. rxjs, 3rd party
+// potom ionicovske (vendor), napr. rxjs, 3rd party
 import { Observable } from 'rxjs';
 import { Storage } from '@ionic/storage';
 import { NavController, Platform } from '@ionic/angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { Map, latLng, tileLayer, Layer, marker } from 'leaflet';
 
-//potom svoje, napr. slovnaftService
+// potom svoje, napr. slovnaftService
 import { SlovnaftService } from '../services/slovnaft.service';
 
 @Component({
@@ -19,7 +19,7 @@ import { SlovnaftService } from '../services/slovnaft.service';
 })
 export class BikePage implements OnInit {
 
-  // results: Results[] = [];
+  results = [];
   public bikeData;
 
   constructor(private slovnaftService: SlovnaftService) {}
@@ -29,8 +29,8 @@ export class BikePage implements OnInit {
     // const bikeObserve = this.slovnaftService.fetchData$();
 
     this.bikeData = this.slovnaftService.getData().subscribe(
-      (results: Results[]) => {
-        let resources = results['Info'];
+      (results) => {
+        const resources = results.Info;
         this.results = resources;
       }
     );

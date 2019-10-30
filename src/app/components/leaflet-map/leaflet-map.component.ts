@@ -1,7 +1,9 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnInit, Input } from '@angular/core';
 import { NavController, Platform } from '@ionic/angular';
-import { Map, latLng, tileLayer, Layer, marker } from 'leaflet';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+
+import { SlovnaftService } from '../../services/slovnaft.service';
+import { Map, latLng, tileLayer, Layer, marker } from 'leaflet';
 
 @Component({
   selector: 'leaflet-map',
@@ -10,7 +12,10 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 export class LeafletMapComponent implements OnInit {
 
+  @Input() bikeData;
+
   map: Map;
+  results: any;
 
   constructor(
     private geolocation: Geolocation,
@@ -18,13 +23,18 @@ export class LeafletMapComponent implements OnInit {
     ) {
     }
 
-  @ViewChild('leafletMap')
-  public mapElement: ElementRef;
+  @ViewChild('leafletMap', {static: true}) mapElement: ElementRef;
 
   ngOnInit() {
     const DOMmapElement = this.mapElement.nativeElement;
   //  DOMmapElement.attributes['id'].value;
     this.leafletMap();
+
+    if (this.bikeData && this.bikeData.length) {
+      for (const location of this.bikeData) {
+        this.addMarker(location.GpsLat, location.GpsLon, location.Name);
+      }
+    }
     // this.loadMarker();
     // console.log(this.leafletMap.nativeElement.removeAttribute('id'));
     // this.pRef.nativeElement.innerHTML = 'DOM updated successfully!!!';
@@ -62,7 +72,7 @@ export class LeafletMapComponent implements OnInit {
           console.log('Error getting location', error);
         });
 
-        let watch = this.geolocation.watchPosition();
+        const watch = this.geolocation.watchPosition();
         watch.subscribe((data) => {
          // data can be a set of coordinates, or an error (if an error occurred).
          // data.coords.latitude
@@ -76,11 +86,19 @@ export class LeafletMapComponent implements OnInit {
       this.map.remove();
     }
 
+    addMarker(latitude, longitude, text = '') {
+      const mapMarker = marker([latitude, longitude], 15);
+      mapMarker
+        .bindPopup(text)
+        .addTo(this.map)
+        .openPopup();
+    }
+
     loadMarker() {
-      this.marker = marker([48.14816, 17.10674], 15);
-      this.marker.addTo(this.map)
-      .bindPopup('Hey, I\'m Here')
-      .openPopup();
+      // this.marker = marker([48.14816, 17.10674], 15);
+      // this.marker.addTo(this.map)
+      // .bindPopup('Hey, I\'m Here')
+      // .openPopup();
       // this.map.setView(latLong);
       /*
       const locations = [

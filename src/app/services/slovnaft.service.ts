@@ -8,19 +8,19 @@ import { HttpClient } from '@angular/common/http';
 })
 export class SlovnaftService {
 
-  public urlEndpoint = "https://gate.slovnaftbajk.sk/AppGate2.php";
+  public urlEndpoint = 'https://gate.slovnaftbajk.sk/AppGate2.php';
   private listBikesSpots;
 
   constructor(private http: HttpClient) { }
 
-//service ma svoje api, toto vytaiohnut do zlvast suboru slovnaft.api.ts
-//dolar za nazov metody hovori, ze return type je observable
+// service ma svoje api, toto vytaiohnut do zlvast suboru slovnaft.api.ts
+// dolar za nazov metody hovori, ze return type je observable
   private fetchData$(): Observable<any> {
 
     this.listBikesSpots = this.http.post(this.urlEndpoint,
       {
-        "Cmd" : "GetAllStationInfo",
-        "Area": "BA"
+        Cmd : 'GetAllStationInfo',
+        Area: 'BA'
       }
     );
 
@@ -29,7 +29,7 @@ export class SlovnaftService {
 
   public getData() {
 
-    let pom = this.fetchData$().pipe(
+    const pom = this.fetchData$().pipe(
       map(response => {
         return response;
       })

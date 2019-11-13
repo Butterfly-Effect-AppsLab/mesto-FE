@@ -11,7 +11,7 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { Map, latLng, tileLayer, Layer, marker } from 'leaflet';
 
 // potom svoje, napr. slovnaftService
-import { SlovnaftService } from '../services/slovnaft.service';
+import { SlovnaftService } from '../../services/slovnaft.service';
 
 @Component({
   selector: 'app-bikes',

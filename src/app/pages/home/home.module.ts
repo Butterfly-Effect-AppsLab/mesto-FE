@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { Storage } from '@ionic/storage';
 
 import { HomePage } from './home.page';
-import { ComponentsModule } from '../components/components.module';
+import { ComponentsModule } from '../../components/components.module';
 
 @NgModule({
   imports: [

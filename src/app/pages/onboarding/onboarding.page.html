@@ -1,0 +1,35 @@
+<ion-content>
+  <ion-slides #slides (ionSlideReachEnd)="slideChanged()" [pager]=true>
+    <ion-slide class="step-one">
+        <ion-img src="./assets/slides/slide1-dashboard.png"></ion-img>
+          <h1>Hlavná obrazovka</h1>
+        <p>Všetky aktuálne informácie o spojoch a dopravných obmedzeniach vždy po ruke!</p>
+    </ion-slide>
+
+    <ion-slide class="step-two">
+        <ion-img src="/assets/slides/slide2-linky.png"></ion-img>
+          <h1>Linky</h1>
+        <p>Pridaj si obľúbený spoj priamo na hlavnú obrazovku a sleduj jeho najbližšie odchody.</p>
+    </ion-slide>
+
+    <ion-slide class="step-three">
+        <ion-img src="/assets/slides/slide3-zastavky.png"></ion-img>
+        <h1>Zastávky</h1>
+        <p>Najbližšie odchody všetkých spojov získaš pridaním obľúbenej zastávky.</p>
+    </ion-slide>
+
+    <ion-slide class="step-four">
+        <ion-img src="/assets/slides/slide4-mapa.png"></ion-img>
+        <h1>Mapa</h1>
+        <p>Si stratený a hľadáš správnu zastávku? Alebo chceš prestúpiť na bicykel? Pomôž si našou mapkou.</p>
+
+        <ion-button style='width: 90%;'>Začať</ion-button>
+    </ion-slide>
+  </ion-slides>
+</ion-content>
+
+<ion-footer no-border>
+  <ion-toolbar class='footerSkipLink'>
+    <ion-title><a href="">Preskočit</a></ion-title>
+  </ion-toolbar>
+</ion-footer>

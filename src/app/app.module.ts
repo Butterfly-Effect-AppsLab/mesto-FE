@@ -9,9 +9,9 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { HomePage } from './home/home.page';
-import { BikePage } from './bikes/bike.page';
-import { BikesMapPage } from './bikes-map/bikes-map.page';
+import { HomePage } from './pages/home/home.page';
+import { BikePage } from './pages/bikes/bike.page';
+import { BikesMapPage } from './pages/bikes-map/bikes-map.page';
 
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { IonicStorageModule } from '@ionic/storage';

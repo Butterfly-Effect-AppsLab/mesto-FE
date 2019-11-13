@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { OnboardingGuard } from './pages/onboarding/onboarding.guard';
 
 const routes: Routes = [
-  // { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'onboarding', pathMatch: 'full' },
   /* { path: '',
       redirectTo: 'tabs', pathMatch: 'full'
   },*/
@@ -37,13 +38,18 @@ const routes: Routes = [
       'tabs',
         loadChildren: './pages/tabs/tabs.module#TabsPageModule'
   },
-  { path: 'onboarding', loadChildren: './pages/onboarding/onboarding.module#OnboardingPageModule' }
+  {
+    path: 'onboarding',
+    loadChildren: './pages/onboarding/onboarding.module#OnboardingPageModule',
+    canActivate: [OnboardingGuard]
+  }
 ];
 
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers:  [OnboardingGuard]
 })
 export class AppRoutingModule { }

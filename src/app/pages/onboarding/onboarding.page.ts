@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewChild, ElementRef} from '@angular/core';
 import { IonSlides } from '@ionic/angular';
 
+import { Storage } from '@ionic/storage';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-onboarding',
   templateUrl: './onboarding.page.html',
@@ -9,26 +12,26 @@ import { IonSlides } from '@ionic/angular';
 export class OnboardingPage implements OnInit {
 
    // const results;
-   //@ViewChild('slides') ionSlides: ElementRef;
+   pagerStatus = true;
+   @ViewChild('slides', {static: true}) ionSlides: IonSlides;
 
-  constructor() {}
+  constructor(
+    private router: Router,
+    private storage: Storage
+  ) {}
 
   ngOnInit() {
     // const DOMSlide = this.ionSlides.nativeElement;
-    
+    console.log(this.ionSlides);
   }
 
-/*
-  slideChanged() {
-    //console.log(this.DOMSlide);
-    // const currentIndex = this.slides.getActiveIndex().then((data) => {
-    const isLastSlide = this.ionSlides.isEnd().then((isEnd) => {
-       this.results = isEnd;
-       console.log(this.results);
-       // tu potrebujem nastavit [pager] = 'false'
-       console.log(this.DOMSlide);
-     });
-    return this.results;
+  onboardingDone() {
+    this.storage.set('onboarded', 1);
+    this.router.navigate(['/home']);
   }
-*/
+
+  slideReachedEnd() {
+    this.pagerStatus = false;
+  }
+
 }

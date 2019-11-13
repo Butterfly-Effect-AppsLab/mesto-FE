@@ -1,5 +1,5 @@
 <ion-content>
-  <ion-slides #slides (ionSlideReachEnd)="slideChanged()" [pager]=true>
+  <ion-slides #slides (ionSlideReachEnd)="slideReachedEnd()" [pager]="pagerStatus">
     <ion-slide class="step-one">
         <ion-img src="./assets/slides/slide1-dashboard.png"></ion-img>
           <h1>Hlavná obrazovka</h1>
@@ -23,13 +23,13 @@
         <h1>Mapa</h1>
         <p>Si stratený a hľadáš správnu zastávku? Alebo chceš prestúpiť na bicykel? Pomôž si našou mapkou.</p>
 
-        <ion-button style='width: 90%;'>Začať</ion-button>
+        <ion-button (click)="onboardingDone()" style='width: 90%;'>Začať</ion-button>
     </ion-slide>
   </ion-slides>
 </ion-content>
 
-<ion-footer no-border>
+<ion-footer no-border [hidden]="!pagerStatus">
   <ion-toolbar class='footerSkipLink'>
-    <ion-title><a href="">Preskočit</a></ion-title>
+    <ion-title><a (click)="onboardingDone()">Preskočit</a></ion-title>
   </ion-toolbar>
 </ion-footer>

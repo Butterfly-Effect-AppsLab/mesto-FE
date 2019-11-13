@@ -24,7 +24,7 @@
             <application android:networkSecurityConfig="@xml/network_security_config" />
         </edit-config>
         <edit-config file="*-Info.plist" mode="merge" target="NSLocationWhenInUseUsageDescription">
-          <string>This App wants to track your location</string>
+            <string>This App wants to track your location</string>
         </edit-config>
         <resource-file src="resources/android/xml/network_security_config.xml" target="app/src/main/res/xml/network_security_config.xml" />
         <allow-intent href="market:*" />

@@ -21,8 +21,8 @@ export class OnboardingPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    // const DOMSlide = this.ionSlides.nativeElement;
     console.log(this.ionSlides);
+    this.ionSlides.lockSwipeToPrev(true);
   }
 
   onboardingDone() {
@@ -32,6 +32,7 @@ export class OnboardingPage implements OnInit {
 
   slideReachedEnd() {
     this.pagerStatus = false;
+    this.ionSlides.lockSwipeToNext(false);
   }
 
 }

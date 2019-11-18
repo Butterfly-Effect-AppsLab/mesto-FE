@@ -3,19 +3,28 @@ import { NavController, Platform } from '@ionic/angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 import { SlovnaftService } from '../../services/slovnaft.service';
-import { Map, latLng, tileLayer, Layer, marker, LeafIcon } from 'leaflet';
+// import { Map, latLng, tileLayer, Layer, marker, LeafIcon } from 'leaflet';
+import * as L from 'leaflet';
 
 @Component({
   selector: 'leaflet-map',
-  templateUrl: 'leaflet-map.component.html'
+  templateUrl: 'leaflet-map.component.html',
+  styleUrls: ['./leaflet-map.page.css'],
 })
 
 export class LeafletMapComponent implements OnInit {
 
   @Input() bikeData;
 
-  map: Map;
+  map: L;
   results: any;
+  const busStops: object = {
+      stops: [
+         {lat: '48.14816', long: '17.10674', linky: '4, 201, 209'},
+         {lat: '48.14691', long: '17.11001', linky: '50, 68'},
+         {lat: '48.14910', long: '17.10999', linky: '4'}
+      ]
+   };
 
   constructor(
     private geolocation: Geolocation,
@@ -27,29 +36,33 @@ export class LeafletMapComponent implements OnInit {
 
   ngOnInit() {
     const DOMmapElement = this.mapElement.nativeElement;
-  //  DOMmapElement.attributes['id'].value;
     this.leafletMap();
 
     if (this.bikeData && this.bikeData.length) {
       for (const location of this.bikeData) {
         this.addMarker(location.GpsLat, location.GpsLon, location.Name);
       }
+
+    console.log(this.busStops.stops);
+    for (const busLocation of this.busStops.stops) {
+      this.addStops(busLocation.lat, busLocation.long, busLocation.linky);
     }
+
+    }
+
+    //this.addStops(48.14816, 17.10674, 'Trnavske myto');
     // const greenIcon = new LeafIcon({iconUrl: 'assets/marker.png'});
     // this.loadMarker();
     // console.log(this.leafletMap.nativeElement.removeAttribute('id'));
     // this.pRef.nativeElement.innerHTML = 'DOM updated successfully!!!';
   }
 
-  // current position moze byt aj ako vstupny parameter ale aj vnutri komponentu
-  // markere dat ako vstupny parameter - array
-
   leafletMap() {
 
     // In setView add latLng and zoom
-    this.map = new Map(this.mapElement.nativeElement).setView([48.14816, 17.10674], 16);
+    this.map = new L.Map(this.mapElement.nativeElement).setView([48.14816, 17.10674], 16);
     // this.map = new Map(this.mapElement.nativeElement).setView([11.206051, 122.447886], 8);
-    tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+    L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
       attribution: '',
     }).addTo(this.map);
     // this.map.invalidateSize();
@@ -97,10 +110,33 @@ export class LeafletMapComponent implements OnInit {
         title: 'hello'
       });
 
-      const mapMarker = marker([latitude, longitude], { icon: dot }, 15);
+      const mapMarker = L.marker([latitude, longitude], { icon: dot }, 15);
       mapMarker
         .bindPopup(text)
         .addTo(this.map);
         // .openPopup();
+    }
+
+    addStops(latitude, longitude, text) {
+
+      const icon = L.divIcon({
+			     className: 'custom-div-icon',
+           html: '<div style="background-color:#c30b82; border: 1px solid" class="marker-pin"></div><i class="material-icons">weekend</i>',
+        iconSize: [30, 42],
+        iconAnchor: [15, 42]
+      });
+
+      const station = L.icon({
+          //iconUrl: './assets/icon/bus_marker.png',
+          shadowUrl: 'dot-shadow.png',
+          iconSize: [38, 38], // size of the icon
+          popupAnchor: [0, -15], // point from which the popup should open relative..
+          title: 'hello'
+        });
+
+      const mapBusMarker = L.marker([latitude, longitude], {icon: icon}, 15);
+      mapBusMarker
+          .bindPopup(text)
+          .addTo(this.map);
     }
 }

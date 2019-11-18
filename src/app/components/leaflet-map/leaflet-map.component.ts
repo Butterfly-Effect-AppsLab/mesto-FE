@@ -9,7 +9,7 @@ import * as L from 'leaflet';
 @Component({
   selector: 'leaflet-map',
   templateUrl: 'leaflet-map.component.html',
-  styleUrls: ['./leaflet-map.page.css'],
+  styleUrls: ['./leaflet-map.component.scss'],
 })
 
 export class LeafletMapComponent implements OnInit {
@@ -18,7 +18,7 @@ export class LeafletMapComponent implements OnInit {
 
   map: L;
   results: any;
-  const busStops: object = {
+  busStops = {
       stops: [
          {lat: '48.14816', long: '17.10674', linky: '4, 201, 209'},
          {lat: '48.14691', long: '17.11001', linky: '50, 68'},
@@ -43,14 +43,15 @@ export class LeafletMapComponent implements OnInit {
         this.addMarker(location.GpsLat, location.GpsLon, location.Name);
       }
 
-    console.log(this.busStops.stops);
-    for (const busLocation of this.busStops.stops) {
-      this.addStops(busLocation.lat, busLocation.long, busLocation.linky);
-    }
+      console.log(this.busStops.stops);
+
+      for (const busLocation of this.busStops.stops) {
+        this.addStops(busLocation.lat, busLocation.long, busLocation.linky);
+      }
 
     }
 
-    //this.addStops(48.14816, 17.10674, 'Trnavske myto');
+    // this.addStops(48.14816, 17.10674, 'Trnavske myto');
     // const greenIcon = new LeafIcon({iconUrl: 'assets/marker.png'});
     // this.loadMarker();
     // console.log(this.leafletMap.nativeElement.removeAttribute('id'));
@@ -120,21 +121,23 @@ export class LeafletMapComponent implements OnInit {
     addStops(latitude, longitude, text) {
 
       const icon = L.divIcon({
-			     className: 'custom-div-icon',
-           html: '<div style="background-color:#c30b82; border: 1px solid" class="marker-pin"></div><i class="material-icons">weekend</i>',
+        className: 'custom-div-icon',
+        html: '<div style="background-color:#c30b82; border: 1px solid" class="marker-pin"></div><i class="material-icons">weekend</i>',
         iconSize: [30, 42],
         iconAnchor: [15, 42]
       });
 
+      console.log(icon);
+
       const station = L.icon({
-          //iconUrl: './assets/icon/bus_marker.png',
+          // iconUrl: './assets/icon/bus_marker.png',
           shadowUrl: 'dot-shadow.png',
           iconSize: [38, 38], // size of the icon
           popupAnchor: [0, -15], // point from which the popup should open relative..
           title: 'hello'
         });
 
-      const mapBusMarker = L.marker([latitude, longitude], {icon: icon}, 15);
+      const mapBusMarker = L.marker([latitude, longitude], { icon }, 15);
       mapBusMarker
           .bindPopup(text)
           .addTo(this.map);

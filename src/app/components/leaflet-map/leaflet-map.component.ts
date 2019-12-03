@@ -122,9 +122,9 @@ export class LeafletMapComponent implements OnInit {
 
       const icon = L.divIcon({
         className: 'custom-div-icon',
-        html: '<div style="background-color:#c30b82; border: 1px solid" class="marker-pin"></div><i class="material-icons">weekend</i>',
+        html: '<div class="count">4/5</div><img src="./assets/icon/favicon.png" class="markerIcon">',
         iconSize: [30, 42],
-        iconAnchor: [15, 42]
+        iconAnchor: [15, 10]
       });
 
       console.log(icon);
@@ -134,12 +134,21 @@ export class LeafletMapComponent implements OnInit {
           shadowUrl: 'dot-shadow.png',
           iconSize: [38, 38], // size of the icon
           popupAnchor: [0, -15], // point from which the popup should open relative..
-          title: 'hello'
+          title: 'hello',
+          html: '2'
         });
 
-      const mapBusMarker = L.marker([latitude, longitude], { icon }, 15);
-      mapBusMarker
-          .bindPopup(text)
-          .addTo(this.map);
+      const mapBusMarker = L.marker([latitude, longitude], { icon }, 15)
+        .addTo(this.map)
+        .on('click', function(e) {
+          console.log('aaa');
+        });
+      // mapBusMarker
+          // .bindPopup(text)
+          // .addTo(this.map);
     }
+
+     markerOnClick() {
+	      alert('hi. you clicked the marker at');
+      }
 }

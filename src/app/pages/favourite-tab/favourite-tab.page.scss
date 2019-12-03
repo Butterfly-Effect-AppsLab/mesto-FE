@@ -2,5 +2,42 @@
   background-color: #ffffff;
   border-top: 0px;
   border-radius: 10px;
-  box-shadow: 0px -3px 5px #adadad;
+  box-shadow: 0px -13px 5px #adadad;
+}
+
+.titleColor {
+  color: white;
+  margin-top: 6px;
+}
+
+ion-fab.addFavouriteFab {
+  color: #474B60 !important;
+}
+
+ion-grid {
+  margin-top: 20px;
+  border: 0px solid red;
+}
+
+ion-col {
+  border: 0px dotted blue;
+  text-align: center;
+  font-size: 1.1em;
+}
+
+.segmentMenu {
+  border: none;
+  font-size: 1.1em;
+  color: #474B60;
+  margin-top: 20px;
+}
+
+.tabsContentMenu {
+  border: none;
+  margin-top: 10px;
+}
+
+.tabsContentMenu ion-label {
+  font-size: 2em;
+  color: #474B60;
 }

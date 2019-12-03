@@ -18,30 +18,39 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'routes',
+        path: 'lines',
         children: [
           {
             path: '',
-            loadChildren: '../routes-tab/routes-tab.module#RoutesTabPageModule'
+            loadChildren: '../lines-tab/lines-tab.module#LinesTabPageModule'
           }
         ]
       },
-      /*
       {
         path: 'stops',
         children: [
           {
             path: '',
-            loadChildren: '../tab3/tab3.module#Tab3PageModule'
+            loadChildren: '../stops-tab/stops-tab.module#StopsTabPageModule'
           }
         ]
       },
-      */
+      {
+        path: 'map',
+        children: [
+          {
+            path: '',
+            loadChildren: '../bikes-map/bikes-map.module#BikesMapPageModule'
+          }
+        ]
+      }
+      /*
       {
         path: '',
         redirectTo: '/tabs/favourites',
         pathMatch: 'full'
       }
+      */
     ]
   },
   /*

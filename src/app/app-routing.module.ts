@@ -3,7 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { OnboardingGuard } from './pages/onboarding/onboarding.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'onboarding', pathMatch: 'full' },
+  { path: '', redirectTo: 'tabs/favourites', pathMatch: 'full' },
   /* { path: '',
       redirectTo: 'tabs', pathMatch: 'full'
   },*/
@@ -19,6 +19,7 @@ const routes: Routes = [
       'details',
         loadChildren: './pages/details/details.module#DetailsPageModule'
   },
+  /*
   { path:
       'bikes-map',
         loadChildren: './pages/bikes-map/bikes-map.module#BikesMapPageModule'
@@ -42,7 +43,8 @@ const routes: Routes = [
     path: 'onboarding',
     loadChildren: './pages/onboarding/onboarding.module#OnboardingPageModule',
     canActivate: [OnboardingGuard]
-  }
+  },
+//  { path: 'stops-tab', loadChildren: './pages/stops-tab/stops-tab.module#StopsTabPageModule' }
 ];
 
 @NgModule({

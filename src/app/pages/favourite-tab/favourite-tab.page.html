@@ -1,27 +1,143 @@
 <ion-header>
-  <ion-toolbar color='baTheme' style="height: 55px; box-shadow: 0px 3px 5px #adadad;">
-    <ion-title class='titleColor'>SRDCOVKY</ion-title>
+  <ion-toolbar color='baTheme'>
+    <ion-img src="./assets/icon/PNGbratislava.png" class='baIcon'></ion-img>
+    <ion-title class='titleColor'>Obľúbené</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
-
-  <ion-tabs >
+<ion-tabs class='secondMenuTabs'>
   <ion-tab-bar slot="top" class='tabsContentMenu'>
-    <ion-tab-button tab="schedule">
-      <ion-label>Vsetky</ion-label>
+    <ion-tab-button tab="schedule" selected="true">
+      <ion-label style="color: #DF4343;">Všetko</ion-label>
     </ion-tab-button>
 
     <ion-tab-button tab="speakers">
       <ion-label>Linky</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="map">
-      <ion-label>Zastavky</ion-label>
+    <ion-tab-button tab="mapa">
+      <ion-label>Zastávky</ion-label>
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>
+
+<!--
+  <ion-grid>
+    <ion-row class='segmentMenu'>
+      <ion-col>
+        Vsetky
+      </ion-col>
+      <ion-col>
+        Linky
+      </ion-col>
+      <ion-col>
+        Zastavky
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+-->
+
+<ion-card button class="shadow" color="white" [routerLink]="" style="margin-top: 65px;">
+  <ion-card-content class="ion-no-padding">
+    <ion-grid>
+      <ion-row class="ion-no-padding divider">
+        <ion-col size="2">
+          <div class='lineSquereIconNoBorder'>
+            <ion-icon src="./assets/icon/bus-stop.svg"></ion-icon>
+          </div>
+        </ion-col>
+        <ion-col size="8">
+          <div class="ion-text-nowrap">
+            <h3 class="bold-favourite">Kollárovo námestie</h3>
+          </div>
+        </ion-col>
+
+        <ion-col size="2">
+          <div class="favouriteTapDiv">
+            <ion-icon name="heart" class="heartFilled"></ion-icon>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="ion-no-padding ">
+        <ion-col size="2">
+          <div class='bold-favourite-line'>
+            212
+          </div>
+        </ion-col>
+        <ion-col size="7">
+          <div class="ion-text-nowrap">
+            <h3 class="">ŽST Železná studnička</h3>
+            <ion-icon src='./assets/icon/disability.svg'></ion-icon>
+          </div>
+        </ion-col>
+
+        <ion-col size="3">
+          <div class="bold-favourite-time">
+            <ion-img src="./assets/icon/bodky.gif" class="waitingDots"></ion-img>
+          </div>
+        </ion-col>
+          <!--
+          <ion-col size='2' class="ion-padding">
+            <div class="lineNumberSquare">94</div>
+          </ion-col>
+          <ion-col size='2' class="ion-padding">
+            <div class="lineNumberSquare">202</div>
+          </ion-col>
+          <ion-col size='2' class="ion-padding">
+            <div class="lineNumberSquare">207</div>
+          </ion-col>
+          <ion-col size='2' class="ion-padding">
+            <div class="lineNumberSquare">207</div>
+          </ion-col>
+          -->
+      </ion-row>
+
+      <ion-row class="ion-no-padding">
+        <ion-col size="2">
+          <div class='bold-favourite-line'>
+            208
+          </div>
+        </ion-col>
+        <ion-col size="7">
+          <div class="ion-text-nowrap">
+            <h3 class="">Staré mesto, Šulekova</h3>
+            <ion-icon src='./assets/icon/disability.svg'></ion-icon>
+          </div>
+        </ion-col>
+
+        <ion-col size="3">
+          <div class="bold-favourite-time">
+            o 2 min
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="ion-no-padding">
+        <ion-col size="2">
+          <div class='bold-favourite-line'>
+            39
+          </div>
+        </ion-col>
+        <ion-col size="7">
+          <div class="ion-text-nowrap">
+            <h3 class="">Cintorín Slávičie údolie</h3>
+            <ion-icon src='./assets/icon/disability.svg'></ion-icon>
+            <span class='delayInfoSmall'>meškanie 2 min </span>
+          </div>
+        </ion-col>
+
+        <ion-col size="3">
+          <div class="bold-favourite-time red">
+            o 5 min
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+</ion-card>
 
 <!--
 <ion-segment (ionChange)="segmentChanged($event)">
@@ -51,13 +167,13 @@
   </ion-grid>
 
 -->
-  <ion-fab class='addFavouriteFab' vertical="bottom" horizontal="center" slot="fixed" color='baTheme'>
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
     <ion-fab-button>
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
-    <ion-fab-list side="top">
-      <ion-fab-button><ion-icon name="logo-vimeo"></ion-icon></ion-fab-button>
-      <ion-fab-button><ion-icon name="logo-vimeo"></ion-icon></ion-fab-button>
+    <ion-fab-list side="top" color='primary'>
+      <ion-fab-button><ion-icon src="./assets/icon/bus-stop.svg"></ion-icon></ion-fab-button>
+      <ion-fab-button><ion-icon src="./assets/icon/timeline.svg"></ion-icon></ion-fab-button>
     </ion-fab-list>
   </ion-fab>
 

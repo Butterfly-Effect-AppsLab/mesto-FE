@@ -5,34 +5,33 @@
   box-shadow: 0px -13px 5px #adadad;
 }
 
-ion-fab.addFavouriteFab {
-  color: #474B60 !important;
-}
-
-ion-grid {
-  margin-top: 20px;
-  border: 0px solid red;
-}
-
-ion-col {
-  border: 0px dotted blue;
-  text-align: center;
-  font-size: 1.1em;
+#roundedSearch {
+  border-radius: 10px;
+  box-shadow: 0px -13px 5px #adadad;
 }
 
 .segmentMenu {
-  border: none;
+  border: 1px dotted black;
   font-size: 1.1em;
   color: #474B60;
-  margin-top: 20px;
+  height: 50px;
+  padding-bottom: 10px;
+  --background: #F8F8F8;
 }
 
 .tabsContentMenu {
   border: none;
-  margin-top: 10px;
+  --background: #F8F8F8;
+  // border: 1px solid blue;
+  margin-bottom: 20px;
 }
 
 .tabsContentMenu ion-label {
-  font-size: 2em;
-  color: #474B60;
+  font-size: 1.6em;
+  color: #8A8A8A;
+  font-weight: 550;
+}
+
+ion-col {
+  // border: 1px solid orange;
 }

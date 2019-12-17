@@ -1,20 +1,53 @@
 :host ::ng-deep {
 
-  .count {
-    border: 0px solid red;
+  .countGreen {
     position: absolute;
-    background: #FFEB3B;
+    background: #52B200;
     display: block;
     font-weight: bold;
-    border-radius: 2px;
+    border-radius: 20px;
     top: -8px;
     left: -10px;
     padding-left: 2px;
     padding-right: 2px;
+    width: 30px;
+    color: #FFFFFF;
+    text-align: center;
   }
+
+  .countOrange {
+    position: absolute;
+    background: #52B200;
+    display: block;
+    font-weight: bold;
+    border-radius: 20px;
+    top: -8px;
+    left: -10px;
+    padding-left: 2px;
+    padding-right: 2px;
+    width: 30px;
+    color: #DBA001;
+    text-align: center;
+  }
+
+  .countRed {
+    position: absolute;
+    background: #52B200;
+    display: block;
+    font-weight: bold;
+    border-radius: 20px;
+    top: -8px;
+    left: -10px;
+    padding-left: 2px;
+    padding-right: 2px;
+    width: 30px;
+    color: #FFFFFF;
+    text-align: center;
+  }
+
   .markerIcon {
-    height: 32px;
-    widht: 32px;
+    height: 50px;
+    widht: 50px;
   }
 
 }

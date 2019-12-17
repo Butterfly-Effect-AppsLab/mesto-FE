@@ -13,6 +13,7 @@ export class OnboardingPage implements OnInit {
 
    // const results;
    pagerStatus = true;
+   reachedEnd;
    @ViewChild('slides', {static: true}) ionSlides: IonSlides;
 
   constructor(
@@ -22,17 +23,31 @@ export class OnboardingPage implements OnInit {
 
   ngOnInit() {
     console.log(this.ionSlides);
-    this.ionSlides.lockSwipeToPrev(true);
+    // this.ionSlides.lockSwipeToPrev(true);
   }
 
   onboardingDone() {
     this.storage.set('onboarded', 1);
-    this.router.navigate(['/home']);
+    this.router.navigate(['/tabs/favourites']);
   }
 
   slideReachedEnd() {
     this.pagerStatus = false;
     this.ionSlides.lockSwipeToNext(false);
+    this.reachedEnd = true;
+  }
+
+  nextSlide() {
+    this.ionSlides.slideNext();
+  }
+
+  previousSlide() {
+    this.ionSlides.slidePrev();
+
+    if (this.reachedEnd === true) {
+      this.pagerStatus = true;
+
+    }
   }
 
 }

@@ -20,9 +20,9 @@ export class LeafletMapComponent implements OnInit {
   results: any;
   busStops = {
       stops: [
-         {lat: '48.14816', long: '17.10674', linky: '4, 201, 209'},
-         {lat: '48.14691', long: '17.11001', linky: '50, 68'},
-         {lat: '48.14910', long: '17.10999', linky: '4'}
+         {lat: '48.14790', long: '17.12530', linky: '4, 201, 209'},
+         {lat: '48.14441', long: '17.12690', linky: '50, 68'},
+         {lat: '48.14555', long: '17.12940', linky: '4'}
       ]
    };
 
@@ -61,7 +61,7 @@ export class LeafletMapComponent implements OnInit {
   leafletMap() {
 
     // In setView add latLng and zoom
-    this.map = new L.Map(this.mapElement.nativeElement).setView([48.14816, 17.10674], 16);
+    this.map = new L.Map(this.mapElement.nativeElement).setView([48.14593, 17.12636], 15);
     // this.map = new Map(this.mapElement.nativeElement).setView([11.206051, 122.447886], 8);
     L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
       attribution: '',
@@ -104,9 +104,10 @@ export class LeafletMapComponent implements OnInit {
     addMarker(latitude, longitude, text = '') {
 
       const dot = L.icon({
-        iconUrl: './assets/icon/marker.png',
+        // iconUrl: './assets/icon/marker.png',
+        iconUrl: './assets/icon/mapa/zastavka.png',
         shadowUrl: 'dot-shadow.png',
-        iconSize: [38, 38], // size of the icon
+        iconSize: [45, 55], // size of the icon
         popupAnchor: [0, -15], // point from which the popup should open relative..
         title: 'hello'
       });
@@ -122,8 +123,8 @@ export class LeafletMapComponent implements OnInit {
 
       const icon = L.divIcon({
         className: 'custom-div-icon',
-        html: '<div class="count">4/5</div><img src="./assets/icon/favicon.png" class="markerIcon">',
-        iconSize: [30, 42],
+        html: '<div class="countGreen">6/7</div><img src="./assets/icon/mapa/slovnaftbajk.png" class="markerIcon">',
+        iconSize: [50, 50],
         iconAnchor: [15, 10]
       });
 

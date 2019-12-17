@@ -75,11 +75,11 @@
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
 
-  /** baTheme **/
-  --ion-color-baTheme: #da223a;
-  --ion-color-baTheme-rgb: 244, 244, 244;
-  --ion-color-baTheme-contrast: #000000;
-  --ion-color-baTheme-contrast-rgb: 0, 0, 0;
-  --ion-color-baTheme-shade: #d7d8da;
-  --ion-color-baTheme-tint: #f5f6f9;
+  /** baThemeContent **/
+	--ion-color-baThemeContent: #FCFCFC;
+	--ion-color-baThemeContent-rgb: 244, 244, 244;
+	--ion-color-baThemeContent-contrast: #000000;
+	--ion-color-baThemeContent-contrast-rgb: 0, 0, 0;
+	--ion-color-baThemeContent-shade: #FCFCFC;
+	--ion-color-baThemeContent-tint: #FCFCFC;
 }

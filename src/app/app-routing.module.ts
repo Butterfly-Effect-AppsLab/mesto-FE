@@ -3,7 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { OnboardingGuard } from './pages/onboarding/onboarding.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'tabs/favourites', pathMatch: 'full' },
+  { path: '', redirectTo: 'onboarding', pathMatch: 'full' },
   /* { path: '',
       redirectTo: 'tabs', pathMatch: 'full'
   },*/

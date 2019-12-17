@@ -1,35 +1,117 @@
-<ion-content>
+<ion-content color="baTheme">
   <ion-slides #slides (ionSlideReachEnd)="slideReachedEnd()" [pager]="pagerStatus">
+    <!-- FIRST SLIDE -->
     <ion-slide class="step-one">
-        <ion-img src="./assets/slides/slide1-dashboard.png"></ion-img>
-          <h1>Hlavná obrazovka</h1>
-        <p>Všetky aktuálne informácie o spojoch a dopravných obmedzeniach vždy po ruke!</p>
-    </ion-slide>
+      <ion-img src="./assets/slides/slide1-favourites.png"></ion-img>
+      <ion-grid>
+        <ion-row class="ion-align-items-center ion-justify-content-between">
+          <ion-col size="2"></ion-col>
+          <ion-col size-xs="8">
+            <h1 text-center>Obľúbené spoje</h1>
+          </ion-col>
+          <ion-col size-xs="1" class="ion-no-padding">
+              <ion-icon src="./assets/icon/arrow-right.svg"
+                        class='arrowRight'
+                        (click)="nextSlide()">
+              </ion-icon>
+          </ion-col>
+          <ion-col size="1"></ion-col>
+        </ion-row>
 
+        <ion-row>
+          <ion-col size-xs="2"></ion-col>
+          <ion-col size-xs="8">
+            <p>Všetky potrebné informácie rýchlo a jednoducho na hlavnej obrazovke.</p>
+          </ion-col>
+          <ion-col size-xs="2"></ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+    <!-- FIRST SLIDE END -->
+
+    <!-- SECOND SLIDE -->
     <ion-slide class="step-two">
-        <ion-img src="/assets/slides/slide2-linky.png"></ion-img>
-          <h1>Linky</h1>
-        <p>Pridaj si obľúbený spoj priamo na hlavnú obrazovku a sleduj jeho najbližšie odchody.</p>
+        <ion-img src="/assets/slides/slide2-lines-stops.png"></ion-img>
+        <ion-grid>
+          <ion-row class="ion-align-items-center ion-justify-content-between">
+              <ion-col size-xs="1" class="ion-no-padding">
+                  <ion-icon src="./assets/icon/arrow-left.svg"
+                            class='arrowLeft'
+                            (click)="previousSlide()">
+                  </ion-icon>
+              </ion-col>
+              <ion-col size-xs="10">
+                <h1>Linky a zastávky</h1>
+              </ion-col>
+              <ion-col size-xs="1" class="ion-no-padding">
+                  <ion-icon src="./assets/icon/arrow-right.svg"
+                            class='arrowRight'
+                            (click)="nextSlide()">
+                  </ion-icon>
+              </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size-xs="2"></ion-col>
+            <ion-col size-xs="8">
+              <p color="baThemeContent">
+                Prehľad všetkých liniek a zastávok s možnosťou prezrieť si ich
+                grafikon alebo virtuálnu tabuľu.
+              </p>
+            </ion-col>
+            <ion-col size-xs="2"></ion-col>
+          </ion-row>
+        </ion-grid>
     </ion-slide>
+    <!-- SECOND SLIDE END -->
 
+    <!-- THIRD SLIDE -->
     <ion-slide class="step-three">
-        <ion-img src="/assets/slides/slide3-zastavky.png"></ion-img>
-        <h1>Zastávky</h1>
-        <p>Najbližšie odchody všetkých spojov získaš pridaním obľúbenej zastávky.</p>
-    </ion-slide>
+        <ion-img src="/assets/slides/slide3-map.png"></ion-img>
+        <ion-grid>
+          <ion-row class="ion-align-items-center ion-justify-content-between">
+            <ion-col size-xs="1" class="ion-no-padding">
+                <ion-icon src="./assets/icon/arrow-left.svg"
+                          class='arrowLeft'
+                          (click)="previousSlide()">
+                </ion-icon>
+            </ion-col>
+            <ion-col size-xs="10" size-md="11">
+              <h1>Mapa</h1>
+            </ion-col>
+            <ion-col size-xs="1" class="ion-no-padding">
+            </ion-col>
+          </ion-row>
 
-    <ion-slide class="step-four">
-        <ion-img src="/assets/slides/slide4-mapa.png"></ion-img>
-        <h1>Mapa</h1>
-        <p>Si stratený a hľadáš správnu zastávku? Alebo chceš prestúpiť na bicykel? Pomôž si našou mapkou.</p>
+          <ion-row>
+            <ion-col size-xs="1"></ion-col>
+              <ion-col size-xs="10">
+                <p>Mapa s bicyklami a so zastávkami vyznačenými vo všetkých
+                   smeroch spolu s informáciou o aktuálnych odchodoch spojov
+                 </p>
+              </ion-col>
+              <ion-col size-xs="1"></ion-col>
+          </ion-row>
+        </ion-grid>
 
-        <ion-button (click)="onboardingDone()" style='width: 100%;'>Začať</ion-button>
+          <ion-button (click)="onboardingDone()" class='buttonStart'>
+            Začať
+          </ion-button>
+
     </ion-slide>
   </ion-slides>
+  <!-- THIRD SLIDE END -->
+
+    <a [hidden]="!pagerStatus" (click)="onboardingDone()" class="skipLink">
+      PRESKOČIŤ
+    </a>
 </ion-content>
 
-<ion-footer no-border [hidden]="!pagerStatus">
+<!--
+<ion-footer [hidden]="!pagerStatus">
   <ion-toolbar class='footerSkipLink'>
-    <ion-title text-center><a (click)="onboardingDone()">Preskočit</a></ion-title>
+    <ion-title text-center>
+      <a (click)="onboardingDone()" class="skipLink">PRESKOČIŤ</a>
+    </ion-title>
   </ion-toolbar>
 </ion-footer>
+-->

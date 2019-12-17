@@ -1,11 +1,42 @@
 ion-header {
 	ion-title {
 		--color: white;
-		margin-top: 6px;
 	}
 
 	ion-toolbar {
 		--min-height: 55px;
     box-shadow: 0px 3px 5px #adadad;
 	}
+}
+
+ion-fab-button {
+	--background: var(--ion-color-darkGrey);
+}
+
+ion-fab-button activated {
+	--background: var(--ion-color-darkGrey);
+}
+
+ion-fab-list ion-fab-button {
+	--background: white;
+}
+
+:root {
+	/** baTheme **/
+	--ion-color-baTheme: #da223a;
+	--ion-color-baTheme-rgb: 244, 244, 244;
+	--ion-color-baTheme-contrast: #000000;
+	--ion-color-baTheme-contrast-rgb: 0, 0, 0;
+	--ion-color-baTheme-shade: #d7d8da;
+	--ion-color-baTheme-tint: #f5f6f9;
+
+	/** darkGrey **/
+	--ion-color-darkGrey: #464B62;
+	--ion-color-darkGrey-rgb: 244, 244, 244;
+	--ion-color-darkGrey-contrast: #000000;
+	--ion-color-darkGrey-contrast-rgb: 0, 0, 0;
+	--ion-color-darkGrey-shade: #d7d8da;
+	--ion-color-darkGrey-tint: #f5f6f9;
+
+	--ion-padding: 10px;
 }

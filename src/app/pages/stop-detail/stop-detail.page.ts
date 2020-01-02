@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ViewController } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 // Ionic
 import { IonSlides, ToastController } from '@ionic/angular';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
@@ -43,7 +43,7 @@ export class StopDetailPage implements OnInit {
   }
 
   ionViewDidLoad() {
-    this.viewController.setBackButtonText('My Back Button Text');
+    // this.viewController.setBackButtonText('My Back Button Text');
   }
 
   private initializeCategories(): void {
@@ -52,25 +52,27 @@ export class StopDetailPage implements OnInit {
         // this.selectedCategory = this.categories[0];
 
         // Check which arrows should be shown
-        this.showLeftButton = false;
-        this.showRightButton = this.categories.length > 3;
+        // this.showLeftButton = false;
+        // this.showRightButton = this.categories.length > 3;
   }
 
   // Method executed when the slides are changed
     public slideChanged(): void {
+      /*
         const currentIndex = this.slides.getActiveIndex();
         this.showLeftButton = currentIndex !== 0;
         this.showRightButton = currentIndex !== Math.ceil(this.slides.length() / 3);
+      */
     }
 
     // Method that shows the next slide
     public slideNext(): void {
-        this.slides.slideNext();
+        // this.slides.slideNext();
     }
 
     // Method that shows the previous slide
     public slidePrev(): void {
-        this.slides.slidePrev();
+        // this.slides.slidePrev();
     }
 
     public saveFavouriteStop(event) {

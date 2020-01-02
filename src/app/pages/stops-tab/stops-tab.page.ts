@@ -11,6 +11,18 @@ export class StopsTabPage implements OnInit {
 
   buttonIcon = 'heart-empty';
   heartClass;
+  stops = [];
+
+  mockStops = [
+    {
+      name: 'Kollárovo námestie',
+      lines: ['31', '39', '80', '94', '202', '207', '207']
+    },
+    {
+      name: 'Americké námestie',
+      lines: ['203', '80', 'N80', 'N44']
+    }
+  ];
 
   constructor(
     public toastController: ToastController,
@@ -18,6 +30,8 @@ export class StopsTabPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    // init with MOCK data
+    this.stops = this.mockStops;
   }
 
   public openStopDetail(event, idStop) {
@@ -43,7 +57,7 @@ export class StopsTabPage implements OnInit {
   public showMessage(toastText) {
     this.toastController.create({
       message: toastText,
-      // duration: 10000,
+      duration: 5000,
       animated: true,
       cssClass: 'customToast',
       position: 'bottom',

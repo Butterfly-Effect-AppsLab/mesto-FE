@@ -13,7 +13,13 @@
     <h2 class='pageTitle'>Zastávky</h2>
   </ion-text>
 
-  <ion-card button class="shadow" color="white" [routerLink]="" (click)="openStopDetail($event, '1234')">
+  <ion-card
+    *ngFor="let stop of stops"
+    [routerLink]=""
+    class="shadow"
+    button color="white"
+    (click)="openStopDetail($event, '1234')"
+  >
     <ion-card-content class="ion-no-padding">
       <ion-grid>
         <ion-row class="ion-no-padding divider">
@@ -24,64 +30,7 @@
           </ion-col>
           <ion-col size="8">
             <div class="ion-text-nowrap">
-              <h3 class="bold">Kollárovo námestie</h3>
-            </div>
-            <div class="multi-ellipsis">
-              <ion-text color="darkGrey">
-              <p class="destination">
-                Linky</p>
-              </ion-text>
-            </div>
-          </ion-col>
-
-          <ion-col size="2">
-            <div class="favouriteTapDiv">
-              <ion-icon name="heart-empty"></ion-icon>
-            </div>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-row>
-            <ion-col size='2' class="ion-padding">
-              <div class="lineNumberSquare">31</div>
-            </ion-col>
-            <ion-col size='2' class="ion-padding">
-              <div class="lineNumberSquare">39</div>
-            </ion-col>
-            <ion-col size='2' class="ion-padding">
-              <div class="lineNumberSquare">80</div>
-            </ion-col>
-            <ion-col size='2' class="ion-padding">
-              <div class="lineNumberSquare">94</div>
-            </ion-col>
-            <ion-col size='2' class="ion-padding">
-              <div class="lineNumberSquare">202</div>
-            </ion-col>
-            <ion-col size='2' class="ion-padding">
-              <div class="lineNumberSquare">207</div>
-            </ion-col>
-            <ion-col size='2' class="ion-padding">
-              <div class="lineNumberSquare">207</div>
-            </ion-col>
-          </ion-row>
-        </ion-row>
-      </ion-grid>
-    </ion-card-content>
-  </ion-card>
-
-  <ion-card button class="shadow" color="white" [routerLink]=""
-            (click)="openStopDetail($event)">
-    <ion-card-content class="ion-no-padding">
-      <ion-grid>
-        <ion-row class="ion-no-padding divider">
-          <ion-col size="2">
-            <div class='lineSquereIconNoBorder'>
-              <ion-icon src="./assets/icon/bus-stop.svg"></ion-icon>
-            </div>
-          </ion-col>
-          <ion-col size="8">
-            <div class="ion-text-nowrap">
-              <h3 class="bold">Námestie slobody</h3>
+              <h3 class="bold">{{ stop.name }}</h3>
             </div>
             <div class="multi-ellipsis">
               <ion-text color="darkGrey">
@@ -95,30 +44,14 @@
             <div class="favouriteTapDiv">
               <ion-icon [name]="buttonIcon"
                         [ngClass]="heartClass"
-                        (click)="saveFavouriteStop($event)">
-              </ion-icon>
+                        (click)="saveFavouriteStop($event)"></ion-icon>
             </div>
           </ion-col>
         </ion-row>
         <ion-row>
-          <ion-row>
-            <ion-col size='2' class="ion-padding">
-              <div class="lineNumberSquare">203</div>
-            </ion-col>
-            <ion-col size='2' class="ion-padding">
-              <div class="lineNumberSquare">80</div>
-            </ion-col>
-            <ion-col size='2' class="ion-padding">
-              <div class="lineNumberSquare">N80</div>
-            </ion-col>
-            <ion-col size='2' class="ion-padding">
-              <div class="lineNumberSquare">N44</div>
-            </ion-col>
-            <ion-col size='2' class="ion-padding">
-            </ion-col>
-            <ion-col size='2' class="ion-padding">
-            </ion-col>
-          </ion-row>
+          <ion-col *ngFor="let line of stop.lines" size='2' class="ion-padding">
+            <div class="lineNumberSquare">{{ line }}</div>
+          </ion-col>
         </ion-row>
       </ion-grid>
     </ion-card-content>

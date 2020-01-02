@@ -166,9 +166,20 @@ star-rating {
   text-align: center;
 }
 
+.boldCentered {
+  font-weight: bold !important;
+  text-align: center;
+  color: var(--ion-color-darkGrey);
+  vertical-align: middle;
+}
+
+.centered {
+  text-align: center;
+}
+
 .red {
-  color: #EC4646;
-  text-decoration: underline;
+  color: #BE1622;
+  text-align: center;
 }
 
 .delayInfoSmall {
@@ -578,7 +589,7 @@ ion-bottom-drawer {
   }
 }
 
-h2 {
+.pageTitle {
   padding-left: 25px !important;
   font-weight: 600 !important;
   padding-bottom: 15px;
@@ -640,6 +651,11 @@ ion-card {
   right: 7px;
 }
 
+.padding-top {
+  top: 22px;
+  left: 5px;
+}
+
 .favouriteTapDiv {
   // border: 1px dotted red;
   border-radius: 5px 0 0 5px;
@@ -670,9 +686,10 @@ ion-card {
   width: 45px;
   height: 35px;
   position: relative;
-  color: #9B9EAB;
+  color: var(--ion-color-darkGrey);
   font-size: 15px;
   text-align: center;
+  top: 5px;
 }
 
 .divider {
@@ -681,6 +698,187 @@ ion-card {
   padding-bottom: 8px;
 }
 
+.divider2 {
+  border-bottom: 1px solid #F0F0F2;
+  width: 120%;
+}
+
 .heartFilled {
   fill: #BE1622;
+}
+
+.customToast {
+  --background: #FCFCFC;
+  --border-radius: 4px;
+  --border-style:solid;
+  --button-color: #ffffff;
+  --color:#fff;
+  bottom: 50px;
+  display: block;
+  position: fixed;
+  top: -50px;
+}
+
+.lineSquereIcon {
+  border-radius: 5px;
+  background: #474B60;
+  //padding: 20px;
+  width: 45px;
+  height: 45px;
+  border: 2.5px solid #FF6600;
+  position: relative;
+}
+
+.lineSquereIconGreen {
+  border-radius: 5px;
+  background: #474B60;
+  //padding: 20px;
+  width: 45px;
+  height: 45px;
+  border: 2.5px solid #009846;
+  position: relative;
+}
+
+.lineSquereIconOrange {
+  border-radius: 5px;
+  background: #474B60;
+  // padding: 20px;
+  width: 45px;
+  height: 45px;
+  border: 2.5px solid #F7AA47;
+  position: relative;
+}
+
+.SquereIconText {
+  color: white;
+  position: relative;
+  top: 9px;
+  text-align: center;
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
+.borderRight {
+  border-right: 1px solid #F0F0F2;
+}
+
+.paddingCustom {
+  padding-top: 5px;
+}
+
+.darkGrey {
+  color: #464B62;
+}
+
+/* Page stop-detail/stopId */
+.stop-detail {
+  background-color: #E7E7E9;
+}
+
+.favouriteTapDiv-stopDetail {
+  background-color: #F0F0F2;
+  border-radius: 5px 0 0 5px;
+  float: right;
+  display: block;
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  top: 0px;
+}
+
+.favouriteTapDiv-stopDetail ion-icon {
+  // border: 1px solid orange;
+  height: 30px;
+  width: 31px;
+  top: 20%;
+  left: 10px;
+  color: #464B62;
+  position: relative;
+}
+
+.subHeader {
+  bottom: 25px;
+  position: relative;
+  color: #464B62;
+}
+
+h4 {
+  top: 5px;
+  position: relative;
+}
+
+.filters {
+        ion-col {
+            text-align: center;
+            font-size: 1.6rem;
+            line-height: 1.6rem;
+
+            ion-icon {
+                color: #ccc;
+            }
+
+            &.col-with-arrow {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+
+        p {
+            color: #464B62;
+            margin: 10px;
+            font-size: 1.0rem;
+            background: white;
+            border: none;
+            box-shadow: 0px 0px 7px #00000026;
+            padding-top: 10px;
+            font-weight: 500;
+
+            // line-height: 1.6rem;
+        }
+
+        .selected {
+            font-weight: 700;
+        }
+}
+
+.lineSquereIconGrey {
+  border-radius: 5px;
+  background: #F0F0F2;
+  //padding: 20px;
+  width: 45px;
+  height: 45px;
+  position: relative;
+}
+
+.lineSquereIconGrey div {
+  color: #464B62;
+  position: relative;
+  top: 12px;
+  text-align: center;
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
+.bustStopNameCard {
+  font-size: 1.1em !important;
+  margin-top: 10px !important;
+  font-weight: 700 !important;
+  color: #464B62;
+}
+
+.waitingDots-stopDetail {
+  height: 15px;
+  width: 30px;
+  position: absolute;
+  left: 0px;
+  bottom: 20px;
+}
+
+.button-text {
+  display: none;
+}
+
+.button-inner {
+  color: white;
 }

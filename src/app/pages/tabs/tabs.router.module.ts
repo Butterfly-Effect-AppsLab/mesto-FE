@@ -32,6 +32,11 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: '../stops-tab/stops-tab.module#StopsTabPageModule'
+          },
+          {
+            path: 'stop-detail/:stopId',
+            loadChildren:
+                '../stop-detail/stop-detail.module#StopDetailPageModule'
           }
         ]
       },

@@ -14,6 +14,7 @@ export class OnboardingPage implements OnInit {
    // const results;
    pagerStatus = true;
    reachedEnd;
+
    @ViewChild('slides', {static: true}) ionSlides: IonSlides;
 
   constructor(

@@ -44,6 +44,7 @@ const routes: Routes = [
     loadChildren: './pages/onboarding/onboarding.module#OnboardingPageModule',
     canActivate: [OnboardingGuard]
   },
+  // { path: 'stop-detail', loadChildren: './pages/stop-detail/stop-detail.module#StopDetailPageModule' },
 //  { path: 'stops-tab', loadChildren: './pages/stops-tab/stops-tab.module#StopsTabPageModule' }
 ];
 

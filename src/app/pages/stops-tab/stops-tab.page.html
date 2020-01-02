@@ -10,10 +10,10 @@
   <ion-searchbar class="ion-padding" placeholder="Hľadat"></ion-searchbar>
 
   <ion-text>
-    <h2>Zastávky</h2>
+    <h2 class='pageTitle'>Zastávky</h2>
   </ion-text>
 
-  <ion-card button class="shadow" color="white" [routerLink]="">
+  <ion-card button class="shadow" color="white" [routerLink]="" (click)="openStopDetail($event, '1234')">
     <ion-card-content class="ion-no-padding">
       <ion-grid>
         <ion-row class="ion-no-padding divider">
@@ -69,7 +69,8 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-card button class="shadow" color="white" [routerLink]="">
+  <ion-card button class="shadow" color="white" [routerLink]=""
+            (click)="openStopDetail($event)">
     <ion-card-content class="ion-no-padding">
       <ion-grid>
         <ion-row class="ion-no-padding divider">
@@ -80,7 +81,7 @@
           </ion-col>
           <ion-col size="8">
             <div class="ion-text-nowrap">
-              <h3 class="bold">Kollárovo námestie</h3>
+              <h3 class="bold">Námestie slobody</h3>
             </div>
             <div class="multi-ellipsis">
               <ion-text color="darkGrey">
@@ -92,7 +93,10 @@
 
           <ion-col size="2">
             <div class="favouriteTapDiv">
-              <ion-icon name="heart-empty"></ion-icon>
+              <ion-icon [name]="buttonIcon"
+                        [ngClass]="heartClass"
+                        (click)="saveFavouriteStop($event)">
+              </ion-icon>
             </div>
           </ion-col>
         </ion-row>

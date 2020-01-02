@@ -1,6 +1,7 @@
 import { Component, ViewChild, ElementRef, OnInit, Input } from '@angular/core';
 import { NavController, Platform } from '@ionic/angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { RouterModule, Routes, Router } from '@angular/router';
 
 import { SlovnaftService } from '../../services/slovnaft.service';
 // import { Map, latLng, tileLayer, Layer, marker, LeafIcon } from 'leaflet';
@@ -20,15 +21,16 @@ export class LeafletMapComponent implements OnInit {
   results: any;
   busStops = {
       stops: [
-         {lat: '48.14790', long: '17.12530', linky: '4, 201, 209'},
-         {lat: '48.14441', long: '17.12690', linky: '50, 68'},
-         {lat: '48.14555', long: '17.12940', linky: '4'}
+         {stopId: '1234', lat: '48.14790', long: '17.12530', linky: '4, 201, 209'},
+         {stopId: '1211', lat: '48.14441', long: '17.12690', linky: '50, 68'},
+         {stopId: '9232', lat: '48.14555', long: '17.12940', linky: '4'}
       ]
    };
 
   constructor(
     private geolocation: Geolocation,
     private plt: Platform,
+    private router: Router,
     ) {
     }
 
@@ -43,10 +45,10 @@ export class LeafletMapComponent implements OnInit {
         this.addMarker(location.GpsLat, location.GpsLon, location.Name);
       }
 
-      console.log(this.busStops.stops);
+      // console.log(this.busStops.stops);
 
       for (const busLocation of this.busStops.stops) {
-        this.addStops(busLocation.lat, busLocation.long, busLocation.linky);
+        this.addStops(busLocation.lat, busLocation.long, busLocation.stopId, busLocation.linky);
       }
 
     }
@@ -101,7 +103,8 @@ export class LeafletMapComponent implements OnInit {
       this.map.remove();
     }
 
-    addMarker(latitude, longitude, text = '') {
+    // pridanie zastavky do mapy
+    addMarker(latitude, longitude, stopId, text = '') {
 
       const dot = L.icon({
         // iconUrl: './assets/icon/marker.png',
@@ -114,12 +117,15 @@ export class LeafletMapComponent implements OnInit {
 
       const mapMarker = L.marker([latitude, longitude], { icon: dot }, 15);
       mapMarker
-        .bindPopup(text)
-        .addTo(this.map);
-        // .openPopup();
+        // .bindPopup(text)
+        .addTo(this.map)
+        .on('click', (e) => {
+          console.log('station');
+        });
     }
 
-    addStops(latitude, longitude, text) {
+    // pridanie slovnaftbajk markeru
+    addStops(latitude, longitude, stopId, text) {
 
       const icon = L.divIcon({
         className: 'custom-div-icon',
@@ -128,8 +134,8 @@ export class LeafletMapComponent implements OnInit {
         iconAnchor: [15, 10]
       });
 
-      console.log(icon);
-
+      // console.log(icon);
+      /*
       const station = L.icon({
           // iconUrl: './assets/icon/bus_marker.png',
           shadowUrl: 'dot-shadow.png',
@@ -138,11 +144,12 @@ export class LeafletMapComponent implements OnInit {
           title: 'hello',
           html: '2'
         });
+      */
 
       const mapBusMarker = L.marker([latitude, longitude], { icon }, 15)
         .addTo(this.map)
-        .on('click', function(e) {
-          console.log('aaa');
+        .on('click', (e) => {
+          this.router.navigateByUrl('tabs/stops/stop-detail/' + stopId);
         });
       // mapBusMarker
           // .bindPopup(text)
@@ -150,6 +157,6 @@ export class LeafletMapComponent implements OnInit {
     }
 
      markerOnClick() {
-	      alert('hi. you clicked the marker at');
+       alert('hi. you clicked the marker at');
       }
 }

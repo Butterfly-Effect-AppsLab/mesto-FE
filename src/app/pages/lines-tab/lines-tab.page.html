@@ -13,7 +13,11 @@
     <h2 class='pageTitle'>Zoznam liniek</h2>
   </ion-text>
 
-    <ion-card button class="shadow" color="white" [routerLink]="">
+    <ion-card button
+              class="shadow"
+              color="white"
+              [routerLink]=""
+              (click)="openLineDetail($event, '39')">
         <ion-card-content class="ion-no-padding">
           <ion-grid>
             <ion-row class="ion-no-padding">

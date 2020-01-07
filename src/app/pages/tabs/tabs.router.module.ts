@@ -23,7 +23,16 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: '../lines-tab/lines-tab.module#LinesTabPageModule'
-          }
+          },
+          {
+            path: 'line-detail/:lineId',
+            loadChildren:
+                '../line-detail/line-detail.module#LineDetailPageModule'
+          },
+            {
+              path: 'line-detail/:lineId/timetable',
+              loadChildren: '../timetable/timetable.module#TimetablePageModule'
+            }
         ]
       },
       {

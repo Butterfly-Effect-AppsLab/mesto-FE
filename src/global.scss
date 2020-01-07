@@ -631,7 +631,7 @@ ion-card {
   //padding: 20px;
   width: 30px;
   height: 30px;
-  border: 1.5px solid orange;
+  // border: 1.5px solid orange;
   position: relative;
 }
 
@@ -677,6 +677,10 @@ ion-card {
   left: 10px;
   color: #464B62;
   position: relative;
+}
+
+.favouriteTapDiv2 {
+  right: -10px;
 }
 
 .lineNumberSquare {
@@ -725,7 +729,7 @@ ion-card {
   //padding: 20px;
   width: 45px;
   height: 45px;
-  border: 2.5px solid #FF6600;
+  // border: 2.5px solid #FF6600;
   position: relative;
 }
 
@@ -735,7 +739,7 @@ ion-card {
   //padding: 20px;
   width: 45px;
   height: 45px;
-  border: 2.5px solid #009846;
+  // border: 2.5px solid #009846;
   position: relative;
 }
 
@@ -745,14 +749,15 @@ ion-card {
   // padding: 20px;
   width: 45px;
   height: 45px;
-  border: 2.5px solid #F7AA47;
+  // border: 2.5px solid #F7AA47;
   position: relative;
+  font-size: 0.9em;
 }
 
 .SquereIconText {
   color: white;
   position: relative;
-  top: 9px;
+  top: 12px;
   text-align: center;
   font-size: 0.9em;
   font-weight: bold;
@@ -881,4 +886,52 @@ h4 {
 
 .button-inner {
   color: white;
+}
+
+/* LINE DETAIL */
+
+.lineTime {
+  text-align: center;
+  padding-right: 15px;
+  padding-top: 8px;
+  font-weight: 400;
+  color: #464B62;
+}
+
+.timeDivider {
+  border-left: 1px solid #9B9EAB;
+  height: 30px;
+  margin-top: 10px;
+  margin-left: 50%;
+}
+
+.lineDetailCard {
+  padding-bottom: 8px;
+}
+
+/* TIMETABLE */
+.timetableTabs {
+  border-bottom: none;
+}
+
+.timetableTabs ion-label {
+  font-weight: 700;
+  font-size: 1.6em;
+}
+
+.bottomDivider {
+  border-bottom: 1px solid #F0F0F2;
+}
+
+.rightDivider {
+  border-right: 1px solid #F0F0F2;
+  text-align: center;
+}
+
+.timetableInfo {
+  background-color: #F0F0F2;
+}
+
+.blueTime {
+  color: #0587EB;
 }

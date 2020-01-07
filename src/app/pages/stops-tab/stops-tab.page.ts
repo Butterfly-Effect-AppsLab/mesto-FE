@@ -37,6 +37,7 @@ export class StopsTabPage implements OnInit {
   public openStopDetail(event, idStop) {
     event.stopPropagation();
     this.router.navigateByUrl('tabs/stops/stop-detail/' + idStop);
+    console.log(idStop);
   }
 
   public saveFavouriteStop(event) {

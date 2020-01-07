@@ -1,0 +1,113 @@
+<ion-header>
+  <ion-toolbar color='baTheme'>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-img src="./assets/icon/PNGbratislava.png" class='baIcon'></ion-img>
+    <ion-title class='titleColor'>Linka {{idLine}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="ion-no-padding">
+      <ion-row class="ion-no-padding stop-detail">
+        <ion-col size="2">
+          <div class='lineSquereIcon padding-top'>
+            <div class='SquereIconText'>{{idLine}}</div>
+          </div>
+        </ion-col>
+        <ion-col size="8" class=''>
+          <div class="ion-text-nowrap">
+            <h4 class="bold">Ostredky, Súhvezdná</h4><br/>
+          </div>
+          <div class="">
+            <ion-text color="darkGrey subHeader">
+              Bus
+            </ion-text>
+          </div>
+        </ion-col>
+        <ion-col size="2" class='padding-top'>
+          <div class="favouriteTapDiv-stopDetail">
+            <ion-icon [name]="buttonIcon"
+                      src="./assets/icon/changeDirection.svg"
+                      (click)="saveFavouriteStop($event)">
+            </ion-icon>
+          </div>
+        </ion-col>
+      </ion-row>
+  </ion-grid>
+
+  <ion-grid style='padding-top: 20px;'>
+    <ion-row  *ngFor="let lineStop of lineStops; let i=index; let lastItem = last;"
+              class="ion-no-padding">
+      <ion-col size='2' class='lineTime'>
+        {{lineStop.minutesFromStart}} <br>
+        min
+      <div class='timeDivider' *ngIf="!lastItem"></div>
+      </ion-col>
+
+      <ion-col size='10' class="ion-no-padding">
+        <ion-card button color="white"
+                         [routerLink]="" class="ion-no-margin shadow"
+                         (click)="openLineTimetable($event, idLine)">
+            <ion-card-content class="ion-padding">
+              <ion-row>
+                <ion-col size='10'>
+                  <div class='bold'>{{lineStop.name}}</div>
+                  <span class='destination'>zastávka /
+                    <ion-icon src="../assets/icon/naZnamenie.svg"
+                      *ngIf="lineStop.requestStop == true">
+                    </ion-icon>
+                    <span *ngIf="lineStop.requestStop == true"> / </span>
+                    {{lineStop.dist}} m</span>
+                </ion-col>
+
+                <ion-col size='2'>
+                  <div class="favouriteTapDiv favouriteTapDiv2">
+                    <ion-icon [name]="buttonIcon"
+                              [ngClass]="heartClass"
+                              (click)="saveFavouriteStop($event)"></ion-icon>
+                  </div>
+                </ion-col>
+              </ion-row>
+            </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+<!--
+    <ion-row style='border: 0px solid blue;' class="ion-no-padding lineDetailCard">
+      <ion-col size='2' class='lineTime'>
+        2 <br>
+        min
+      <div class='timeDivider'></div>
+      </ion-col>
+
+      <ion-col size='10' class="ion-no-padding" style='border: 0px solid red;'>
+        <ion-card button color="white"
+                         [routerLink]="" class="ion-no-margin shadow">
+            <ion-card-content class="ion-padding" style='border: 0px solid black;'>
+              <ion-row>
+                <ion-col size='10'>
+                  <div class='bold'>Televízia</div>
+                  <span class='destination'>
+                    zastávka /
+                    <ion-icon src="../assets/icon/naZnamenie.svg"></ion-icon> /
+                    150 m</span>
+                </ion-col>
+
+                <ion-col size='2'>
+                  <div class="favouriteTapDiv favouriteTapDiv2">
+                    <ion-icon [name]="buttonIcon"
+                              [ngClass]="heartClass"
+                              (click)="saveFavouriteStop($event)"></ion-icon>
+                  </div>
+                </ion-col>
+              </ion-row>
+            </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  -->
+  </ion-grid>
+
+</ion-content>

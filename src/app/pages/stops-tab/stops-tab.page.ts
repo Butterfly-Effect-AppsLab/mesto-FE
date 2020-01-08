@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import AnimationsUtil from 'src/app/services/animations.util';
 
 @Component({
   selector: 'app-stops-tab',
@@ -26,12 +27,17 @@ export class StopsTabPage implements OnInit {
 
   constructor(
     public toastController: ToastController,
-    private router: Router
+    private router: Router,
+    private animationsUtil: AnimationsUtil,
   ) { }
 
   ngOnInit() {
     // init with MOCK data
     this.stops = this.mockStops;
+  }
+
+  ionViewWillEnter() {
+    console.log('ionViewWillEnter');
   }
 
   public openStopDetail(event, idStop) {
@@ -47,30 +53,12 @@ export class StopsTabPage implements OnInit {
     if (this.buttonIcon === 'heart-empty') {
       this.buttonIcon = 'heart';
       this.heartClass = 'heartFilled';
-      this.showMessage('Pridane do oblubenych.');
+      this.animationsUtil.showMessage('Pridane do oblubenych.');
     } else if (this.buttonIcon === 'heart') {
         this.buttonIcon = 'heart-empty';
         this.heartClass = '';
-        this.showMessage('Oblubene odstranene');
+        this.animationsUtil.showMessage('Oblubene odstranene');
     }
-  }
-
-  public showMessage(toastText) {
-    this.toastController.create({
-      message: toastText,
-      duration: 5000,
-      animated: true,
-      cssClass: 'customToast',
-      position: 'bottom',
-      buttons: [
-        {
-          side: 'end',
-          icon: 'close'
-        }],
-      color: 'dark'
-    }).then((obj) => {
-      obj.present();
-    });
   }
 
 }

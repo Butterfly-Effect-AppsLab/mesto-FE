@@ -63,7 +63,7 @@ export class LeafletMapComponent implements OnInit {
   leafletMap() {
 
     // In setView add latLng and zoom
-    this.map = new L.Map(this.mapElement.nativeElement).setView([48.14593, 17.12636], 15);
+    this.map = new L.Map(this.mapElement.nativeElement).setView([48.14790, 17.12530], 15);
     // this.map = new Map(this.mapElement.nativeElement).setView([11.206051, 122.447886], 8);
     L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
       attribution: '',

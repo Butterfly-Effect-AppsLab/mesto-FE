@@ -11,9 +11,10 @@ ion-header {
 
 ion-fab-button {
 	--background: var(--ion-color-darkGrey);
+	--background-activated: var(--ion-color-darkGrey);
 }
 
-ion-fab-button activated {
+ion-fab-button .activated {
 	--background: var(--ion-color-darkGrey);
 }
 

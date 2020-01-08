@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 // Ionic
 import { IonSlides, ToastController } from '@ionic/angular';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import AnimationsUtil from 'src/app/services/animations.util';
 
 
 @Component({
@@ -25,11 +26,12 @@ export class StopDetailPage implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    public toastController: ToastController
+    public toastController: ToastController,
+    private animationsUtils: AnimationsUtil
   ) {
     this.slideOpt = {
       initialSlide: 1,
-      slidesPerView: 1
+      slidesPerView: 5
     };
   }
 
@@ -82,30 +84,12 @@ export class StopDetailPage implements OnInit {
       if (this.buttonIcon === 'heart-empty') {
         this.buttonIcon = 'heart';
         this.heartClass = 'heartFilled';
-        this.showMessage('Pridané do obľúbených.');
+        this.animationsUtils.showMessage('Pridané do obľúbených.');
       } else if (this.buttonIcon === 'heart') {
           this.buttonIcon = 'heart-empty';
           this.heartClass = '';
-          this.showMessage('Oblubene odstranene');
+          this.animationsUtils.showMessage('Oblubene odstranene');
       }
-    }
-
-    public showMessage(toastText) {
-      this.toastController.create({
-        message: toastText,
-        duration: 5000,
-        animated: true,
-        cssClass: 'customToast',
-        position: 'bottom',
-        buttons: [
-          {
-            side: 'end',
-            icon: 'close'
-          }],
-        color: 'dark'
-      }).then((obj) => {
-        obj.present();
-      });
     }
 
 }

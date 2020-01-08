@@ -14,49 +14,53 @@ export class LineDetailPage implements OnInit {
 
   lineStops = []; // toto je premenna ktoru vyuzivam v page.ts v ngFor
 
-  mockLineStops = [
-        {
-          name: 'Cintorín Slávičie údolie',
-          minutesFromStart: 0,
-          requestStop: false,
-          dist: '100'
-        },
-        {
-          name: 'Televízia',
-          minutesFromStart: 2,
-          requestStop: true,
-          dist: '100'
-        },
-        {
-          name: 'ZOO',
-          minutesFromStart: 4,
-          requestStop: false,
-          dist: '100'
-        },
-        {
-          name: 'Lafranconi',
-          minutesFromStart: 5,
-          requestStop: false,
-          dist: '100'
-        },
-        {
-          name: 'Kráľovské údolie',
-          minutesFromStart: 7,
-          requestStop: false,
-          dist: '100'
-        },
-        {
-          name: 'Chátam Sófer',
-          minutesFromStart: 9,
-          requestStop: false,
-          dist: '100'
-        },
-        {
-          name: 'Zochova',
-          minutesFromStart: 12,
-          requestStop: false,
-          dist: '100'
-        }
+  mockLineStops = [{
+    lineNumber: 39,
+    lineStops: [
+      {
+        name: 'Cintorín Slávičie údolie',
+        minutesFromStart: 0,
+        requestStop: false,
+        dist: '100'
+      },
+      {
+        name: 'Televízia',
+        minutesFromStart: 2,
+        requestStop: true,
+        dist: '100'
+      },
+      {
+        name: 'ZOO',
+        minutesFromStart: 4,
+        requestStop: false,
+        dist: '100'
+      },
+      {
+        name: 'Lafranconi',
+        minutesFromStart: 5,
+        requestStop: false,
+        dist: '100'
+      },
+      {
+        name: 'Kráľovské údolie',
+        minutesFromStart: 7,
+        requestStop: false,
+        dist: '100'
+      },
+      {
+        name: 'Chátam Sófer',
+        minutesFromStart: 9,
+        requestStop: false,
+        dist: '100'
+      },
+      {
+        name: 'Zochova',
+        minutesFromStart: 12,
+        requestStop: false,
+        dist: '100'
+      }
+    ]
+  }
 ];
 
   constructor(

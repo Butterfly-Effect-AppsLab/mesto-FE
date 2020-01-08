@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color='baTheme'>
     <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+      <ion-back-button defaultHref="/tabs/lines"></ion-back-button>
     </ion-buttons>
     <ion-img src="./assets/icon/PNGbratislava.png" class='baIcon'></ion-img>
     <ion-title class='titleColor'>Linka {{idLine}}</ion-title>
@@ -38,42 +38,44 @@
   </ion-grid>
 
   <ion-grid style='padding-top: 20px;'>
-    <ion-row  *ngFor="let lineStop of lineStops; let i=index; let lastItem = last;"
-              class="ion-no-padding">
-      <ion-col size='2' class='lineTime'>
-        {{lineStop.minutesFromStart}} <br>
-        min
-      <div class='timeDivider' *ngIf="!lastItem"></div>
-      </ion-col>
+    <ng-template ngFor let-stop [ngForOf]="lineStops">
+      <ion-row *ngFor="let lineStop of stop.lineStops; let i=index; let lastItem = last;"
+                class="ion-no-padding">
+        <ion-col size='2' class='lineTime'>
+          {{lineStop.minutesFromStart}} <br>
+          min
+        <div class='timeDivider' *ngIf="!lastItem"></div>
+        </ion-col>
 
-      <ion-col size='10' class="ion-no-padding">
-        <ion-card button color="white"
-                         [routerLink]="" class="ion-no-margin shadow"
-                         (click)="openLineTimetable($event, idLine)">
-            <ion-card-content class="ion-padding">
-              <ion-row>
-                <ion-col size='10'>
-                  <div class='bold'>{{lineStop.name}}</div>
-                  <span class='destination'>zastávka /
-                    <ion-icon src="../assets/icon/naZnamenie.svg"
-                      *ngIf="lineStop.requestStop == true">
-                    </ion-icon>
-                    <span *ngIf="lineStop.requestStop == true"> / </span>
-                    {{lineStop.dist}} m</span>
-                </ion-col>
+        <ion-col size='10' class="ion-no-padding">
+          <ion-card button color="white"
+                           [routerLink]="" class="ion-no-margin shadow"
+                           (click)="openLineTimetable($event, idLine)">
+              <ion-card-content class="ion-padding">
+                <ion-row>
+                  <ion-col size='10'>
+                    <div class='bold'>{{lineStop.name}}</div>
+                    <span class='destination'>zastávka /
+                      <ion-icon src="../assets/icon/naZnamenie.svg"
+                        *ngIf="lineStop.requestStop == true">
+                      </ion-icon>
+                      <span *ngIf="lineStop.requestStop == true"> / </span>
+                      {{lineStop.dist}} m</span>
+                  </ion-col>
 
-                <ion-col size='2'>
-                  <div class="favouriteTapDiv favouriteTapDiv2">
-                    <ion-icon [name]="buttonIcon"
-                              [ngClass]="heartClass"
-                              (click)="saveFavouriteStop($event)"></ion-icon>
-                  </div>
-                </ion-col>
-              </ion-row>
-            </ion-card-content>
-        </ion-card>
-      </ion-col>
-    </ion-row>
+                  <ion-col size='2'>
+                    <div class="favouriteTapDiv favouriteTapDiv2">
+                      <ion-icon [name]="buttonIcon"
+                                [ngClass]="heartClass"
+                                (click)="saveFavouriteStop($event)"></ion-icon>
+                    </div>
+                  </ion-col>
+                </ion-row>
+              </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ng-template>
 <!--
     <ion-row style='border: 0px solid blue;' class="ion-no-padding lineDetailCard">
       <ion-col size='2' class='lineTime'>

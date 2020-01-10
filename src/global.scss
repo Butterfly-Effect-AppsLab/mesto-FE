@@ -923,6 +923,10 @@ h4 {
   border-bottom: 1px solid #F0F0F2;
 }
 
+.bottomDividerWhite {
+  border-bottom: 1px solid #FFFFFF;
+}
+
 .rightDivider {
   border-right: 1px solid #F0F0F2;
   text-align: center;
@@ -934,4 +938,25 @@ h4 {
 
 .blueTime {
   color: #0587EB;
+}
+
+.infoIconDiv {
+  border-radius: 5px;
+  background: #FFFFFF;
+  width: 40px;
+  height: 40px;
+  position: relative;
+  margin-bottom: 5px;
+}
+
+.infoIcon {
+  height: 20px;
+  width: 20px;
+  top: 25%;
+  position: absolute;
+  left: 25%;
+}
+
+.paddingCustom14 {
+  padding-top: 14px;
 }

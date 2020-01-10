@@ -154,7 +154,19 @@
   <ion-card class='timetableInfo'>
     <ion-card-content class='ion-no-padding'>
       <ion-grid class='ion-padding'>
-        <ion-row>
+
+        <ion-row class='bottomDividerWhite'>
+          <ion-col size='2' class='centered'>
+            <div class='infoIconDiv'>
+              <ion-icon class='infoIcon' name="information-circle"></ion-icon>
+            </div>
+          </ion-col>
+          <ion-col size='10' class='bold paddingCustom14'>
+            Poznámky
+          </ion-col>
+        </ion-row>
+
+        <ion-row class='paddingCustom14'>
           <ion-col size='2' class='centered'>
             <ion-icon src="./assets/icon/naZnamenie.svg"></ion-icon>
           </ion-col>
@@ -168,6 +180,7 @@
             <strong>36</strong>
           </ion-col>
           <ion-col size='10'>
+            Spoje označené modrou farbou sú zabezpečované nízkopodlažnými
             vozidlami
           </ion-col>
         </ion-row>

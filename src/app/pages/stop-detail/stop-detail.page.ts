@@ -16,10 +16,11 @@ export class StopDetailPage implements OnInit {
   myId = null;
   buttonIcon = 'heart-empty';
   heartClass;
+  NextWasClicked = null;
 
   @ViewChild('slides', {static: true}) ionSlides: IonSlides;
 
-  public showLeftButton: boolean;
+  public showLeftButton = true;
   public showRightButton: boolean;
   slideOpt: any;
 
@@ -60,21 +61,27 @@ export class StopDetailPage implements OnInit {
 
   // Method executed when the slides are changed
     public slideChanged(): void {
-      /*
-        const currentIndex = this.slides.getActiveIndex();
-        this.showLeftButton = currentIndex !== 0;
-        this.showRightButton = currentIndex !== Math.ceil(this.slides.length() / 3);
-      */
+
+        // const currentIndex = this.ionSlides.getActiveIndex();
+        // this.showLeftButton = currentIndex !== 0;
+        // this.showRightButton = currentIndex !== Math.ceil(this.ionSlides.length() / 3);
+
     }
 
     // Method that shows the next slide
     public slideNext(): void {
-        // this.slides.slideNext();
+        this.ionSlides.slideNext();
+        this.NextWasClicked = 1;
+        // console.log(this.NextWasClicked);
+        if (this.NextWasClicked === 1) {
+          // this.showLeftButton = true;
+        }
     }
 
     // Method that shows the previous slide
     public slidePrev(): void {
-        // this.slides.slidePrev();
+        this.ionSlides.slidePrev();
+        // console.log(this.ionSlides.isBeginning(true));
     }
 
     public saveFavouriteStop(event) {

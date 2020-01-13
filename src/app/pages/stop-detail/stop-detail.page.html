@@ -41,11 +41,17 @@
 
   <ion-toolbar>
         <ion-row class="filters">
-            <ion-col class="col-with-arrow" (click)="slidePrev()" no-padding col-1>
-                <ion-icon *ngIf="showLeftButton" name="arrow-back"></ion-icon>
+            <ion-col class="col-with-arrow"
+                     no-padding col-1>
+                <ion-icon *ngIf="showLeftButton"
+                          name="arrow-back"
+                          (click)="slidePrev()">
+                </ion-icon>
             </ion-col>
-            <ion-col no-padding col-10>
-                <ion-slides #slides [options]="slideOpt" (ionSlideDidChange)="slideChanged()" slidesPerView="4">
+            <ion-col no-padding col-10 class='linesSlider'>
+                <ion-slides
+                      #slides [options]="slideOpt"
+                      (ionSlideDidChange)="slideChanged()">
                     <ion-slide>
                         <p class='lineSquereIcon'>39 </p>
                         </ion-slide>

@@ -712,15 +712,16 @@ ion-card {
 }
 
 .customToast {
-  --background: #FCFCFC;
-  --border-radius: 4px;
+  --background: #464B62;
+  --border-radius: 0px;
   --border-style:solid;
   --button-color: #ffffff;
   --color:#fff;
-  bottom: 50px;
   display: block;
   position: fixed;
-  top: -50px;
+  top: 2px;
+  width: 106%;
+  margin-left: -10px;  
 }
 
 .lineSquereIcon {
@@ -847,6 +848,11 @@ h4 {
         }
 }
 
+.linesSlider {
+  width: 85%;
+  overflow:visible;
+}
+
 .lineSquereIconGrey {
   border-radius: 5px;
   background: #F0F0F2;
@@ -959,4 +965,14 @@ h4 {
 
 .paddingCustom14 {
   padding-top: 14px;
+}
+
+.back-drop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(100, 100, 100, 0.5);
+    z-index: 1;
 }

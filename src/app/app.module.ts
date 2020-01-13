@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule } from '@angular/core';
+import { ErrorHandler, NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouteReuseStrategy } from '@angular/router';
 
 import { IonApp, IonicModule, IonicRouteStrategy } from '@ionic/angular';
@@ -39,6 +39,7 @@ import AnimationsUtil from './services/animations.util';
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
     Geolocation
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule {}

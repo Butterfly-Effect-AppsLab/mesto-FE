@@ -13,19 +13,17 @@ export default class AnimationsUtil {
 	        this.toastController.dismiss();
 	      }
 	    })
-			
+
       this.toastController.create({
         message: toastText,
-        duration: 5000,
+        // duration: 5000,
         animated: true,
         cssClass: 'customToast',
         position: 'bottom',
         buttons: [
           {
-            side: 'end',
-            icon: 'close'
-          }],
-        color: 'dark'
+            side: 'end'
+          }]
       }).then((obj) => {
         obj.present();
       });

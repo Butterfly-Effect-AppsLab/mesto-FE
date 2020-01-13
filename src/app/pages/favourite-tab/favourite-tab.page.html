@@ -6,197 +6,20 @@
 </ion-header>
 
 <ion-content>
+<div *ngIf="backdrop" class="back-drop"></div>
 
-<ion-tabs class='secondMenuTabs'>
-  <ion-tab-bar slot="top" class='tabsContentMenu'>
-    <ion-tab-button tab="schedule" selected="true">
-      <ion-label style="color: #DF4343;">Všetko</ion-label>
-    </ion-tab-button>
+<ion-grid class='secondMenuTabs'>
+  <ion-row class='tabsContentMenu'>
+    <ion-col size='4'><a href="">Všetko</a></ion-col>
+    <ion-col size='4'><a href="">Linky</a></ion-col>
+    <ion-col size='4'><a href="">Zastávky</a></ion-col>
+  </ion-row>
+</ion-grid>
 
-    <ion-tab-button tab="speakers">
-      <ion-label>Linky</ion-label>
-    </ion-tab-button>
+<fav-stop-card></fav-stop-card>
+<fav-line-card></fav-line-card>
 
-    <ion-tab-button tab="mapa">
-      <ion-label>Zastávky</ion-label>
-    </ion-tab-button>
-  </ion-tab-bar>
-</ion-tabs>
-
-<!-- LINE -->
-<ion-card button class="shadow" color="white" [routerLink]="" style="margin-top: 65px;">
-  <ion-card-content class="ion-no-padding">
-    <ion-grid>
-      <ion-row class="ion-no-padding divider">
-        <ion-col size="2">
-          <div class='lineSquereIconNoBorder'>
-            <ion-icon src="./assets/icon/bus-stop.svg"></ion-icon>
-          </div>
-        </ion-col>
-        <ion-col size="8">
-          <div class="ion-text-nowrap">
-            <h3 class="bold-favourite">Kollárovo námestie</h3>
-          </div>
-        </ion-col>
-
-        <ion-col size="2">
-          <div class="favouriteTapDiv">
-            <ion-icon name="heart" class="heartFilled"></ion-icon>
-          </div>
-        </ion-col>
-      </ion-row>
-
-      <ion-row class="ion-no-padding">
-        <ion-col size="2">
-          <div class='lineNumberSquare'>
-            212
-          </div>
-        </ion-col>
-        <ion-col size="7" class='divider2'>
-          <div class="ion-text-nowrap">
-            <h3 class="">ŽST Železná studnička</h3>
-            <ion-icon src='./assets/icon/disability.svg'></ion-icon>
-          </div>
-        </ion-col>
-
-        <ion-col size="3" class='divider2'>
-          <div class="bold-favourite-time">
-            <ion-img src="./assets/icon/bodky.gif" class="waitingDots"></ion-img>
-          </div>
-        </ion-col>
-          <!--
-          <ion-col size='2' class="ion-padding">
-            <div class="lineNumberSquare">94</div>
-          </ion-col>
-          <ion-col size='2' class="ion-padding">
-            <div class="lineNumberSquare">202</div>
-          </ion-col>
-          <ion-col size='2' class="ion-padding">
-            <div class="lineNumberSquare">207</div>
-          </ion-col>
-          <ion-col size='2' class="ion-padding">
-            <div class="lineNumberSquare">207</div>
-          </ion-col>
-          -->
-      </ion-row>
-
-      <ion-row class="ion-no-padding">
-        <ion-col size="2">
-          <div class='lineNumberSquare'>
-            208
-          </div>
-        </ion-col>
-        <ion-col size="7" class='divider2'>
-          <div class="ion-text-nowrap">
-            <h3 class="">Staré mesto, Šulekova</h3>
-            <ion-icon src='./assets/icon/disability.svg'></ion-icon>
-          </div>
-        </ion-col>
-        <ion-col size="3" class='divider2'>
-          <div class="bold-favourite-time">
-            o 2 min
-          </div>
-        </ion-col>
-      </ion-row>
-
-      <ion-row class="ion-no-padding">
-        <ion-col size="2">
-          <div class='lineNumberSquare'>
-            39
-          </div>
-        </ion-col>
-        <ion-col size="7">
-          <div class="ion-text-nowrap">
-            <h3 class="">Cintorín Slávičie údolie</h3>
-            <ion-icon src='./assets/icon/disability.svg'></ion-icon>
-            <span class='delayInfoSmall'>meškanie 2 min </span>
-          </div>
-        </ion-col>
-
-        <ion-col size="3">
-          <div class="bold-favourite-time red">
-            o 5 min
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-card-content>
-</ion-card>
-
-<ion-card button class="shadow" color="white" [routerLink]="">
-  <ion-card-content class="ion-no-padding">
-    <ion-grid>
-      <ion-row class="ion-no-padding divider">
-        <ion-col size="2">
-          <div class='lineSquereIcon'>
-            <div class='SquereIconText'>39</div>
-          </div>
-        </ion-col>
-        <ion-col size="8">
-          <div class="ion-text-nowrap">
-            <h3 class="bold">Televízia</h3>
-          </div>
-          <div class="multi-ellipsis">
-            <ion-text color="darkGrey">
-              <p class="destination">Ostredky, Súhvezdná</p>
-            </ion-text>
-          </div>
-        </ion-col>
-        <ion-col size="2">
-          <div class="favouriteTapDiv">
-            <ion-icon name="heart" class="heartFilled"></ion-icon>
-          </div>
-        </ion-col>
-      </ion-row>
-
-      <ion-row class="ion-no-padding paddingCustom">
-        <ion-col size="6" class='divider2'>
-            <h3 class='darkGrey'>najbližšie odchody:</h3>
-        </ion-col>
-        <ion-col size="2" class='divider2 borderRight'>
-          <div class="ion-text-nowrap boldCentered">
-            12:30
-          </div>
-        </ion-col>
-
-        <ion-col size="2" class='divider2 borderRight'>
-          <div class=".centered">
-            12:35
-          </div>
-        </ion-col>
-        <ion-col size="2" class='divider2'>
-          <div class="centered">
-            12:40
-          </div>
-        </ion-col>
-      </ion-row>
-
-      <ion-row class="ion-no-padding">
-        <ion-col size="6">
-          <div class=''>
-            <h3 class='darkGrey'>meškanie:</h3>
-          </div>
-        </ion-col>
-        <ion-col size="2" class='borderRight red'>
-          <div class="ion-text-nowrap">
-            4 min <br/>
-            12:34
-          </div>
-        </ion-col>
-        <ion-col size="2" class='borderRight'>
-          <div class=""></div>
-        </ion-col>
-        <ion-col size="2">
-          <div class="red">
-            10 min <br/>
-            12:50
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-card-content>
-</ion-card>
-
+<!-- Stop card END -->
 <!--
 <ion-segment (ionChange)="segmentChanged($event)">
   <ion-segment-button value="all" class='segmentMenu'>
@@ -225,7 +48,8 @@
   </ion-grid>
 
 -->
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="backdrop = !backdrop">
     <ion-fab-button>
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>

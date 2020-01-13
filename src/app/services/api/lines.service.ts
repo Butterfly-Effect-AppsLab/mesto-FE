@@ -9,7 +9,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class LinesService {
 
   public linesEndpoint =
-         'http://test-env.dvjtpw52wm.us-east-1.elasticbeanstalk.com/lines';
+         '/lines';
   private linesData;
 
   constructor(private http: HttpClient) { }

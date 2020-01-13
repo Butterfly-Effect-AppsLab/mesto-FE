@@ -25,7 +25,8 @@ export class LineCardComponent implements OnInit {
 
   getLinesList() {
     this.linesApi.fetchLines().subscribe(response => {
-      console.log(response);
+      console.log(response.lines);
+      this.linesData = response.lines;
     });
   }
 

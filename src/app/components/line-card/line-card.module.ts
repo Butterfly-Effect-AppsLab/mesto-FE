@@ -10,8 +10,8 @@ import { LineCardComponent } from './line-card.component';
   imports: [
     CommonModule,
     FormsModule,
-    IonicModule,
-    RouterModule.forChild(routes)
+    IonicModule
+    // RouterModule.forChild(routes)
   ],
   declarations: [LineCardComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

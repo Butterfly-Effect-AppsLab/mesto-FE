@@ -3,9 +3,5 @@
   "integrations": {
     "cordova": {}
   },
-  "type": "angular",
-  "proxies": [{
-        "path": "/api",
-        "proxyUrl": "http://test-env.dvjtpw52wm.us-east-1.elasticbeanstalk.com/"
-    }]
+  "type": "angular"
 }

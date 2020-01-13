@@ -1,6 +1,6 @@
-<ion-card button
+<ion-card *ngFor="let line of linesData" button
           class="shadow"
-          color="white"          
+          color="white"
           (click)="openLineDetail($event, '39')">
   <ion-card-content class="ion-no-padding">
     <ion-grid>

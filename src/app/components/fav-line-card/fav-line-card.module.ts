@@ -11,7 +11,7 @@ import { FavLineCardComponent } from './fav-line-card.component';
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule
   ],
   declarations: [FavLineCardComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

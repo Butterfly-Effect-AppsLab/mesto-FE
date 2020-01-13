@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { LinesService } from '../../services/api/lines.service';
 
 @Component({
@@ -8,12 +8,11 @@ import { LinesService } from '../../services/api/lines.service';
 })
 export class LineCardComponent implements OnInit {
 
-
-  linesData: any;
+  @Input() linesData;
 
   constructor(public linesApi: LinesService) {
 
-    this.linesData = [];
+    // this.linesData = [];
 
   }
 

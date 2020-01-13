@@ -10,8 +10,8 @@ import { FavStopCardComponent } from './fav-stop-card.component';
   imports: [
     CommonModule,
     FormsModule,
-    IonicModule,
-    RouterModule.forChild(routes)
+    IonicModule
+    // RouterModule.forChild(routes)
   ],
   declarations: [FavStopCardComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

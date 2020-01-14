@@ -22,14 +22,16 @@ export class LinesTabPage implements OnInit {
   ngOnInit() {
 
     this.getAllLinesData();
-    // console.log(this.linesService.fetchLineDirections$(1));
+    this.linesService.fetchLineDirections$(1).subscribe(directions => {
+      this.lineDirection = directions;
+    });
   }
 
   public getAllLinesData() {
-    this.linesService.getLinesData().subscribe(
+    this.linesService.fetchLines$().subscribe(
       results => {
-        this.linesData = results.lines,
-        console.log('All' + this.linesData);
+        console.log(results);
+        this.linesData = results;
       });
   }
 

@@ -13,8 +13,9 @@
     <h2 class='pageTitle'>Zoznam liniek</h2>
   </ion-text>
 
-  <line-card [linesData]="linesData" *ngFor="let line of linesData; let i=index;"></line-card>
-
+  <div *ngFor="let line of linesData; let i=index;">
+    <line-card [linesData]="line"></line-card>
+  </div>
  <!--
       <ion-card button class="shadow" color="white"
         [routerLink]="">

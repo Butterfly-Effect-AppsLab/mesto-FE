@@ -7,16 +7,16 @@
       <ion-row class="ion-no-padding">
         <ion-col size="2">
           <div class='lineSquereIcon'>
-            <div class='SquereIconText'>{{ linesData[i].name }}</div>
+            <div class='SquereIconText'>{{ linesData.name }}</div>
           </div>
         </ion-col>
         <ion-col size="10">
           <div class="ion-text-nowrap">
-            <h3 class="bold">{{ linesData }}</h3>
+            <h3 class="bold">{{ 'co tu ma byt?' }}</h3>
           </div>
           <div class="multi-ellipsis">
             <h3 class="bold">
-              Hlavná stanica
+              {{ linesData.directions[0] }} -> {{ linesData.directions[1] }}
             </h3>
           </div>
         </ion-col>

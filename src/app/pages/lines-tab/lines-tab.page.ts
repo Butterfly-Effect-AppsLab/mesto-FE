@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { LinesService } from '../../services/api/lines.service';
 
 @Component({
@@ -10,6 +12,7 @@ import { LinesService } from '../../services/api/lines.service';
 export class LinesTabPage implements OnInit {
 
   linesData: any;
+  lineDirection: any;
 
   constructor(
     private router: Router,
@@ -17,9 +20,17 @@ export class LinesTabPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.linesService.fetchLines().subscribe(
-      results => this.linesData
-    );
+
+    this.getAllLinesData();
+    // console.log(this.linesService.fetchLineDirections$(1));
+  }
+
+  public getAllLinesData() {
+    this.linesService.getLinesData().subscribe(
+      results => {
+        this.linesData = results.lines,
+        console.log('All' + this.linesData);
+      });
   }
 
   public openLineDetail(event, idLine) {

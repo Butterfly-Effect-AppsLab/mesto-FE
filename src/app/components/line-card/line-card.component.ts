@@ -18,15 +18,18 @@ export class LineCardComponent implements OnInit {
 
   ngOnInit() {
 
-    this.getLinesList();
+    // this.getLinesList();
 
   }
 
+  /*
   getLinesList() {
     this.linesApi.fetchLines().subscribe(response => {
-      console.log(response.lines);
+      // console.log(response.lines);
       this.linesData = response.lines;
+      console.log(this.linesData);
     });
   }
+  */
 
 }

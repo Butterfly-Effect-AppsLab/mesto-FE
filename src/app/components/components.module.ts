@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { LeafletMapComponent } from './leaflet-map/leaflet-map.component';
 import { FavStopCardComponent } from './fav-stop-card/fav-stop-card.component';
 import { FavLineCardComponent } from './fav-line-card/fav-line-card.component';
 import { LineCardComponent } from './line-card/line-card.component';
+import { StopCardComponent } from './stop-card/stop-card.component';
 import { IonicModule } from '@ionic/angular';
 
 @NgModule({
@@ -11,13 +13,16 @@ import { IonicModule } from '@ionic/angular';
     FavStopCardComponent,
     FavLineCardComponent,
     LineCardComponent,
+    StopCardComponent
   ],
-  imports: [IonicModule],
+  imports: [IonicModule,
+            CommonModule],
   exports: [
     LeafletMapComponent,
     FavStopCardComponent,
     FavLineCardComponent,
-    LineCardComponent
+    LineCardComponent,
+    StopCardComponent
   ]
 })
 export class ComponentsModule {

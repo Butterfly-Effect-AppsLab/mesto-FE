@@ -721,7 +721,7 @@ ion-card {
   position: fixed;
   top: 2px;
   width: 106%;
-  margin-left: -10px;  
+  margin-left: -10px;
 }
 
 .lineSquereIcon {
@@ -975,4 +975,12 @@ h4 {
     left: 0;
     background: rgba(100, 100, 100, 0.5);
     z-index: 1;
+}
+
+.noData {
+  color: var(--ion-color-darkGrey);
+  display: block;
+  padding-bottom: 20px;
+  text-align: center;
+  font-weight: bold;
 }

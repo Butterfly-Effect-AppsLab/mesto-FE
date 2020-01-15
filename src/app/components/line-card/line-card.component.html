@@ -1,7 +1,6 @@
 <ion-card button
           class="shadow"
-          color="white"
-          (click)="openLineDetail($event, '39')">
+          color="white">
   <ion-card-content class="ion-no-padding">
     <ion-grid>
       <ion-row class="ion-no-padding">
@@ -12,11 +11,11 @@
         </ion-col>
         <ion-col size="10">
           <div class="ion-text-nowrap">
-            <h3 class="bold">{{ 'co tu ma byt?' }}</h3>
+            <h3 class="bold">{{ linesData.directions[0] }} </h3>
           </div>
           <div class="multi-ellipsis">
             <h3 class="bold">
-              {{ linesData.directions[0] }} -> {{ linesData.directions[1] }}
+              {{ linesData.directions[1] }}
             </h3>
           </div>
         </ion-col>

@@ -1,0 +1,40 @@
+<ion-card
+  class="shadow"
+  button color="white"
+>
+  <ion-card-content class="ion-no-padding">
+    <ion-grid>
+      <ion-row class="ion-no-padding divider">
+        <ion-col size="2">
+          <div class='lineSquereIconNoBorder'>
+            <ion-icon src="./assets/icon/bus-stop.svg"></ion-icon>
+          </div>
+        </ion-col>
+        <ion-col size="8">
+          <div class="ion-text-nowrap">
+            <h3 class="bold">{{ stop.name }}</h3>
+          </div>
+          <div class="multi-ellipsis">
+            <ion-text color="darkGrey">
+            <p class="destination">
+              Linky</p>
+            </ion-text>
+          </div>
+        </ion-col>
+
+        <ion-col size="2">
+          <div class="favouriteTapDiv">
+            <ion-icon [name]="buttonIcon"
+                      [ngClass]="heartClass"
+                      (click)="saveFavouriteStop($event)"></ion-icon>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col *ngFor="let line of stop.lines" size='2' class="ion-padding">
+          <div class="lineNumberSquare">{{ line }}</div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+</ion-card>

@@ -7,14 +7,17 @@
 
 <ion-content color="baThemeContent">
 
-  <ion-searchbar class="ion-padding" placeholder="Hľadat"></ion-searchbar>
+  <ion-searchbar class="ion-padding"
+                 placeholder="Hľadat"
+                 (ionInput)="filterLines($event, searchTerm)">
+  </ion-searchbar>
 
   <ion-text>
     <h2 class='pageTitle'>Zoznam liniek</h2>
   </ion-text>
-
+  <div *ngIf="noData === true" class='noData'>Žiadne dáta</div>
   <div *ngFor="let line of linesData; let i=index;">
-    <line-card [linesData]="line"></line-card>
+    <line-card [linesData]="line" (click)="openLineDetail($event, line.id)"></line-card>
   </div>
  <!--
       <ion-card button class="shadow" color="white"

@@ -2,17 +2,16 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LinesService {
 
-  public linesEndpoint =
-         'http://test-env.dvjtpw52wm.us-east-1.elasticbeanstalk.com/lines';
+  public linesEndpoint = environment.apiUrl + 'lines';
   private linesData;
-  public lineDirectionsEndpoint =
-      'http://test-env.dvjtpw52wm.us-east-1.elasticbeanstalk.com/lines/line/';
+  public lineDirectionsEndpoint = environment.apiUrl + 'lines/line/';
   private linesDirections;
 
   constructor(private http: HttpClient) { }

@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { LinesService } from '../../services/api/lines.service';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-lines-tab',
@@ -11,16 +12,18 @@ import { LinesService } from '../../services/api/lines.service';
 })
 export class LinesTabPage implements OnInit {
 
-  linesData: any;
+  linesData: any = [];
   lineDirection: any;
-  filterData: any;
+  filterData: any = [];
   lines;
-  res;
+  loaded = false;
+  loader;
   noData = false;
 
   constructor(
     private router: Router,
-    private linesService: LinesService
+    private linesService: LinesService,
+    private loadingController: LoadingController
   ) { }
 
   ngOnInit() {
@@ -33,18 +36,27 @@ export class LinesTabPage implements OnInit {
     */
   }
 
+  async presentLoading() {
+    this.loader = await this.loadingController.create({
+      message: 'Loading',
+      duration: 6000
+    });
+    await this.loader.present();
+
+    // const { role, data } = await loading.onDidDismiss();
+    // console.log('Loading dismissed!');
+  }
+
   public getAllLinesData() {
+    this.presentLoading();
     this.linesService.fetchLines$().subscribe(
       results => {
         // console.log(results);
+        this.loaded = true;
+        this.loader.dismiss();
         this.linesData = results;
+        this.filterData = this.linesData;
       });
-  }
-
-  public openLineDetail(event, idLine) {
-    console.log(idLine);
-    event.stopPropagation();
-    this.router.navigateByUrl('tabs/lines/line-detail/' + idLine);
   }
 
   public filterLines(ev) {
@@ -52,22 +64,33 @@ export class LinesTabPage implements OnInit {
     const val = ev.target.value;
 
     if (val && val.trim() !== '') {
-      this.linesData = this.linesData.filter((name) => {
-
-        this.res = name.name.toLowerCase().indexOf(val.toLowerCase()) > -1;
-        if (this.res === false) {
-          this.noData = true;
-        } else {
-          this.noData = false;
-          return this.res;
+      this.filterData = this.linesData.filter(
+        line => {
+          const dir = line.directions.find(
+            direction => {
+              return this._removeAccents(direction.toLowerCase()).indexOf(this._removeAccents(val.toLowerCase())) !== -1;
+            }
+          );
+          return (
+            line.name.toLowerCase().indexOf(val.toLowerCase()) > -1 ||
+            typeof dir !== 'undefined'
+          );
         }
-
-      });
-      console.log(name);
+      );
+      // console.log(name);
     } else {
       this.getAllLinesData();
       this.noData = false;
     }
+  }
+
+  _removeAccents(source: string) {
+    if (typeof String.prototype.normalize === 'function') {
+      // prevedie string na Unicode normalizaciu a vyhodi specialne znaky - interpunkciu a pod.
+      return source.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    }
+    // TODO: add fallback solution using regex
+    return source;
   }
 
 }

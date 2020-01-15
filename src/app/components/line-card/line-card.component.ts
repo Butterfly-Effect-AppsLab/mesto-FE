@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { LinesService } from '../../services/api/lines.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'line-card',
@@ -10,7 +11,10 @@ export class LineCardComponent implements OnInit {
 
   @Input() linesData;
 
-  constructor(public linesApi: LinesService) {
+  constructor(
+    private router: Router,
+    public linesApi: LinesService
+  ) {
 
     // this.linesData = [];
 
@@ -22,6 +26,11 @@ export class LineCardComponent implements OnInit {
 
     // this.getLinesList();
 
+  }
+
+  openLineDetail(event) {
+    event.stopPropagation();
+    this.router.navigateByUrl('tabs/lines/line-detail/' + this.linesData.id);
   }
 
   /*

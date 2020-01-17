@@ -3,7 +3,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { LinesService } from '../../services/api/lines.service';
-import { LoadingController } from '@ionic/angular';
+import { UtilsService } from 'src/app/services/utils/utils.service';
 
 @Component({
   selector: 'app-lines-tab',
@@ -17,13 +17,14 @@ export class LinesTabPage implements OnInit {
   filterData: any = [];
   lines;
   loaded = false;
-  loader;
   noData = false;
+
+  loader = null;
 
   constructor(
     private router: Router,
     private linesService: LinesService,
-    private loadingController: LoadingController
+    private utilsService: UtilsService
   ) { }
 
   ngOnInit() {
@@ -36,24 +37,12 @@ export class LinesTabPage implements OnInit {
     */
   }
 
-  async presentLoading() {
-    this.loader = await this.loadingController.create({
-      message: 'Loading',
-      duration: 6000
-    });
-    await this.loader.present();
-
-    // const { role, data } = await loading.onDidDismiss();
-    // console.log('Loading dismissed!');
-  }
-
   public getAllLinesData() {
-    this.presentLoading();
+    this.utilsService.presentLoading('', 2000);
     this.linesService.fetchLines$().subscribe(
       results => {
-        // console.log(results);
         this.loaded = true;
-        this.loader.dismiss();
+        this.utilsService.dismissLoader();
         this.linesData = results;
         this.filterData = this.linesData;
       });
@@ -68,7 +57,10 @@ export class LinesTabPage implements OnInit {
         line => {
           const dir = line.directions.find(
             direction => {
-              return this._removeAccents(direction.toLowerCase()).indexOf(this._removeAccents(val.toLowerCase())) !== -1;
+              return this.utilsService.normalizeSearchString(
+                direction.toLowerCase()).indexOf(
+                  this.utilsService.normalizeSearchString(
+                    val.toLowerCase())) !== -1;
             }
           );
           return (
@@ -82,15 +74,6 @@ export class LinesTabPage implements OnInit {
       this.getAllLinesData();
       this.noData = false;
     }
-  }
-
-  _removeAccents(source: string) {
-    if (typeof String.prototype.normalize === 'function') {
-      // prevedie string na Unicode normalizaciu a vyhodi specialne znaky - interpunkciu a pod.
-      return source.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-    }
-    // TODO: add fallback solution using regex
-    return source;
   }
 
 }

@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import AnimationsUtil from 'src/app/services/animations.util';
+import { StopsService } from 'src/app/services/api/stops/stops.service';
+import { UtilsService } from 'src/app/services/utils/utils.service';
 
 @Component({
   selector: 'app-stops-tab',
@@ -12,7 +15,10 @@ export class StopsTabPage implements OnInit {
 
   buttonIcon = 'heart-empty';
   heartClass;
-  stops = [];
+  stopsData: any = [];
+  filterStopsData: any = [];
+  loaded = false;
+  noData = false;
 
   mockStops = [
     {
@@ -28,37 +34,46 @@ export class StopsTabPage implements OnInit {
   constructor(
     public toastController: ToastController,
     private router: Router,
-    private animationsUtil: AnimationsUtil,
+    private stopsService: StopsService,
+    private utilsService: UtilsService
   ) { }
 
   ngOnInit() {
-    // init with MOCK data
-    this.stops = this.mockStops;
+
   }
 
   ionViewWillEnter() {
-    console.log('ionViewWillEnter');
+    // console.log('ionViewWillEnter');
+    this.getAllStopsData();
   }
 
-  public openStopDetail(event, idStop) {
-    event.stopPropagation();
-    this.router.navigateByUrl('tabs/stops/stop-detail/' + idStop);
-    console.log(idStop);
+  public getAllStopsData() {
+    this.utilsService.presentLoading('', 2000);
+    this.stopsService.getStopsData().subscribe(
+      results => {
+        this.loaded = true;
+        this.stopsData = results.stops;
+        this.filterStopsData = this.stopsData;
+        console.log(this.stopsData);
+      }
+    );
   }
 
-  public saveFavouriteStop(event) {
-    event.stopPropagation();
-    event.preventDefault();
+  public filterStops(ev) {
 
-    if (this.buttonIcon === 'heart-empty') {
-      this.buttonIcon = 'heart';
-      this.heartClass = 'heartFilled';
-      this.animationsUtil.showMessage('Pridane do oblubenych.');
-    } else if (this.buttonIcon === 'heart') {
-        this.buttonIcon = 'heart-empty';
-        this.heartClass = '';
-        this.animationsUtil.showMessage('Oblubene odstranene');
+    const val = ev.target.value;
+
+    if (val && val.trim() !== '') {
+      this.filterStopsData = this.stopsData.filter(
+        stop => stop.stopName
+      );
     }
+  }
+
+  public openStopDetail(event) {
+    event.stopPropagation();
+    this.router.navigateByUrl('tabs/stops/stop-detail/');
+    // console.log(idStop);
   }
 
 }

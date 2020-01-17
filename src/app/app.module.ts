@@ -18,6 +18,7 @@ import { IonicStorageModule } from '@ionic/storage';
 
 import { HttpClientModule } from '@angular/common/http';
 import AnimationsUtil from './services/animations.util';
+import { UtilsService } from './services/utils/utils.service';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import AnimationsUtil from './services/animations.util';
     HttpClientModule
   ],
   providers: [
+    UtilsService,
     AnimationsUtil,
     StatusBar,
     SplashScreen,

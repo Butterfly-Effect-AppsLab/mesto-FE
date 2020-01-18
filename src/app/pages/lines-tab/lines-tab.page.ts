@@ -45,6 +45,7 @@ export class LinesTabPage implements OnInit {
         this.utilsService.dismissLoader();
         this.linesData = results;
         this.filterData = this.linesData;
+        console.log(this.filterData);
       });
   }
 

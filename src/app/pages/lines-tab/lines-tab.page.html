@@ -17,6 +17,7 @@
   </ion-text>
   <div *ngIf="!filterData.length && loaded" class='noData'>Žiadne dáta</div>
   <div *ngFor="let line of filterData; let i=index;">
+
     <line-card [linesData]="line"></line-card>
   </div>
  <!--

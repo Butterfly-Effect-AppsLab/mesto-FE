@@ -13,6 +13,8 @@ export class LinesService {
   private linesData;
   public lineDirectionsEndpoint = environment.apiUrl + 'lines/line/';
   private linesDirections;
+  public singleLineEndpoint = environment.apiUrl + 'lines/line/';
+  private singleLine;
 
   constructor(private http: HttpClient) { }
 
@@ -24,7 +26,7 @@ export class LinesService {
 
     return this.http.get(this.linesEndpoint, {headers}).pipe(
       map(data => {
-        console.log(data);
+        // console.log(data);
         this.linesData = data;
         return data;
       })
@@ -35,8 +37,24 @@ export class LinesService {
     return this.linesData;
   }
 
-  public fetchLineDirections$(idLine): Observable<any> {
-    return this.http.get(this.lineDirectionsEndpoint + idLine);
+  public fetchLineDirections$(lineNumber, idDirection): Observable<any> {
+    return this.http.get(
+      this.lineDirectionsEndpoint + lineNumber + '/' + idDirection).pipe(
+      map(data => {
+        this.linesDirections = data[0];
+        // console.log(data[0].stops);
+        return data[0];
+      })
+    );
+  }
+
+  public fetchSingleLine$(lineNumber): Observable<any> {
+    return this.http.get(this.singleLineEndpoint + lineNumber).pipe(
+      map(data => {
+        this.singleLine = data;
+        return data;
+      })
+    );
   }
 
 }

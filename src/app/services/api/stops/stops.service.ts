@@ -11,7 +11,10 @@ import { environment } from 'src/environments/environment';
 export class StopsService {
 
   public stopsEndpoint = environment.apiUrl + 'stops';
+  public stopLinesEndpoint = environment.apiUrl;
   private stopsData: any;
+  private stopLines: any;
+  private stopId: any;
 
   constructor(private http: HttpClient) { }
 
@@ -29,6 +32,28 @@ export class StopsService {
 
     return this.fetchStops$();
 
+  }
+
+  private fetchStopLines$(stopId): Observable<any> {
+
+    const headers = new HttpHeaders();
+    headers.set('Access-Control-Allow-Origin', '*');
+    headers.set('Access-Control-Allow-Headers', 'Content-Type');
+    headers.set('Content-Type', 'application/json');
+
+    return this.http.get(
+      this.stopLinesEndpoint + 'stops/stop/' + stopId + '/lines', {headers}).
+      pipe(
+        map( data => {
+          this.stopLines = data;
+          return data;
+        })
+    );
+
+  }
+
+  public getStopLines(stopId) {
+    return this.fetchStopLines$(stopId);
   }
 
 }

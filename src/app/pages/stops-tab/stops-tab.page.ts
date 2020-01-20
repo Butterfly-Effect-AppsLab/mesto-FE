@@ -45,6 +45,7 @@ export class StopsTabPage implements OnInit {
   ionViewWillEnter() {
     // console.log('ionViewWillEnter');
     this.getAllStopsData();
+    // this.getStoLinesData(4);
   }
 
   public getAllStopsData() {
@@ -54,7 +55,15 @@ export class StopsTabPage implements OnInit {
         this.loaded = true;
         this.stopsData = results.stops;
         this.filterStopsData = this.stopsData;
-        console.log(this.stopsData);
+        console.log(this.stopsData.stop_name);
+      }
+    );
+  }
+
+  public getStoLinesData(idStop) {
+    this.stopsService.getStopLines(idStop).subscribe(
+      results => {
+        console.log(results);
       }
     );
   }
@@ -65,8 +74,15 @@ export class StopsTabPage implements OnInit {
 
     if (val && val.trim() !== '') {
       this.filterStopsData = this.stopsData.filter(
-        stop => stop.stopName
-      );
+        stop => {
+              return this.utilsService.normalizeSearchString(
+                stop.stop_name.toLowerCase()).indexOf(
+                  this.utilsService.normalizeSearchString(
+                    val.toLowerCase())) !== -1;
+        });
+    } else {
+      this.getAllStopsData();
+
     }
   }
 

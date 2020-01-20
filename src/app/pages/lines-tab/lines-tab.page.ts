@@ -15,7 +15,11 @@ export class LinesTabPage implements OnInit {
   linesData: any = [];
   lineDirection: any;
   filterData: any = [];
+  singleLine: any = [];
+  lineNumber;
   lines;
+  dir: any = [];
+  i;
   loaded = false;
   noData = false;
 
@@ -41,11 +45,11 @@ export class LinesTabPage implements OnInit {
     this.utilsService.presentLoading('', 2000);
     this.linesService.fetchLines$().subscribe(
       results => {
+
         this.loaded = true;
         this.utilsService.dismissLoader();
         this.linesData = results;
         this.filterData = this.linesData;
-        console.log(this.filterData);
       });
   }
 

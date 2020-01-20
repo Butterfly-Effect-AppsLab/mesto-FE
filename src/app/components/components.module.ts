@@ -5,6 +5,7 @@ import { FavStopCardComponent } from './fav-stop-card/fav-stop-card.component';
 import { FavLineCardComponent } from './fav-line-card/fav-line-card.component';
 import { LineCardComponent } from './line-card/line-card.component';
 import { StopCardComponent } from './stop-card/stop-card.component';
+import { LineStopComponent } from './line-stop/line-stop.component';
 import { IonicModule } from '@ionic/angular';
 
 @NgModule({
@@ -13,7 +14,8 @@ import { IonicModule } from '@ionic/angular';
     FavStopCardComponent,
     FavLineCardComponent,
     LineCardComponent,
-    StopCardComponent
+    StopCardComponent,
+    LineStopComponent
   ],
   imports: [IonicModule,
             CommonModule],
@@ -22,7 +24,8 @@ import { IonicModule } from '@ionic/angular';
     FavStopCardComponent,
     FavLineCardComponent,
     LineCardComponent,
-    StopCardComponent
+    StopCardComponent,
+    LineStopComponent
   ]
 })
 export class ComponentsModule {

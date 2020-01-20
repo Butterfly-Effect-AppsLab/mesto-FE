@@ -10,6 +10,10 @@ import { Router } from '@angular/router';
 export class LineCardComponent implements OnInit {
 
   @Input() linesData;
+  // @Input() singleLine;
+
+  private singleLine;
+  public pom;
 
   constructor(
     private router: Router,
@@ -23,6 +27,7 @@ export class LineCardComponent implements OnInit {
   ngOnInit() {
 
     console.log(this.linesData);
+    // console.log(this.singleLine);
 
     // this.getLinesList();
 
@@ -30,7 +35,20 @@ export class LineCardComponent implements OnInit {
 
   openLineDetail(event) {
     event.stopPropagation();
-    this.router.navigateByUrl('tabs/lines/line-detail/' + this.linesData.id);
+    
+    this.pom = this.getSingleLineData(this.linesData.id).subscribe(
+      resp => {
+        this.singleLine = resp[1].id_direction;
+        this.router.navigateByUrl(
+          'tabs/lines/line-detail/' + this.linesData.id + '/'
+          + this.singleLine
+        );
+      }
+    );
+  }
+
+  public getSingleLineData(lineNumber) {
+    return this.linesApi.fetchSingleLine$(lineNumber);
   }
 
   /*

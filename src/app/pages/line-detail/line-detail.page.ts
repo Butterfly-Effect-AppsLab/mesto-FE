@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { LinesService } from '../../services/api/lines.service';
 
 @Component({
   selector: 'app-line-detail',
@@ -11,69 +14,39 @@ export class LineDetailPage implements OnInit {
   idLine = null;
   buttonIcon = 'heart-empty';
   heartClass;
+  lineNumber;
+  idDirection;
 
-  lineStops = []; // toto je premenna ktoru vyuzivam v page.ts v ngFor
-
-  mockLineStops = [{
-    lineNumber: 39,
-    lineStops: [
-      {
-        name: 'Cintorín Slávičie údolie',
-        minutesFromStart: 0,
-        requestStop: false,
-        dist: '100'
-      },
-      {
-        name: 'Televízia',
-        minutesFromStart: 2,
-        requestStop: true,
-        dist: '100'
-      },
-      {
-        name: 'ZOO',
-        minutesFromStart: 4,
-        requestStop: false,
-        dist: '100'
-      },
-      {
-        name: 'Lafranconi',
-        minutesFromStart: 5,
-        requestStop: false,
-        dist: '100'
-      },
-      {
-        name: 'Kráľovské údolie',
-        minutesFromStart: 7,
-        requestStop: false,
-        dist: '100'
-      },
-      {
-        name: 'Chátam Sófer',
-        minutesFromStart: 9,
-        requestStop: false,
-        dist: '100'
-      },
-      {
-        name: 'Zochova',
-        minutesFromStart: 12,
-        requestStop: false,
-        dist: '100'
-      }
-    ]
-  }
-];
+  lineStops: any  = []; // toto je premenna ktoru vyuzivam v page.ts v ngFor
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private linesService: LinesService
   ) { }
 
   ngOnInit() {
 
     this.idLine = this.route.snapshot.paramMap.get('lineId');
+    // this.idDirection = this.route.snapshot.paramMap.get('idDirection');
+    this.idDirection = 3;
+    // console.log(this.idLine);
     // init with MOCK data
+    /*
     this.lineStops = this.mockLineStops;
     console.log(this.lineStops[0].lineStops);
+    */
+    this.getStopsOnLine(this.idLine, this.idDirection);
+  }
+
+  public getStopsOnLine(lineNumber, idDirection) {
+      this.linesService.fetchLineDirections$(lineNumber, idDirection)
+        .subscribe(
+          result => {
+            this.lineStops = result;
+            console.log(this.lineStops);
+          }
+      );
   }
 
   public openLineTimetable(event, idLine) {

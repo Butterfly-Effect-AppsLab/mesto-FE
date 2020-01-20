@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
 
-  apiUrl: 'http://test-env.dvjtpw52wm.us-east-1.elasticbeanstalk.com/'
+  apiUrl: 'https://test-env.dvjtpw52wm.us-east-1.elasticbeanstalk.com/'
 };
 
 /*

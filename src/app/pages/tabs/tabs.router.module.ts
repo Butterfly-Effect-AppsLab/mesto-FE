@@ -25,7 +25,7 @@ const routes: Routes = [
             loadChildren: '../lines-tab/lines-tab.module#LinesTabPageModule'
           },
           {
-            path: 'line-detail/:lineId',
+            path: 'line-detail/:lineId/:directionId',
             loadChildren:
                 '../line-detail/line-detail.module#LineDetailPageModule'
           },

@@ -28,8 +28,8 @@ export class LineDetailPage implements OnInit {
   ngOnInit() {
 
     this.idLine = this.route.snapshot.paramMap.get('lineId');
-    // this.idDirection = this.route.snapshot.paramMap.get('idDirection');
-    this.idDirection = 3;
+    this.idDirection = this.route.snapshot.paramMap.get('directionId');
+    // this.idDirection = 3;
     // console.log(this.idLine);
     // init with MOCK data
     /*

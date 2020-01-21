@@ -25,12 +25,7 @@ export class LineCardComponent implements OnInit {
   }
 
   ngOnInit() {
-
     console.log(this.linesData);
-    // console.log(this.singleLine);
-
-    // this.getLinesList();
-
   }
 
   openLineDetail(event) {
@@ -39,15 +34,9 @@ export class LineCardComponent implements OnInit {
     this.pom = this.getSingleLineData(this.linesData.id).subscribe(
       resp => {
         this.singleLine = resp[1].id_direction;
-        console.log(resp);
-        console.log('dir: ' + this.singleLine);
-        console.log('lineID: ' + this.linesData.id);
-        console.log('tabs/lines/line-detail/' + this.linesData.id + '/'
-          + this.singleLine);
-
         this.router.navigateByUrl(
           'tabs/lines/line-detail/' + this.linesData.id + '/'
-          + this.singleLine
+          + this.singleLine + '?direction=1'
         );
 
       }

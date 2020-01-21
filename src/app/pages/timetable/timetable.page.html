@@ -1,7 +1,9 @@
 <ion-header>
   <ion-toolbar color='baTheme'>
     <ion-buttons slot="start">
-      <ion-back-button [text]='tedsda'></ion-back-button>
+      <ion-back-button defaultHref="
+        /tabs/lines/line-detail/{{idLine}}/{{idDirection}}?direction=1">
+      </ion-back-button>
     </ion-buttons>
     <ion-img src="./assets/icon/PNGbratislava.png" class='baIcon'></ion-img>
     <ion-title class='titleColor'>Linka {{idLine}}, Grafikon</ion-title>
@@ -18,7 +20,7 @@
         </ion-col>
         <ion-col size="8" class=''>
           <div class="ion-text-nowrap">
-            <h4 class="bold">Televízia</h4><br/>
+            <h4 class="bold">{{stopData.selected_stop}}</h4><br/>
           </div>
           <div class="">
             <ion-text color="darkGrey subHeader">
@@ -67,29 +69,14 @@
         </ion-row>
         <!-- header row END -->
 
-        <ion-row>
+        <ion-row *ngFor="let timetable of timetableData.work">
           <ion-col size='2'>
-            <div>04</div>
-            <div>05</div>
+            <div>{{timetable.hour}}</div>
           </ion-col>
 
           <div class="table">
-            <div class="riadok">
-              <span class="min">16</span>
-              <span class="min">26</span>
-              <span class="min">26</span>
-              <span class="min">26</span>
-              <span class="min">26</span>
-              <span class="min">26</span>
-              <span class="min">26</span>
-              <span class="min">26</span>
-              <span class="min">26</span>
-              <span class="min">26</span>
-              <span class="min">26</span>
-            </div>
-            <div class="riadok">
-              <span class="min">16</span>
-              <span class="min">26</span>
+            <div class="riadok" *ngFor="let timetableMinutes of timetableData.work">
+              <span class="min">{{timetableMinutes.minutes}}</span>
             </div>
           </div>
         </ion-row>

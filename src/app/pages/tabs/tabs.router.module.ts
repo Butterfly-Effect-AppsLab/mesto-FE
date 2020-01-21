@@ -30,7 +30,7 @@ const routes: Routes = [
                 '../line-detail/line-detail.module#LineDetailPageModule'
           },
             {
-              path: 'line-detail/:lineId/timetable',
+              path: 'line-detail/:lineId/:directionId/:stopId/timetable',
               loadChildren: '../timetable/timetable.module#TimetablePageModule'
             }
         ]

@@ -21,8 +21,17 @@
             <h4 class="bold">{{lineStops.direction}}</h4><br/>
           </div>
           <div class="">
-            <ion-text color="darkGrey subHeader">
+            <ion-text *ngIf="lineStops.line_type === 1" color="darkGrey subHeader">
+              Električka
+            </ion-text>
+            <ion-text *ngIf="lineStops.line_type === 2" color="darkGrey subHeader">
               Bus
+            </ion-text>
+            <ion-text *ngIf="lineStops.line_type === 3" color="darkGrey subHeader">
+              Trolejbus
+            </ion-text>
+            <ion-text *ngIf="lineStops.line_type === 4" color="darkGrey subHeader">
+              Nočný spoj
             </ion-text>
           </div>
         </ion-col>
@@ -30,7 +39,7 @@
           <div class="favouriteTapDiv-stopDetail">
             <ion-icon [name]="buttonIcon"
                       src="./assets/icon/changeDirection.svg"
-                      (click)="saveFavouriteStop($event)">
+                      (click)="changeLineDirection($event)">
             </ion-icon>
           </div>
         </ion-col>
@@ -38,8 +47,9 @@
   </ion-grid>
 
   <ion-grid style='padding-top: 20px;'>
-    <div *ngFor="let lineStop of lineStops.stops">
-      <line-stop [lineStops]='lineStop'></line-stop>
+    <div *ngFor="let lineStop of lineStops.stops; let i=index;
+                 let lastItem = last;">
+      <line-stop [lineStops]='lineStop' [lineData]></line-stop>
     </div>
   </ion-grid>
 

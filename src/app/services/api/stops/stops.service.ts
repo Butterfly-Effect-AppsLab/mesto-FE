@@ -12,6 +12,7 @@ export class StopsService {
 
   public stopsEndpoint = environment.apiUrl + 'stops';
   public stopLinesEndpoint = environment.apiUrl;
+  public stopTimetableEndpoint = environment.apiUrl + 'timetable/';
   private stopsData: any;
   private stopLines: any;
   private stopId: any;
@@ -54,6 +55,19 @@ export class StopsService {
 
   public getStopLines(stopId) {
     return this.fetchStopLines$(stopId);
+  }
+
+  private fetchStopTimetable$(idLine, idDirection, idStop): Observable<any> {
+    return this.http.get(
+      this.stopTimetableEndpoint
+        + idLine + '/'
+        + idDirection + '/'
+        + idStop + '/work'
+    );
+  }
+
+  public getStopTimetable(idLine, idDirection, idStop) {
+    return this.fetchStopTimetable$(idLine, idDirection, idStop);
   }
 
 }

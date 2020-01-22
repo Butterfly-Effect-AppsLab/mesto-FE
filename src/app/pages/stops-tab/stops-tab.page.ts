@@ -54,6 +54,7 @@ export class StopsTabPage implements OnInit {
       results => {
         this.loaded = true;
         this.stopsData = results.stops;
+        this.utilsService.dismissLoader();
         this.filterStopsData = this.stopsData;
         console.log(this.stopsData.stop_name);
       }

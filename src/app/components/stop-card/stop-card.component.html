@@ -31,8 +31,8 @@
         </ion-col>
       </ion-row>
       <ion-row>
-        <ion-col size='2' class="ion-padding">
-          <div class="lineNumberSquare"></div>
+        <ion-col class="ion-padding" *ngIf="lines">
+          <span *ngFor="let line of lines" class="lineNumberSquare">{{ line.line_name }}</span>
         </ion-col>
       </ion-row>
     </ion-grid>

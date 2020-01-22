@@ -19,6 +19,9 @@ export class StopsService {
 
   constructor(private http: HttpClient) { }
 
+  /*
+  * Return all stops GET: /stops
+  */
   private fetchStops$(): Observable<any> {
 
     return this.http.get(this.stopsEndpoint).pipe(
@@ -35,6 +38,9 @@ export class StopsService {
 
   }
 
+  /*
+  * Return all lines in one stop GET: /stops/stop/:idStop/lines
+  */
   private fetchStopLines$(stopId): Observable<any> {
 
     const headers = new HttpHeaders();
@@ -57,6 +63,10 @@ export class StopsService {
     return this.fetchStopLines$(stopId);
   }
 
+  /*
+  * Return line timetable at particular stop GET: /timetable/:idLine/:idDirection/:idStop/:Type
+  * type = work/holiday/offDays
+  */
   private fetchStopTimetable$(idLine, idDirection, idStop): Observable<any> {
     return this.http.get(
       this.stopTimetableEndpoint

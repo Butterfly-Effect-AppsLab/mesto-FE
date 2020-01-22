@@ -602,6 +602,11 @@ ion-card {
   // --ion-padding: -10px;
 }
 
+.swiper-pagination {
+  top: -45px;
+  display: block;
+  position: relative;
+}
 .swiper-pagination-bullet-active {
   background: #B2311B !important;
   border: 1px solid #B2311B !important;
@@ -720,7 +725,7 @@ ion-card {
   --color:#fff;
   display: block;
   position: fixed;
-  top: 2px;
+  top: -45px;
   width: 106%;
   margin-left: -10px;
 }
@@ -899,7 +904,7 @@ h4 {
 
 .lineTime {
   text-align: center;
-  padding-right: 15px;  
+  padding-right: 15px;
   font-weight: 400;
   color: #464B62;
 }
@@ -989,4 +994,15 @@ h4 {
     .toast-button{
         color: white;
     }
+}
+
+.noFavData {
+  height: 100%;
+  top: 40%;
+  display: block;
+  position: absolute;
+  font-weight: 600;
+  font-size: 1.6em;
+  text-align: center;
+  color: rgba(70, 75, 98, .62);
 }

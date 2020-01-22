@@ -19,6 +19,7 @@ export class LeafletMapComponent implements OnInit {
 
   map: L;
   results: any;
+  iconStatusClass;
   busStops = {
       stops: [
          {stopId: '1234', lat: '48.14790', long: '17.12530', linky: '4, 201, 209'},
@@ -42,13 +43,21 @@ export class LeafletMapComponent implements OnInit {
 
     if (this.bikeData && this.bikeData.length) {
       for (const location of this.bikeData) {
-        this.addMarker(location.GpsLat, location.GpsLon, location.Name);
+        this.addSFbike(location.GpsLat,
+                       location.GpsLon,
+                       location.Name,
+                       '',
+                       location.DockNum,
+                       location.BikeNum,
+                       location.Icon
+                      );
       }
 
-      // console.log(this.busStops.stops);
+      console.log(this.bikeData);
 
       for (const busLocation of this.busStops.stops) {
         this.addStops(busLocation.lat, busLocation.long, busLocation.stopId, busLocation.linky);
+        // this.addMarker(location.GpsLat, location.GpsLon, location.Name);
       }
 
     }
@@ -104,15 +113,26 @@ export class LeafletMapComponent implements OnInit {
     }
 
     // pridanie zastavky do mapy
-    addMarker(latitude, longitude, stopId, text = '') {
+    addSFbike(latitude, longitude, stopId, text = '',
+              maxBikesCount, actualBikesCount, status) {
 
-      const dot = L.icon({
-        // iconUrl: './assets/icon/marker.png',
-        iconUrl: './assets/icon/mapa/zastavka.png',
-        shadowUrl: 'dot-shadow.png',
-        iconSize: [45, 55], // size of the icon
-        popupAnchor: [0, -15], // point from which the popup should open relative..
-        title: 'hello'
+      if (status === 'low' || status === 'empty') {
+        this.iconStatusClass = 'countOrange';
+      }
+      if (status === 'ok') {
+        this.iconStatusClass = 'countGreen';
+      }
+      if (status === 'high' || status === 'full' || status === 'overload') {
+        this.iconStatusClass = 'countRed';
+      }
+
+      const dot = L.divIcon({
+        className: 'custom-div-icon',
+        html: '<div class="' + this.iconStatusClass + '">'
+        + actualBikesCount + '/' + maxBikesCount
+        + '</div><img src="./assets/icon/mapa/slovnaftbajk.png" class="markerIcon">',
+        iconSize: [50, 50],
+        iconAnchor: [15, 10]
       });
 
       const mapMarker = L.marker([latitude, longitude], { icon: dot }, 15);
@@ -127,11 +147,12 @@ export class LeafletMapComponent implements OnInit {
     // pridanie slovnaftbajk markeru
     addStops(latitude, longitude, stopId, text) {
 
-      const icon = L.divIcon({
-        className: 'custom-div-icon',
-        html: '<div class="countGreen">6/7</div><img src="./assets/icon/mapa/slovnaftbajk.png" class="markerIcon">',
-        iconSize: [50, 50],
-        iconAnchor: [15, 10]
+      const icon = L.icon({
+        iconUrl: './assets/icon/mapa/zastavka.png',
+        shadowUrl: 'dot-shadow.png',
+        iconSize: [45, 55], // size of the icon
+        popupAnchor: [0, -15], // point from which the popup should open relative..
+        title: 'hello'
       });
 
       // console.log(icon);

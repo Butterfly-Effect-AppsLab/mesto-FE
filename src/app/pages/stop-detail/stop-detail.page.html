@@ -1,10 +1,10 @@
 <ion-header>
  <ion-toolbar color="baTheme">
    <ion-buttons slot="start">
-     <ion-back-button [text]="sasda"></ion-back-button>
+     <ion-back-button defaultHref="/tabs/stops"></ion-back-button>
    </ion-buttons>
    <ion-img src="./assets/icon/PNGbratislava.png" class='baIcon'></ion-img>
-   <ion-title class='titleColor'>Zastávky {{idStop}}</ion-title>
+   <ion-title class='titleColor'>Zastávky</ion-title>
  </ion-toolbar>
 </ion-header>
 
@@ -19,7 +19,7 @@
         </ion-col>
         <ion-col size="8" class=''>
           <div class="ion-text-nowrap">
-            <h4 class="bold">Kollárovo námestie</h4><br/>
+            <h4 class="bold">{{stopData.selected_stop}}</h4><br/>
           </div>
           <div class="">
             <ion-text color="darkGrey subHeader">
@@ -50,11 +50,12 @@
             </ion-col>
             <ion-col no-padding col-10 class='linesSlider'>
                 <ion-slides
-                      #slides [options]="slideOpt"
+                      #slides
                       (ionSlideDidChange)="slideChanged()">
-                    <ion-slide>
-                        <p class='lineSquereIcon'>39 </p>
-                        </ion-slide>
+                       <ion-slide *ngFor="let stopLine of stopData.lines">
+                        <p class='lineSquereIcon'>{{stopLine.line_name}} </p>
+                       </ion-slide>
+                      <!--
                           <ion-slide>
                         <p class='lineSquereIcon'>9 </p>
                         </ion-slide>
@@ -66,13 +67,14 @@
                         </ion-slide>
                           <ion-slide>
                         <p class='lineSquereIcon'>201 </p>
-                    </ion-slide>
-                      <ion-slide>
-                          <p class='lineSquereIcon'>67 </p>
-                          </ion-slide>
-                            <ion-slide>
-                          <p class='lineSquereIcon'>9 </p>
-                          </ion-slide>
+                        </ion-slide>
+                        <ion-slide>
+                        <p class='lineSquereIcon'>67 </p>
+                        </ion-slide>
+                          <ion-slide>
+                        <p class='lineSquereIcon'>9 </p>
+                        </ion-slide>
+                      -->
                 </ion-slides>
             </ion-col>
             <ion-col class="col-with-arrow" (click)="slideNext()" no-padding col-1>
@@ -80,7 +82,8 @@
             </ion-col>
         </ion-row>
     </ion-toolbar><br/>
-
+    <virtual-table-card></virtual-table-card>
+    <!--
     <ion-card button class="shadow" color="white" [routerLink]="">
         <ion-card-content class="ion-no-padding">
           <ion-grid>
@@ -154,4 +157,5 @@
           </ion-grid>
         </ion-card-content>
       </ion-card>
+    -->
 </ion-content>

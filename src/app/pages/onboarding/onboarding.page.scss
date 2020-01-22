@@ -67,7 +67,6 @@ ion-footer {
   // border: 1px solid red;
   display: block;
   text-align: center;
-  // padding-top: 20px;
 }
 
 .arrowRight {
@@ -87,4 +86,10 @@ ion-col {
   height: 34px;
   --background: #464B62;
   --background-activated: #464B62;
+  top: 20px;
+  position: relative;
+}
+
+.swiper-pagination {
+  border: 1px solid red;
 }

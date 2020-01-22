@@ -11,8 +11,7 @@ import { Router } from '@angular/router';
 })
 export class OnboardingPage implements OnInit {
 
-   // const results;
-   pagerStatus = true;
+   pagerStatus2 = true;
    reachedEnd;
 
    @ViewChild('slides', {static: true}) ionSlides: IonSlides;
@@ -23,7 +22,7 @@ export class OnboardingPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log(this.ionSlides);
+    console.log(this.pagerStatus2);
     // this.ionSlides.lockSwipeToPrev(true);
   }
 
@@ -33,7 +32,7 @@ export class OnboardingPage implements OnInit {
   }
 
   slideReachedEnd() {
-    this.pagerStatus = false;
+    this.pagerStatus2 = false;
     this.ionSlides.lockSwipeToNext(false);
     this.reachedEnd = true;
   }
@@ -46,7 +45,7 @@ export class OnboardingPage implements OnInit {
     this.ionSlides.slidePrev();
 
     if (this.reachedEnd === true) {
-      this.pagerStatus = true;
+      this.pagerStatus2 = true;
 
     }
   }

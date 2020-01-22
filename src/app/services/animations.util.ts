@@ -17,7 +17,7 @@ this.toastController.getTop().then(top => {
 
   this.toastController.create({
     message: toastText,
-    // duration: 5000,
+    duration: 5000,
     animated: true,
     cssClass: 'customToast',
     position: 'bottom',

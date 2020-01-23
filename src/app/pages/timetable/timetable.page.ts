@@ -15,6 +15,7 @@ export class TimetablePage implements OnInit {
   idDirection;
   idStop;
   timetableData: any = [];
+  hasClosestMinMatch = false;
 
   stopData: any = [];
 
@@ -51,6 +52,35 @@ export class TimetablePage implements OnInit {
             this.timetableData = res;
             console.log(this.timetableData);
       });
+  }
+
+  scrollToClosest() {
+
+  }
+
+  isClosest(timetable, exact = true) {
+    const now = new Date();
+
+    const hour = parseInt(timetable.hour, 10);
+    return hour === now.getHours() || (!exact && (hour - 1 === now.getHours()));
+  }
+
+  isClosestMinute(timetableMinute, timetableMinutes) {
+    const now = new Date();
+    const minutes = now.getMinutes();
+    let closest;
+
+    if (!this.hasClosestMinMatch) {
+      closest = timetableMinutes[0];
+    } else {
+      closest = timetableMinutes.find(minute => parseInt(minute, 10) >= minutes);
+    }
+
+    const match = closest && parseInt(closest, 10) === parseInt(timetableMinute, 10);
+    if (match) {
+      this.hasClosestMinMatch = true;
+    }
+    return match;
   }
 
 }

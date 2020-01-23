@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 // import { StopsService } from '../..services/api/stops.service';
 import AnimationsUtil from 'src/app/services/animations.util';
+import { StopsService } from 'src/app/services/api/stops/stops.service';
 
 @Component({
   selector: 'stop-card',
@@ -12,12 +13,14 @@ export class StopCardComponent implements OnInit {
 
   @Input() stops;
   @Input() isFavourite;
+  lines;
 
   buttonIcon = 'heart-empty';
   heartClass;
 
   constructor(
-    public animationsUtil: AnimationsUtil
+    public animationsUtil: AnimationsUtil,
+    private stopsService: StopsService
   ) { }
 
   ngOnInit() {
@@ -27,6 +30,9 @@ export class StopCardComponent implements OnInit {
       this.buttonIcon = 'heart';
       this.heartClass = 'heartFilled';
     }
+    this.stopsService.getStopLines(this.stops.stop_id).subscribe(
+      lines => this.lines = lines.lines
+    );
   }
 
   public saveFavouriteStop(event) {

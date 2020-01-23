@@ -69,14 +69,21 @@
         </ion-row>
         <!-- header row END -->
 
-        <ion-row *ngFor="let timetable of timetableData.work">
-          <ion-col size='2'>
-            <div>{{timetable.hour}}</div>
+        <ion-row>
+          <ion-col size='2' no-padding class="hoursColumn">
+            <div *ngFor="let timetable of timetableData.work" class="hourColumn" [ngClass]="{'closest': isClosest(timetable)}">
+              <span class="min">{{timetable.hour}}</span>
+            </div>
           </ion-col>
 
           <div class="table">
-            <div class="riadok" *ngFor="let timetableMinutes of timetableData.work">
-              <span class="min">{{timetableMinutes.minutes}}</span>
+            <div class="riadok" *ngFor="let timetable of timetableData.work" [ngClass]="{'closest': isClosest(timetable)}">
+              <span
+                *ngFor="let timetableMinutes of timetable.minutes"
+                class="min"
+                [ngClass]="{ 'closestMin' : isClosest(timetable, false) && isClosestMinute(timetableMinutes, timetable.minutes) }"
+              >{{ timetableMinutes }}
+            </span>
             </div>
           </div>
         </ion-row>

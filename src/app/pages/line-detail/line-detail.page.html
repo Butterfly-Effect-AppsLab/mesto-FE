@@ -46,9 +46,9 @@
       </ion-row>
   </ion-grid>
 
-  <ion-grid style='padding-top: 20px;'>
+  <ion-grid class="lineStopsGrid" style='padding-top: 20px;'>
     <div *ngFor="let lineStop of lineStops.stops; let i=index;
-                 let lastItem = last;">
+                 let lastItem = last;" class="lineStopsGridDiv">
       <line-stop [lineStops]='lineStop' [lineData]></line-stop>
     </div>
   </ion-grid>

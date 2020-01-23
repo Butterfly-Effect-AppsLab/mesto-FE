@@ -1,0 +1,7 @@
+.lineStopsGrid {
+	.lineStopsGridDiv:last-of-type::ng-deep {
+		.timeDivider {
+			display: none;
+		}
+	}
+}

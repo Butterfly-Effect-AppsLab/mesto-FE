@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'fav-line-card',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./fav-line-card.component.scss'],
 })
 export class FavLineCardComponent implements OnInit {
+
+  @Input() favLinesData;
 
   constructor() { }
 

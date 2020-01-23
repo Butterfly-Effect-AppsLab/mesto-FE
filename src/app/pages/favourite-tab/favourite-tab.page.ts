@@ -19,6 +19,12 @@ export class FavouriteTabPage implements OnInit {
   savedLines = [];
   favLines: any;
   noFavsData = true;
+  showStopsFlag = true;
+  showLinesFlag = true;
+  stops = [];  // toto je z DB fav stops
+  lines = [];  // toto je z DB fav lines
+
+  // TODO premenna pre favourites z DB
 
   constructor(
     public alertController: AlertController,
@@ -27,6 +33,14 @@ export class FavouriteTabPage implements OnInit {
   ) { }
 
   ngOnInit() {
+
+    // importnut service storageService
+    // zavolat getLines, getStops zo storage service
+    /*
+    this.servicesStorage.getLines().then((val) =>
+      this.lines = val
+    );
+    */
 
     this.storage.get('dataAlert').then((val) => {
       if (val !== 1) {
@@ -46,6 +60,18 @@ export class FavouriteTabPage implements OnInit {
     );
   }
 
+  public showAll() {
+    this.showLinesFlag = true;
+    this.showStopsFlag = true;
+   }
+  public showLines() {
+    this.showLinesFlag = true;
+    this.showStopsFlag = false;
+  }
+  public showStops() {
+    this.showLinesFlag = false;
+    this.showStopsFlag = true;
+  }
   async presentAlert() {
     const alert = await this.alertController.create({
       header: 'Upozornenie',

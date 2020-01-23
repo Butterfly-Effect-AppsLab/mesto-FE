@@ -16,7 +16,7 @@
   </ion-text>
 
 <div *ngFor="let stop of filterStopsData">
-  <stop-card [stops]="stop"></stop-card>
+  <stop-card [stops]="stop" [isFavourite]="isFavourite(stop)"></stop-card>
 </div>
 
 </ion-content>

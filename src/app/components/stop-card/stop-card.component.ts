@@ -11,6 +11,7 @@ export class StopCardComponent implements OnInit {
   [x: string]: any;
 
   @Input() stops;
+  @Input() isFavourite;
 
   buttonIcon = 'heart-empty';
   heartClass;
@@ -19,7 +20,14 @@ export class StopCardComponent implements OnInit {
     public animationsUtil: AnimationsUtil
   ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+
+    // podla toho aka je hodnota v isFavourite tak priradovat heaetFilled OR heart empty
+    if (this.isFavourite) {
+      this.buttonIcon = 'heart';
+      this.heartClass = 'heartFilled';
+    }
+  }
 
   public saveFavouriteStop(event) {
     event.stopPropagation();

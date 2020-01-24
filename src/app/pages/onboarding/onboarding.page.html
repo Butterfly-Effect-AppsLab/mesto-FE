@@ -1,10 +1,13 @@
 <ion-content color="baTheme">
   <ion-slides #slides (ionSlideReachEnd)="slideReachedEnd()"
-    [pager]="true">
+    [pager]="true" style="height:100vh;">
     <!-- FIRST SLIDE -->
     <ion-slide class="step-one">
-      <ion-img src="./assets/slides/slide1-favourites.png"></ion-img>
       <ion-grid>
+        <ion-row>
+          <ion-img src="./assets/slides/slide1-favourites.png"
+                   class="imageOnboarding"></ion-img>
+        </ion-row>
         <ion-row class="ion-align-items-center ion-justify-content-between">
           <ion-col size="1"></ion-col>
           <ion-col size-xs="10">
@@ -26,14 +29,20 @@
           </ion-col>
           <ion-col size-xs="2"></ion-col>
         </ion-row>
+        <a (click)="onboardingDone()" class="skipLink">
+          PRESKOČIŤ
+        </a>
       </ion-grid>
     </ion-slide>
     <!-- FIRST SLIDE END -->
 
     <!-- SECOND SLIDE -->
     <ion-slide class="step-two">
-        <ion-img src="/assets/slides/slide2-lines-stops.png"></ion-img>
         <ion-grid>
+          <ion-row>
+            <ion-img src="/assets/slides/slide2-lines-stops.png"
+                     class="imageOnboarding"></ion-img>
+          </ion-row>
           <ion-row class="ion-align-items-center ion-justify-content-between">
               <ion-col size-xs="1" class="ion-no-padding">
                   <ion-icon src="./assets/icon/arrow-left.svg"
@@ -61,14 +70,23 @@
             </ion-col>
             <ion-col size-xs="2"></ion-col>
           </ion-row>
+          <a (click)="onboardingDone()"
+             class="skipLink">
+            PRESKOČIŤ
+          </a>
         </ion-grid>
     </ion-slide>
     <!-- SECOND SLIDE END -->
 
     <!-- THIRD SLIDE -->
     <ion-slide class="step-three">
-        <ion-img src="/assets/slides/slide3-map.png"></ion-img>
+
         <ion-grid>
+          <ion-row>
+            <ion-img src="/assets/slides/slide3-map.png"
+                     class="imageOnboarding">
+            </ion-img>
+          </ion-row>
           <ion-row class="ion-align-items-center ion-justify-content-between">
             <ion-col size-xs="1" class="ion-no-padding">
                 <ion-icon src="./assets/icon/arrow-left.svg"
@@ -92,16 +110,13 @@
               </ion-col>
               <ion-col size-xs="1"></ion-col>
           </ion-row>
+          <ion-button (click)="onboardingDone()" class='buttonStart'>
+            Začať
+          </ion-button>
         </ion-grid>
-        <ion-button (click)="onboardingDone()" class='buttonStart'>
-          Začať
-        </ion-button>
     </ion-slide>
   </ion-slides>
   <!-- THIRD SLIDE END -->
-    <a [hidden]="!pagerStatus2"  (click)="onboardingDone()" class="skipLink">
-      PRESKOČIŤ
-    </a>
 </ion-content>
 
 <!--

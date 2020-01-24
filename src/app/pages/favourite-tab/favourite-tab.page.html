@@ -10,16 +10,16 @@
 
 <ion-grid class='secondMenuTabs'>
   <ion-row class='tabsContentMenu'>
-    <ion-col size='4'><a href="" (click)="showAll()">Všetko</a></ion-col>
-    <ion-col size='4'><a href="" (click)="showLines()">Linky</a></ion-col>
-    <ion-col size='4'><a href="" (click)="showStops()">Zastávky</a></ion-col>
+    <ion-col size='4'><a (click)="showAll()">Všetko</a></ion-col>
+    <ion-col size='4'><a (click)="showLines()">Linky</a></ion-col>
+    <ion-col size='4'><a (click)="showStops()">Zastávky</a></ion-col>
   </ion-row>
 </ion-grid>
 
 <div *ngIf="!noFavsData" #noFavsData>
 
   <div *ngIf="showStopsFlag">
-      <fav-stop-card *ngFor="let stopData pre stops" [favStopsData]="stopData"></fav-stop-card>
+      <fav-stop-card *ngFor="let stopData of stops" [favStopsData]="stopData"></fav-stop-card>
   </div>
 
   <div *ngIf="showLinesFlag">

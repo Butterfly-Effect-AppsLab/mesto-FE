@@ -6,6 +6,7 @@ import AnimationsUtil from 'src/app/services/animations.util';
 import { StopsService } from 'src/app/services/api/stops/stops.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { InternalStorageService } from 'src/app/services/storage/internal-storage.service';
 
 
 @Component({
@@ -16,10 +17,11 @@ import { map } from 'rxjs/operators';
 
 export class StopDetailPage implements OnInit {
 
-  myId = null;
-  buttonIcon = 'heart-empty';
+  stopId = null;
+  buttonIcon;
   heartClass;
   NextWasClicked = null;
+  isFavouriteStop;
 
   @ViewChild('slides', {static: true}) ionSlides: IonSlides;
 
@@ -33,7 +35,8 @@ export class StopDetailPage implements OnInit {
     private router: Router,
     public toastController: ToastController,
     private animationsUtils: AnimationsUtil,
-    private stopsService: StopsService
+    private stopsService: StopsService,
+    private storage: InternalStorageService
   ) {
     this.slideOpt = {
       initialSlide: 3,
@@ -43,12 +46,22 @@ export class StopDetailPage implements OnInit {
 
   ngOnInit() {
 
-    this.myId = this.route.snapshot.paramMap.get('stopId');
-    console.log(this.myId);
+    this.stopId = this.route.snapshot.paramMap.get('stopId');
+    console.log(this.stopId);
     console.log(this.ionSlides);
 
-    this.buttonIcon = 'heart-empty';
-    this.getStopLineData(this.myId);
+    this.getStopLineData(this.stopId);
+
+    this.storage.getFavouriteStop(this.stopId).then((val) => {
+      this.isFavouriteStop = val;
+      if (this.isFavouriteStop !== null) {
+        this.buttonIcon = 'heart';
+        this.heartClass = 'heartFilled';
+      } else {
+        this.buttonIcon = 'heart-empty';
+      }
+    });
+
   }
 
   ionViewDidLoad() {
@@ -102,8 +115,11 @@ export class StopDetailPage implements OnInit {
       event.stopPropagation();
       event.preventDefault();
 
-      console.log(this.myId);
+      console.log(this.stopId);
 
+      this.storage.saveNewFavourite(2, this.stopId);
+
+      /*
       if (this.buttonIcon === 'heart-empty') {
         this.buttonIcon = 'heart';
         this.heartClass = 'heartFilled';
@@ -114,6 +130,7 @@ export class StopDetailPage implements OnInit {
           this.animationsUtils.
             showMessage('linka 39 Televízia bola odobraná z Obľúbených');
       }
+      */
     }
 
 }

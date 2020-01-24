@@ -1,6 +1,7 @@
-<ion-card
+<ion-card button
   class="shadow"
-  button color="white"
+   color="white"
+   (click)="openVirtualTable($event, stops.stop_id)"
 >
   <ion-card-content class="ion-no-padding">
     <ion-grid>
@@ -26,7 +27,7 @@
           <div class="favouriteTapDiv">
             <ion-icon [name]="buttonIcon"
                       [ngClass]="heartClass"
-                      (click)="saveFavouriteStop($event)"></ion-icon>
+                      (click)="saveFavouriteStop($event, stops.stop_id)"></ion-icon>
           </div>
         </ion-col>
       </ion-row>

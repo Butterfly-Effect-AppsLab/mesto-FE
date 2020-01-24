@@ -689,6 +689,7 @@ ion-card {
   right: -10px;
 }
 
+/*
 .lineNumberSquare {
   border-radius: 5px;
   background: #F0F0F2;
@@ -700,6 +701,25 @@ ion-card {
   font-size: 15px;
   text-align: center;
   top: 5px;
+}
+*/
+
+.lineNumberSquare {
+  border-radius: 5px;
+  background: #F0F0F2;
+  /* padding: 8px; */
+  width: 38px !important;
+  height: 32px;
+  position: relative;
+  color: var(--ion-color-darkGrey);
+  font-size: 15px;
+  text-align: center;
+  top: 5px;
+  /* border: 1px solid red; */
+  margin-right: 10px;
+  display: inline-flex;
+  padding-left: 13px;
+  padding-top: 6px;
 }
 
 .divider {
@@ -907,6 +927,7 @@ h4 {
   padding-right: 15px;
   font-weight: 400;
   color: #464B62;
+  margin-top: 15px;
 }
 
 .timeDivider {
@@ -972,6 +993,11 @@ h4 {
   padding-top: 14px;
 }
 
+.timetableMenu {
+  font-size: 1.1em !important;
+}
+
+
 .back-drop {
     position: fixed;
     top: 0;
@@ -1002,7 +1028,22 @@ h4 {
   display: block;
   position: absolute;
   font-weight: 600;
-  font-size: 1.6em;
+  font-size: 1.5em;
   text-align: center;
   color: rgba(70, 75, 98, .62);
+  padding: 20px;
+}
+
+.tabsContentMenu {
+  margin-bottom: 0px;
+}
+
+.tabsContentMenu a {
+  font-size: 1.3em;
+  color: #8A8A8A;
+  font-weight: 500;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  padding-top: 5px;
 }

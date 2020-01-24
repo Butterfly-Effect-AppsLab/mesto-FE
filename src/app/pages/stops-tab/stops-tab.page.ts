@@ -20,17 +20,6 @@ export class StopsTabPage implements OnInit {
   loaded = false;
   noData = false;
 
-  mockStops = [
-    {
-      name: 'Kollárovo námestie',
-      lines: ['31', '39', '80', '94', '202', '207', '207']
-    },
-    {
-      name: 'Americké námestie',
-      lines: ['203', '80', 'N80', 'N44']
-    }
-  ];
-
   constructor(
     public toastController: ToastController,
     private router: Router,
@@ -69,7 +58,7 @@ export class StopsTabPage implements OnInit {
         this.stopsData = results.stops;
         this.utilsService.dismissLoader();
         this.filterStopsData = this.stopsData;
-        console.log(this.stopsData.stop_name);
+        console.log(this.stopsData);
       }
     );
   }
@@ -77,7 +66,7 @@ export class StopsTabPage implements OnInit {
   public getStoLinesData(idStop) {
     this.stopsService.getStopLines(idStop).subscribe(
       results => {
-        console.log(results);
+        console.log('Stop lines ' + results);
       }
     );
   }

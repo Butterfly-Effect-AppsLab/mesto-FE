@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 // import { StopsService } from '../..services/api/stops.service';
 import AnimationsUtil from 'src/app/services/animations.util';
 import { StopsService } from 'src/app/services/api/stops/stops.service';
+import { FavouriteService } from 'src/app/services/favourites/favourite.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'stop-card',
@@ -20,7 +22,9 @@ export class StopCardComponent implements OnInit {
 
   constructor(
     public animationsUtil: AnimationsUtil,
-    private stopsService: StopsService
+    private stopsService: StopsService,
+    private saveFavourite: FavouriteService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -50,4 +54,10 @@ export class StopCardComponent implements OnInit {
     }
   }
 
+  public openVirtualTable(event, idStop) {
+    console.log('aaa');
+    this.router.navigateByUrl(
+      'tabs/stops/stop-detail/' + idStop
+    );
+  }
 }

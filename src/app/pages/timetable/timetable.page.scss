@@ -38,16 +38,16 @@
 	justify-content: center;
 
 	&.closest {
-		background-color: grey;
+		background-color: #F0F0F3;
 	}
 }
 
 .riadok {
 	&.closest span {
-		background-color: grey;
+		background-color: #F0F0F3;
 	}
 }
 
 .hoursColumn {
-	border-right: 1px solid;
+	border-right: 1px solid #F0F0F2;
 }

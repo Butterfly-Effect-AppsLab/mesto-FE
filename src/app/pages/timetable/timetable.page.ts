@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { StopsService } from 'src/app/services/api/stops/stops.service';
+import AnimationsUtil from 'src/app/services/animations.util';
 
 @Component({
   selector: 'app-timetable',
@@ -21,7 +22,8 @@ export class TimetablePage implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private stopService: StopsService
+              private stopService: StopsService,
+              private animationsUtil: AnimationsUtil
   ) { }
 
   ngOnInit() {
@@ -54,8 +56,18 @@ export class TimetablePage implements OnInit {
       });
   }
 
-  scrollToClosest() {
-
+  public saveFavouriteStop(event) {
+    event.stopPropagation();
+    event.preventDefault();
+    if (this.buttonIcon === 'heart-empty') {
+      this.buttonIcon = 'heart';
+      this.heartClass = 'heartFilled';
+      this.animationsUtil.showMessage('Pridane do oblubenych.');
+    } else if (this.buttonIcon === 'heart') {
+        this.buttonIcon = 'heart-empty';
+        this.heartClass = '';
+        this.animationsUtil.showMessage('Oblubene odstranene');
+    }
   }
 
   isClosest(timetable, exact = true) {

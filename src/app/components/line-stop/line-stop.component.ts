@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { LinesService } from '../../services/api/lines.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FavouriteService } from 'src/app/services/favourites/favourite.service';
+import AnimationsUtil from 'src/app/services/animations.util';
 
 @Component({
   selector: 'line-stop',
@@ -22,6 +24,8 @@ export class LineStopComponent implements OnInit {
     private lineApi: LinesService,
     private route: ActivatedRoute,
     private router: Router,
+    private saveFavourite: FavouriteService,
+    private animationsUtil: AnimationsUtil
   ) { }
 
   ngOnInit() {
@@ -32,14 +36,27 @@ export class LineStopComponent implements OnInit {
       // console.log(this.idDirection);
   }
 
-  public openLineTimetable(event, idStop, idLine, idDirection) {
+  public saveFavouriteStop(event) {
+    event.preventDefault();
     event.stopPropagation();
+    alert('ffoo');
+    if (this.buttonIcon === 'heart-empty') {
+      this.buttonIcon = 'heart';
+      this.heartClass = 'heartFilled';
+      this.animationsUtil.showMessage('Pridane do oblubenych.');
+    } else if (this.buttonIcon === 'heart') {
+        this.buttonIcon = 'heart-empty';
+        this.heartClass = '';
+        this.animationsUtil.showMessage('Oblubene odstranene');
+    }
+  }
+
+  public openLineTimetable(event, idStop, idLine, idDirection) {
     console.log(idStop, ' / ', idLine, idDirection);
     this.router.navigateByUrl(
       'tabs/lines/line-detail/' + idLine + '/' + idDirection + '/' + idStop +
       '/timetable'
     );
   }
-
 
 }

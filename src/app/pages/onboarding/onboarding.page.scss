@@ -1,10 +1,11 @@
 ion-slide {
-    // height: 90vh;
+    height: 80vh;
     flex-direction: column;
-    border: 0px solid red;
+    // border: 1px solid red;
     background-color: #FCFCFC;
-    padding-top: 40%;
+    // padding-top: 30%;
     color: #464B62;
+    padding-top: 45%;
 }
 
 ion-content {
@@ -30,6 +31,9 @@ ion-img {
 
 ion-grid {
   padding-bottom: 10px;
+  // position: absolute;
+  // border: 1px solid blue;
+  top: 30%;
 }
 
 #slideText {
@@ -53,7 +57,7 @@ ion-grid {
 }
 
 ion-footer {
-  border: 0px !important;
+  border: 1px !important;
     border-bottom-color: transparent !important;
     background-image: none !important;
     border-bottom: none !important;
@@ -86,10 +90,16 @@ ion-col {
   height: 34px;
   --background: #464B62;
   --background-activated: #464B62;
-  top: 20px;
+  // top: 30px;
   position: relative;
 }
 
 .swiper-pagination {
   border: 1px solid red;
+}
+
+.imageOnboarding {
+  position: relative;
+  left: 25%;
+  // margin-top: 50px;
 }

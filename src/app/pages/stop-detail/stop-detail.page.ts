@@ -57,7 +57,7 @@ export class StopDetailPage implements OnInit {
     this.getStopLineData(this.stopId);
     this.getDepartures(this.stopId);
 
-    this.storage.getFavouriteStops(this.stopId).then((val) => {
+    this.storage.getFavouriteStops().then((val) => {
       this.isFavouriteStop = val;
       this.isFavouriteStop.filter((item) => {
         return this.flag = item.indexOf(this.stopId);

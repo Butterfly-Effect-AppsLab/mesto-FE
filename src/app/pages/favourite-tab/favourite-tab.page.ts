@@ -26,23 +26,6 @@ export class FavouriteTabPage implements OnInit {
   favStopsData;
   favLinesData;
   favArray;
-  dpc;
-
-  pp = [
-    {
-      1:
-        {
-        direction: 3,
-        stop: 16
-        }
-    },
-    {
-      4: {
-        direciton: 4,
-        stop: 9
-      }
-    }
-  ];
 
   // TODO premenna pre favourites z DB
 
@@ -56,6 +39,7 @@ export class FavouriteTabPage implements OnInit {
 
     // importnut service storageService
     // zavolat getLines, getStops zo storage service
+    /*
     this.storage.getFavouriteLines().then((valLines) => {
       this.lines = valLines;
       // console.log('Fav Lines: ' + this.lines);
@@ -64,6 +48,7 @@ export class FavouriteTabPage implements OnInit {
       }
       this.favLinesData = this.lines;
     });
+    */
 
     this.storage.getFavouriteStops().then((valStops) => {
       this.stops = valStops;
@@ -74,12 +59,6 @@ export class FavouriteTabPage implements OnInit {
       this.favStopsData = this.stops;
     });
 
-    this.pp.map(val =>
-      console.log(val)
-      );
-    // this.storage2.set('test', this.pp);
-    this.dpc = this.getFckLinesDB();
-    console.log('dpc:' + this.dpc);
     this.storage.showDataAlert();
 
     // this.favourite = this.storage.get('line').then((val) =>

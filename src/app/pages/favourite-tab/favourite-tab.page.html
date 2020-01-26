@@ -10,7 +10,7 @@
 
 <ion-grid class='secondMenuTabs'>
   <ion-row class='tabsContentMenu'>
-    <ion-col size='4'><a (click)="showAll()">Všetko</a></ion-col>
+    <ion-col size='4'><a class='active' (click)="showAll()">Všetko</a></ion-col>
     <ion-col size='4'><a (click)="showLines()">Linky</a></ion-col>
     <ion-col size='4'><a (click)="showStops()">Zastávky</a></ion-col>
   </ion-row>
@@ -29,7 +29,8 @@
   </div>
 </div>
 <div *ngIf="noFavsData" class='noFavData'>
-  Je tu prázdno, pridaj si niečo kliknutím na tlačidlo dole.
+  <!-- Je tu prázdno, pridaj si niečo kliknutím na tlačidlo dole. -->
+  Pridanie obľúbených bude dostupné v ďalšej verzii aplikácie.
 </div>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="backdrop = !backdrop">

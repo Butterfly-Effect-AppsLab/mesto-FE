@@ -29,21 +29,25 @@
           </div>
         </ion-col>
         <ion-col size="2" class='padding-top'>
+          <!--
           <div class="favouriteTapDiv-stopDetail">
             <ion-icon [name]="buttonIcon"
                       [ngClass]="heartClass"
                       (click)="saveFavouriteStop($event)">
             </ion-icon>
           </div>
+          -->
         </ion-col>
       </ion-row>
   </ion-grid>
 
   <ion-grid class='secondMenuTabs'>
     <ion-row class='tabsContentMenu'>
-      <ion-col size='4'><a class="bold timetableMenu" (click)="showAll()">Prac. dni</a></ion-col>
+      <ion-col size='12'><a class="bold timetableMenu active" (click)="showAll()">Prac. dni</a></ion-col>
+      <!--
       <ion-col size='4'><a class="bold timetableMenu" (click)="showLines()">Prázdniny</a></ion-col>
       <ion-col size='4'><a class="bold timetableMenu" (click)="showStops()">Voľné dni</a></ion-col>
+      -->
     </ion-row>
   </ion-grid>
 
@@ -106,7 +110,7 @@
             Zastávka na znamenie
           </ion-col>
         </ion-row>
-
+        <!--
         <ion-row>
           <ion-col size='2' class='blueTime centered'>
             <strong>36</strong>
@@ -116,7 +120,6 @@
             vozidlami
           </ion-col>
         </ion-row>
-
         <ion-row>
           <ion-col size='2' class='centered'>
             <strong>v</strong>
@@ -126,6 +129,7 @@
             <strong>Vozovňa Trnávka</strong>
           </ion-col>
         </ion-row>
+        -->
       </ion-grid>
     </ion-card-content>
   </ion-card>

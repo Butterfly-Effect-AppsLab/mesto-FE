@@ -24,10 +24,9 @@ export class InternalStorageService {
   }
 
   public async getFavouriteLines() {
-    // const lineVal = await this.storage.get('lines');
-    const lineVal = await this.storage.get('test');
-    console.log(lineVal);
-    return this.favLines = lineVal.lines;
+    const lineVal = await this.storage.get('lines');
+    // console.log(lineVal);
+    return this.favLines = lineVal;
   }
 
   public saveNewFavourite(type, favouriteValue) {

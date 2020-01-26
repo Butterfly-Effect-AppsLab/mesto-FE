@@ -176,8 +176,4 @@ export class LeafletMapComponent implements OnInit {
           // .bindPopup(text)
           // .addTo(this.map);
     }
-
-     markerOnClick() {
-       alert('hi. you clicked the marker at');
-      }
 }

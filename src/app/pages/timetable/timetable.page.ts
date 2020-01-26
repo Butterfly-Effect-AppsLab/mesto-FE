@@ -39,19 +39,22 @@ export class TimetablePage implements OnInit {
     this.getStopData(this.idStop);
     this.getTimetable(this.idLine, this.idDirection, this. idStop);
 
+    /*
     this.storage.getFavouriteLines().then((val) => {
       this.isFavouriteLine = val;
       this.isFavouriteLine.filter((item) => {
         this.flag = item.indexOf(this.idLine);
-        console.log(this.flag);
+        console.log('flag: ' + this.flag);
       });
-      if (this.flag === 0) {
+      if (val !== null) {
         this.buttonIcon = 'heart';
         this.heartClass = 'heartFilled';
       } else {
         this.buttonIcon = 'heart-empty';
       }
     });
+    */
+    this.buttonIcon = 'heart-empty';
   }
 
   getStopData(stopId) {

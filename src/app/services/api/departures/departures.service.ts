@@ -12,8 +12,10 @@ export class DeparturesService {
 
   public lineDeparturesEndpoint = environment.apiUrl + 'line_departures/';
   public linesAtStopDeparturesEndpoint = environment.apiUrl + 'departures/';
+  public platformsEndpoint = environment.apiUrl + 'platform/departures';
   public lineDepartures: any;
   public linesAtStopsDepartures: any;
+  public platform: any;
 
   constructor(public http: HttpClient) { }
 
@@ -52,5 +54,18 @@ export class DeparturesService {
 
   public getLinesDeparturesAtStop(idStop) {
     return this.fetchLinesDeparturesAtStop$(idStop);
+  }
+
+  private fetchPlatform$(): Observable<any> {
+    return this.http.get(this.platformsEndpoint).pipe(
+      map(data => {
+        this.platform = data;
+        console.log(this.platform);
+      })
+    );
+  }
+
+  public getPlatforms() {
+    return this.fetchPlatform$();
   }
 }

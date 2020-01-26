@@ -24,16 +24,20 @@
         </ion-col>
 
         <ion-col size="2">
+          <!--
           <div class="favouriteTapDiv">
             <ion-icon [name]="buttonIcon"
                       [ngClass]="heartClass"
-                      (click)="saveFavouriteStop($event, stops.stop_id)"></ion-icon>
+                      (click)="saveFavouriteStop($event, stops.stop_id)">
+            </ion-icon>
           </div>
+          -->  
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col class="ion-padding" *ngIf="lines">
-          <span *ngFor="let line of lines" class="lineNumberSquare">{{ line.line_name }}</span>
+          <span *ngFor="let line of lines" class="lineNumberSquare">
+            <div>{{ line.line_name }}</div></span>
         </ion-col>
       </ion-row>
     </ion-grid>

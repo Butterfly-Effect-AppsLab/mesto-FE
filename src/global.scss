@@ -162,7 +162,7 @@ star-rating {
   font-weight: bold !important;
   text-align: left;
   color: var(--ion-color-darkGrey);
-  padding-top: 13px;
+  padding-top: 7px;
   text-align: center;
 }
 
@@ -727,6 +727,12 @@ ion-card {
   display: block;
 }
 
+.lineNumberSquare div {
+  width: inherit;
+  text-align: center;
+  display: block;
+}
+
 .divider {
   border-bottom: 1.5px solid #F0F0F2;
   padding-top: 8px;
@@ -1049,7 +1055,12 @@ h4 {
   color: #8A8A8A;
   font-weight: 500;
   display: block;
-  text-align: center;
+  text-align: left;
   text-decoration: none;
   padding-top: 5px;
+  padding-left: 10px;
+}
+
+.active {
+  color: var(--ion-color-baTheme) !important;
 }

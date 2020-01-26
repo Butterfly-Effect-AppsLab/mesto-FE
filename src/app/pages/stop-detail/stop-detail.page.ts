@@ -71,22 +71,25 @@ export class StopDetailPage implements OnInit {
     // console.log(this.stopId);
     // console.log(this.ionSlides);
 
-    /*
     this.storage.getFavouriteStops().then((val) => {
       this.isFavouriteStop = val;
-      this.isFavouriteStop.filter((item) => {
-        return this.flag = item.indexOf(this.stopId);
-      });
-      if (this.flag === 0) {
-        this.buttonIcon = 'heart';
-        this.heartClass = 'heartFilled';
-      } else {
+      console.log('isstop: ' + this.isFavouriteStop);
+      if (this.isFavouriteStop === null) {
         this.buttonIcon = 'heart-empty';
+        this.flag = -1;
+      } else {
+        this.isFavouriteStop.filter((item) => {
+          return this.flag = item.indexOf(this.stopId);
+        });
+        if (this.flag === 0) {
+          this.buttonIcon = 'heart';
+          this.heartClass = 'heartFilled';
+        } else {
+          this.buttonIcon = 'heart-empty';
+        }
       }
     });
-    */
-
-  }
+}
 
   ionViewDidLoad() {
     // this.viewController.setBackButtonText('My Back Button Text');
@@ -136,9 +139,16 @@ export class StopDetailPage implements OnInit {
       event.stopPropagation();
       event.preventDefault();
 
-      console.log(this.stopId);
+      console.log('flag:' + this.flag);
 
-      this.storage.saveNewFavourite(2, this.stopId);
+      if (this.flag === -1) {
+        console.log('save');
+        this.storage.saveNewFavourite(2, this.stopId);
+      }
+      if (this.flag === 0) {
+        console.log('remve');
+        this.storage.removeFromFavourite(2, this.stopId);
+      }
 
       if (this.buttonIcon === 'heart-empty') {
         this.buttonIcon = 'heart';

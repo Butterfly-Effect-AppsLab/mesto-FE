@@ -50,15 +50,6 @@ export class FavouriteTabPage implements OnInit {
     });
     */
 
-    this.storage.getFavouriteStops().then((valStops) => {
-      this.stops = valStops;
-      console.log('Fav stops: ' + this.stops);
-      if (this.stops !== null) {
-        this.noFavsData = false;
-      }
-      this.favStopsData = this.stops;
-    });
-
     this.storage.showDataAlert();
 
     // this.favourite = this.storage.get('line').then((val) =>
@@ -70,10 +61,17 @@ export class FavouriteTabPage implements OnInit {
     */
   }
 
-  public async getFckLinesDB() {
-    const lineVal = await this.storage2.get('test');
-    console.log(lineVal);
-    return lineVal;
+  ionViewWillEnter() {
+    this.storage.getFavouriteStops().then((valStops) => {
+      this.stops = valStops;
+      console.log('Fav stops: ' + this.stops);
+      if (this.stops !== null) {
+        this.noFavsData = false;
+      } else {
+        this.noFavsData = true;
+      }
+      this.favStopsData = this.stops;
+    });
   }
 
   public showAll() {

@@ -8,13 +8,15 @@
   <div *ngFor="let i=index; let lastItem = last;"></div>
   <ion-row
           class="ion-no-padding">
+    <!--
     <ion-col size='2' class='lineTime'>
 
       {{lineStops.time}} <br/>min
 
     <div class='timeDivider' *ngIf="!lastItem"></div>
     </ion-col>
-    <ion-col size='10' class="ion-no-padding">
+    -->
+    <ion-col size='12' class="ion-padding">
       <ion-card color="white" button
                        (click)="openLineTimetable(
                                 $event, lineStops.id_stop, idLine, idDirection)"

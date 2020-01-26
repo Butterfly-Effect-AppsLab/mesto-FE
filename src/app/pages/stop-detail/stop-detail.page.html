@@ -3,7 +3,7 @@
    <ion-buttons slot="start" *ngIf="!fromMap">
      <ion-back-button defaultHref="/tabs/stops"></ion-back-button>
    </ion-buttons>
-   <ion-buttons slot="start" *ngIf="fromMap">     
+   <ion-buttons slot="start" *ngIf="fromMap">
    </ion-buttons>
    <ion-img src="./assets/icon/PNGbratislava.png" class='baIcon'></ion-img>
    <ion-title class='titleColor'>Zastávky</ion-title>
@@ -33,14 +33,13 @@
         </ion-col>
 
         <ion-col size="2" class='padding-top'>
-          <!--
+
           <div class="favouriteTapDiv-stopDetail">
             <ion-icon [name]="buttonIcon"
                       [ngClass]="heartClass"
                       (click)="saveFavouriteStop($event)">
             </ion-icon>
-          </div>
-          -->
+          </div>          
         </ion-col>
       </ion-row>
   </ion-grid>
@@ -59,7 +58,8 @@
                       #slides
                       (ionSlideDidChange)="slideChanged()"
                       *ngIf='!fromMap'>
-                       <ion-slide *ngFor="let stopLine of stopData.lines">
+                       <ion-slide style='width: 60px !important'
+                       *ngFor="let stopLine of stopData.lines">
                         <p class='lineSquereIcon'>{{stopLine.line_name}} </p>
                        </ion-slide>
                 </ion-slides>

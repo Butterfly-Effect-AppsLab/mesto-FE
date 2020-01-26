@@ -47,9 +47,10 @@ export class InternalStorageService {
       // this.storage.set('line', favouriteValue);
     }
     if (type === 2) {
+      // this.storage.set('stop-' + favouriteValue, this.savedStops);
       this.storage.get('stops').then((val) => {
         this.savedStops = val;
-        // console.log(this.savedStops);
+        console.log('ulozene: ' + this.savedStops);
         if (this.savedStops === null) {
           this.savedStops = [favouriteValue];
           this.storage.set('stops', this.savedStops);
@@ -65,6 +66,25 @@ export class InternalStorageService {
         }
       });
     }
+  }
+
+  public removeFromFavourite(type, idStop) {
+    this.storage.get('stops').then((hod) => {
+      console.log(hod);
+      const index = hod.indexOf(hod);
+      console.log('oind: ' + index);
+      hod.splice(index, 1);
+      console.log('po remove:' + hod);
+      if (hod.length === 0) {
+        console.log('aaaempty');
+        this.storage.remove('stops');
+      } else {
+        console.log('not empty');
+        this.storage.remove('stops');
+        this.storage.set('stops', hod);
+      }
+    });
+    // this.storage.remove('stops');
   }
 
   async presentAlert() {

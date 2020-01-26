@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 // Ionic
-import { IonSlides, ToastController } from '@ionic/angular';
+import { IonSlides, ToastController, Platform } from '@ionic/angular';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import AnimationsUtil from 'src/app/services/animations.util';
 import { StopsService } from 'src/app/services/api/stops/stops.service';
@@ -32,6 +32,9 @@ export class StopDetailPage implements OnInit {
   stopData: any = [];
   departures: any = [];
   flag;
+  fromMap;
+  platformId;
+  virt;
 
   constructor(
     private route: ActivatedRoute,
@@ -40,23 +43,35 @@ export class StopDetailPage implements OnInit {
     private animationsUtils: AnimationsUtil,
     private stopsService: StopsService,
     private storage: InternalStorageService,
-    private departureService: DeparturesService
+    private departureService: DeparturesService,
+    private platform: Platform
   ) {
     this.slideOpt = {
       initialSlide: 3,
-      slidesPerView: 5
+      slidesPerView: 6
     };
   }
 
   ngOnInit() {
 
     this.stopId = this.route.snapshot.paramMap.get('stopId');
-    console.log(this.stopId);
-    console.log(this.ionSlides);
+    this.fromMap = this.platform.getQueryParam('platform');
 
-    this.getStopLineData(this.stopId);
-    this.getDepartures(this.stopId);
+    if (this.fromMap === '1') {
+      this.platformId = this.stopId;
+      // this.getStopLineData(this.stopId);
+      // this.getDepartures(this.stopId);
+      this.getVirtualTable1Dir(this.platformId);
+    } else {
+      // console.log('aa');
+      this.getStopLineData(this.stopId);
+      this.getDepartures(this.stopId);
+    }
 
+    // console.log(this.stopId);
+    // console.log(this.ionSlides);
+
+    /*
     this.storage.getFavouriteStops().then((val) => {
       this.isFavouriteStop = val;
       this.isFavouriteStop.filter((item) => {
@@ -69,6 +84,7 @@ export class StopDetailPage implements OnInit {
         this.buttonIcon = 'heart-empty';
       }
     });
+    */
 
   }
 
@@ -89,6 +105,14 @@ export class StopDetailPage implements OnInit {
       this.departureService.getLinesDeparturesAtStop(idStop).subscribe(
         res => {
           this.departures = res;
+          console.log(this.departures);
+      });
+    }
+
+    public getVirtualTable1Dir(idPlatform) {
+      this.departureService.getVirtualTableOneDirection(idPlatform).subscribe(
+        re => {
+          this.departures = re;
           console.log(this.departures);
       });
     }

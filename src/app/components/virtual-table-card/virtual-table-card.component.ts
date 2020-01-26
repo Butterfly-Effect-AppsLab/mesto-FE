@@ -8,7 +8,6 @@ import AnimationsUtil from 'src/app/services/animations.util';
 })
 export class VirtualTableCardComponent implements OnInit {
 
-
   @Input() stops;
   @Input() departure;
 

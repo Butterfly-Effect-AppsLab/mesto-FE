@@ -1,7 +1,9 @@
 <ion-header>
  <ion-toolbar color="baTheme">
-   <ion-buttons slot="start">
+   <ion-buttons slot="start" *ngIf="!fromMap">
      <ion-back-button defaultHref="/tabs/stops"></ion-back-button>
+   </ion-buttons>
+   <ion-buttons slot="start" *ngIf="fromMap">     
    </ion-buttons>
    <ion-img src="./assets/icon/PNGbratislava.png" class='baIcon'></ion-img>
    <ion-title class='titleColor'>Zastávky</ion-title>
@@ -9,7 +11,6 @@
 </ion-header>
 
 <ion-content>
-
   <ion-grid class="ion-no-padding">
       <ion-row class="ion-no-padding stop-detail">
         <ion-col size="2">
@@ -18,7 +19,10 @@
           </div>
         </ion-col>
         <ion-col size="8" class=''>
-          <div class="ion-text-nowrap">
+          <div class="ion-text-nowrap" *ngIf='fromMap'>
+            <h4 class="bold">{{departures.platform_name}}</h4><br/>
+          </div>
+          <div class="ion-text-nowrap" *ngIf='!fromMap'>
             <h4 class="bold">{{stopData.selected_stop}}</h4><br/>
           </div>
           <div class="">
@@ -36,7 +40,7 @@
                       (click)="saveFavouriteStop($event)">
             </ion-icon>
           </div>
-          -->  
+          -->
         </ion-col>
       </ion-row>
   </ion-grid>
@@ -53,9 +57,19 @@
             <ion-col no-padding col-10 class='linesSlider'>
                 <ion-slides
                       #slides
-                      (ionSlideDidChange)="slideChanged()">
+                      (ionSlideDidChange)="slideChanged()"
+                      *ngIf='!fromMap'>
                        <ion-slide *ngFor="let stopLine of stopData.lines">
                         <p class='lineSquereIcon'>{{stopLine.line_name}} </p>
+                       </ion-slide>
+                </ion-slides>
+                <ion-slides
+                      #slides
+                      (ionSlideDidChange)="slideChanged()"
+                      *ngIf='fromMap'>
+                       <ion-slide
+                            *ngFor="let departure of departures.departures">
+                        <p class='lineSquereIcon'>{{departure.line_name}} </p>
                        </ion-slide>
                 </ion-slides>
             </ion-col>
@@ -64,9 +78,17 @@
             </ion-col>
         </ion-row>
     </ion-toolbar><br/>
-    <div *ngFor="let departure of departures.lines">
-      <virtual-table-card [departure]='departure'>
-      </virtual-table-card>
+    <div *ngIf="!fromMap">
+      <div *ngFor="let departure of departures.lines">
+        <virtual-table-card [departure]='departure'>
+        </virtual-table-card>
+      </div>
+    </div>
+    <div *ngIf="fromMap">
+      <div *ngFor="let departure of departures.departures">
+        <virtual-table-card [departure]='departure'>
+        </virtual-table-card>
+      </div>
     </div>
     <!--
     <ion-card button class="shadow" color="white" [routerLink]="">

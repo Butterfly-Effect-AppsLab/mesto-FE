@@ -31,10 +31,13 @@ export class BikesMapPage implements OnInit {
 
     this.getPlatformsData().subscribe(
       results => {
-        this.platformData = results;
-        console.log('plt: ' + results);
-    });
+        this.platformData = results.platforms;
+        // console.log('plt: ' + this.platformData);
 
+        for (let i = 0; i <= this.platformData.length; i++) {
+        // console.log(this.platformData[i]);
+        }
+    });
   }
 
   public getPlatformsData() {

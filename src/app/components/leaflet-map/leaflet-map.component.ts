@@ -54,8 +54,20 @@ export class LeafletMapComponent implements OnInit {
                       );
       }
 
+      /*
       for (const busLocation of this.busStops.stops) {
         this.addStops(busLocation.lat, busLocation.long, busLocation.stopId, busLocation.linky);
+        // this.addMarker(location.GpsLat, location.GpsLon, location.Name);
+      }
+      */
+      console.log(this.platformData);
+      for (let i = 0; i <= this.platformData.length; i++) {
+        console.log(this.platformData[i].platform_lat);
+
+        this.addStops(this.platformData[i].platform_lat,
+                      this.platformData[i].platform_long,
+                      this.platformData[i].platform_id,
+                      this.platformData.platform_name);
         // this.addMarker(location.GpsLat, location.GpsLon, location.Name);
       }
 
@@ -146,6 +158,7 @@ export class LeafletMapComponent implements OnInit {
     // pridanie slovnaftbajk markeru
     addStops(latitude, longitude, stopId, text) {
 
+      console.log('lat:' + latitude);
       const icon = L.icon({
         iconUrl: './assets/icon/mapa/zastavka.png',
         shadowUrl: 'dot-shadow.png',
@@ -169,7 +182,8 @@ export class LeafletMapComponent implements OnInit {
       const mapBusMarker = L.marker([latitude, longitude], { icon }, 15)
         .addTo(this.map)
         .on('click', (e) => {
-          this.router.navigateByUrl('tabs/stops/stop-detail/' + stopId);
+          this.router.navigateByUrl('tabs/stops/stop-detail/' + stopId
+          + '?platform=1');
         });
       // mapBusMarker
           // .bindPopup(text)

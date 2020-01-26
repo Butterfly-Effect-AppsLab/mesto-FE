@@ -13,9 +13,11 @@ export class DeparturesService {
   public lineDeparturesEndpoint = environment.apiUrl + 'line_departures/';
   public linesAtStopDeparturesEndpoint = environment.apiUrl + 'departures/';
   public platformsEndpoint = environment.apiUrl + 'platform/directions';
+  public platformDirectionsEndpoint = environment.apiUrl + 'platform/directions/';
   public lineDepartures: any;
   public linesAtStopsDepartures: any;
   public platform: any = [];
+  public platformDirs: any;
 
   constructor(public http: HttpClient) { }
 
@@ -68,5 +70,19 @@ export class DeparturesService {
 
   public getPlatforms() {
     return this.fetchPlatform$();
+  }
+
+  private fetchDirectionsInOneDir$(idPlatform): Observable<any> {
+    return this.http.get(this.platformDirectionsEndpoint + idPlatform).pipe(
+      map(datas => {
+        this.platformDirs = datas;
+        // console.log('serv: ' + ;
+        return datas;
+      })
+    );
+  }
+
+  public getVirtualTableOneDirection(idPlatform) {
+    return this.fetchDirectionsInOneDir$(idPlatform);
   }
 }

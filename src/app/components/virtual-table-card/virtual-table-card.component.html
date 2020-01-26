@@ -20,8 +20,11 @@
                     class="waitingDots-stopDetail">
               </ion-img>
             </div>
-            <div *ngIf="departure.arrival_time !== 0" class="bold-favourite-time">
-              o {{departure.arrival_time}} min
+            <div>
+              <div *ngIf="departure.arrival_time !== 0"
+                   class="bold-favourite-time">
+                o {{departure.arrival_time}} min
+              </div>
             </div>
           </ion-col>
         </ion-row>

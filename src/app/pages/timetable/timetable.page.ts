@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { StopsService } from 'src/app/services/api/stops/stops.service';
 import AnimationsUtil from 'src/app/services/animations.util';
+import { InternalStorageService } from 'src/app/services/storage/internal-storage.service';
 
 @Component({
   selector: 'app-timetable',
@@ -10,20 +11,22 @@ import AnimationsUtil from 'src/app/services/animations.util';
 })
 export class TimetablePage implements OnInit {
 
-  buttonIcon = 'heart-empty';
+  buttonIcon;
   heartClass;
   idLine;
   idDirection;
   idStop;
   timetableData: any = [];
   hasClosestMinMatch = false;
-
+  flag;
+  isFavouriteLine;
   stopData: any = [];
 
   constructor(private route: ActivatedRoute,
               private router: Router,
               private stopService: StopsService,
-              private animationsUtil: AnimationsUtil
+              private animationsUtil: AnimationsUtil,
+              private storage: InternalStorageService
   ) { }
 
   ngOnInit() {
@@ -35,6 +38,20 @@ export class TimetablePage implements OnInit {
     console.log(this.idLine, '/', this.idDirection, '/', this.idStop);
     this.getStopData(this.idStop);
     this.getTimetable(this.idLine, this.idDirection, this. idStop);
+
+    this.storage.getFavouriteLines(this.idLine).then((val) => {
+      this.isFavouriteLine = val;
+      this.isFavouriteLine.filter((item) => {
+        this.flag = item.indexOf(this.idLine);
+        console.log(this.flag);
+      });
+      if (this.flag === 0) {
+        this.buttonIcon = 'heart';
+        this.heartClass = 'heartFilled';
+      } else {
+        this.buttonIcon = 'heart-empty';
+      }
+    });
   }
 
   getStopData(stopId) {
@@ -59,14 +76,17 @@ export class TimetablePage implements OnInit {
   public saveFavouriteStop(event) {
     event.stopPropagation();
     event.preventDefault();
+
+    this.storage.saveNewFavourite(1, this.idLine);
+
     if (this.buttonIcon === 'heart-empty') {
       this.buttonIcon = 'heart';
       this.heartClass = 'heartFilled';
-      this.animationsUtil.showMessage('Pridane do oblubenych.');
+      this.animationsUtil.showMessage('Linka bola pridaná k Obľúbeným');
     } else if (this.buttonIcon === 'heart') {
         this.buttonIcon = 'heart-empty';
         this.heartClass = '';
-        this.animationsUtil.showMessage('Oblubene odstranene');
+        this.animationsUtil.showMessage('Linka bola pridaná k Obľúbeným');
     }
   }
 

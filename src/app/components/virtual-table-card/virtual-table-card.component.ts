@@ -10,12 +10,14 @@ export class VirtualTableCardComponent implements OnInit {
 
 
   @Input() stops;
+  @Input() departure;
 
   constructor(
     public animationsUtil: AnimationsUtil
   ) { }
 
   ngOnInit() {}
+
 
 
 }

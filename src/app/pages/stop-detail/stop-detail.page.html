@@ -55,26 +55,6 @@
                        <ion-slide *ngFor="let stopLine of stopData.lines">
                         <p class='lineSquereIcon'>{{stopLine.line_name}} </p>
                        </ion-slide>
-                      <!--
-                          <ion-slide>
-                        <p class='lineSquereIcon'>9 </p>
-                        </ion-slide>
-                          <ion-slide>
-                        <p class='lineSquereIcon'>1 </p>
-                        </ion-slide>
-                          <ion-slide>
-                        <p class='lineSquereIcon'>80 </p>
-                        </ion-slide>
-                          <ion-slide>
-                        <p class='lineSquereIcon'>201 </p>
-                        </ion-slide>
-                        <ion-slide>
-                        <p class='lineSquereIcon'>67 </p>
-                        </ion-slide>
-                          <ion-slide>
-                        <p class='lineSquereIcon'>9 </p>
-                        </ion-slide>
-                      -->
                 </ion-slides>
             </ion-col>
             <ion-col class="col-with-arrow" (click)="slideNext()" no-padding col-1>
@@ -82,7 +62,10 @@
             </ion-col>
         </ion-row>
     </ion-toolbar><br/>
-    <virtual-table-card></virtual-table-card>
+    <div *ngFor="let departure of departures.lines">
+      <virtual-table-card [departure]='departure'>
+      </virtual-table-card>
+    </div>
     <!--
     <ion-card button class="shadow" color="white" [routerLink]="">
         <ion-card-content class="ion-no-padding">

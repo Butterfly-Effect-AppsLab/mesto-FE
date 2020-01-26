@@ -18,19 +18,16 @@ export class InternalStorageService {
   constructor(private storage: Storage,
               private alertController: AlertController) { }
 
-  public async getFavouriteStop(idStop) {
-    const stop = await this.storage.get('stop');
+  public async getFavouriteStops() {
+    const stop = await this.storage.get('stops');
     return this.favStop = stop;
   }
 
   public async getFavouriteLines() {
-    const lineVal = await this.storage.get('line');
-    return this.favLines = lineVal;
-  }
-
-  public async getFavouriteStops() {
-    const stopVal = await this.storage.get('stops');
-    return this.favStops = stopVal;
+    // const lineVal = await this.storage.get('lines');
+    const lineVal = await this.storage.get('test');
+    console.log(lineVal);
+    return this.favLines = lineVal.lines;
   }
 
   public saveNewFavourite(type, favouriteValue) {
@@ -39,7 +36,8 @@ export class InternalStorageService {
     *   type = 1 - line || 2 - stop
     *   value = lineId || stopId
     */
-    console.log(type, favouriteValue);
+
+    // this.storage.remove('stops');
     if (type === 1) {
       this.storage.get('lines').then((val) => {
         this.savedLines.push(favouriteValue),
@@ -52,25 +50,32 @@ export class InternalStorageService {
     if (type === 2) {
       this.storage.get('stops').then((val) => {
         this.savedStops = val;
-        console.log(this.savedStops);
+        // console.log(this.savedStops);
         if (this.savedStops === null) {
-          this.storage.set('stops', favouriteValue);
-        } else {
-          this.savedStops.push(favouriteValue);
+          this.savedStops = [favouriteValue];
           this.storage.set('stops', this.savedStops);
+        } else {
+          this.storage.get('stops').then((val2) => {
+            // console.log('val2: ' + val2);
+            this.savedStops = val2;
+            this.savedStops.push(favouriteValue);
+            this.storage.set('stops', this.savedStops);
+        });
+          // this.savedStops.push(favouriteValue);
+          // this.storage.set('stops', this.savedStops);
         }
       });
-      this.storage.set('stop', favouriteValue);
     }
   }
 
   async presentAlert() {
     const alert = await this.alertController.create({
       header: 'Upozornenie',
-      message: 'Aplikácia obsahuje limitovanú sadu testovacích dát.',
+      message:
+      'Aplikácia obsahuje limitovanú sadu testovacích dát a limitovanú funkcionalitu.',
       buttons: [
          {
-          text: 'OK',
+          text: 'Rozumiem',
           handler: () => {
             this.saveMsgAboutMockData();
           }

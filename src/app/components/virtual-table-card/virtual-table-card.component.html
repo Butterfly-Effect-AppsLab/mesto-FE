@@ -4,21 +4,24 @@
         <ion-row class="ion-no-padding">
           <ion-col size="2">
             <div class='lineSquereIconGrey'>
-              <div>212</div>
+              <div>{{departure.line_name}}</div>
             </div>
           </ion-col>
-          <ion-col size="8">
+          <ion-col size="7">
             <div class="ion-no-padding">
-              <h2 class="bustStopNameCard">ŽST Železná studienka</h2>
+              <h2 class="bustStopNameCard">{{departure.line_direction}}</h2>
             </div>
           </ion-col>
 
-          <ion-col size="2">
+          <ion-col size="3">
             <div class="bold-favourite-time">
-              <ion-img
-                    src="./assets/icon/bodky.gif" 
+              <ion-img *ngIf="departure.arrival_time === 0"
+                    src="./assets/icon/bodky.gif"
                     class="waitingDots-stopDetail">
               </ion-img>
+            </div>
+            <div *ngIf="departure.arrival_time !== 0" class="bold-favourite-time">
+              o {{departure.arrival_time}} min
             </div>
           </ion-col>
         </ion-row>

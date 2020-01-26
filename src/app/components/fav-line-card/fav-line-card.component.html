@@ -1,11 +1,11 @@
 <!-- Stop card -->
-<ion-card button class="shadow" color="white" (click)='clickMe()'>
+<ion-card button class="shadow" color="white">
   <ion-card-content class="ion-no-padding">
     <ion-grid>
       <ion-row class="ion-no-padding divider">
         <ion-col size="2">
           <div class='lineSquereIcon'>
-            <div class='SquereIconText'>39</div>
+            <div class='SquereIconText'>{{favLine.line_id}}</div>
           </div>
         </ion-col>
         <ion-col size="8">
@@ -14,13 +14,15 @@
           </div>
           <div class="multi-ellipsis">
             <ion-text color="darkGrey">
-              <p class="destination">Ostredky, Súhvezdná</p>
+              <p class="destination">{{favLine.line_direction}}</p>
             </ion-text>
           </div>
         </ion-col>
         <ion-col size="2">
           <div class="favouriteTapDiv">
-            <ion-icon name="heart" class="heartFilled"></ion-icon>
+            <ion-icon name="heart"
+                      class="heartFilled"
+                      (click)="removeFavouriteLine($event)"></ion-icon>
           </div>
         </ion-col>
       </ion-row>
@@ -29,22 +31,12 @@
         <ion-col size="6" class='divider2'>
             <h3 class='darkGrey'>najbližšie odchody:</h3>
         </ion-col>
-        <ion-col size="2" class='divider2 borderRight'>
-          <div class="ion-text-nowrap boldCentered">
-            12:30
-          </div>
-        </ion-col>
-
-        <ion-col size="2" class='divider2 borderRight'>
-          <div class=".centered">
-            12:35
-          </div>
-        </ion-col>
-        <ion-col size="2" class='divider2'>
-          <div class="centered">
-            12:40
-          </div>
-        </ion-col>
+          <ion-col size="2" class='divider2 borderRight'
+                   *ngFor="let closestDeps of favLine.closest_departures">
+            <div class="ion-text-nowrap boldCentered">
+              23:40
+            </div>
+          </ion-col>
       </ion-row>
 
       <ion-row class="ion-no-padding">
@@ -55,8 +47,10 @@
         </ion-col>
         <ion-col size="2" class='borderRight red'>
           <div class="ion-text-nowrap">
+            <!--
             4 min <br/>
             12:34
+            -->
           </div>
         </ion-col>
         <ion-col size="2" class='borderRight'>
@@ -64,8 +58,10 @@
         </ion-col>
         <ion-col size="2">
           <div class="red">
+            <!--
             10 min <br/>
             12:50
+            -->
           </div>
         </ion-col>
       </ion-row>

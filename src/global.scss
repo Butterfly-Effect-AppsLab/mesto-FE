@@ -162,7 +162,7 @@ star-rating {
   font-weight: bold !important;
   text-align: left;
   color: var(--ion-color-darkGrey);
-  padding-top: 11px;
+  padding-top: 13px;
   text-align: center;
 }
 
@@ -718,8 +718,13 @@ ion-card {
   /* border: 1px solid red; */
   margin-right: 10px;
   display: inline-flex;
-  padding-left: 13px;
   padding-top: 6px;
+}
+
+.lineNumberSquare span {
+  width: inherit;
+  text-align: center;
+  display: block;
 }
 
 .divider {
@@ -900,15 +905,16 @@ h4 {
 .bustStopNameCard {
   font-size: 1.1em !important;
   margin-top: 10px !important;
-  font-weight: 700 !important;
+  font-weight: 900 !important;
   color: #464B62;
+  padding-top: 1px;
 }
 
 .waitingDots-stopDetail {
   height: 15px;
   width: 30px;
   position: absolute;
-  left: 0px;
+  left: 30px;
   bottom: 20px;
 }
 

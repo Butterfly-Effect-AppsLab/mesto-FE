@@ -10,7 +10,7 @@
         </ion-col>
         <ion-col size="8">
           <div class="ion-text-nowrap">
-            <h3 class="bold-favourite">Kollárovo námestie</h3>
+            <h3 class="bold-favourite">{{favStop.stop_name}}</h3>
           </div>
         </ion-col>
 
@@ -21,62 +21,27 @@
         </ion-col>
       </ion-row>
 
-      <ion-row class="ion-no-padding">
+      <ion-row *ngFor="let line of favStop.lines" class="ion-no-padding">
         <ion-col size="2">
           <div class='lineNumberSquare'>
-            212
+            <span>{{line.line_name}}</span>
           </div>
         </ion-col>
         <ion-col size="7" class='divider2'>
           <div class="ion-text-nowrap">
-            <h3 class="">ŽST Železná studnička</h3>
-            <ion-icon src='./assets/icon/disability.svg'></ion-icon>
+            <h3 class="">{{line.line_direction}}</h3>
+              <ion-icon *ngIf="line.low_rise === true"
+                        src='./assets/icon/disability.svg'>
+              </ion-icon>
           </div>
         </ion-col>
 
         <ion-col size="3" class='divider2'>
-          <div class="bold-favourite-time">
+          <div class="bold-favourite-time" *ngIf="line.arrival_time === 0">
             <ion-img src="./assets/icon/bodky.gif" class="waitingDots"></ion-img>
           </div>
-        </ion-col>
-      </ion-row>
-
-      <ion-row class="ion-no-padding">
-        <ion-col size="2">
-          <div class='lineNumberSquare'>
-            208
-          </div>
-        </ion-col>
-        <ion-col size="7" class='divider2'>
-          <div class="ion-text-nowrap">
-            <h3 class="">Staré mesto, Šulekova</h3>
-            <ion-icon src='./assets/icon/disability.svg'></ion-icon>
-          </div>
-        </ion-col>
-        <ion-col size="3" class='divider2'>
-          <div class="bold-favourite-time">
-            o 2 min
-          </div>
-        </ion-col>
-      </ion-row>
-
-      <ion-row class="ion-no-padding">
-        <ion-col size="2">
-          <div class='lineNumberSquare'>
-            39
-          </div>
-        </ion-col>
-        <ion-col size="7">
-          <div class="ion-text-nowrap">
-            <h3 class="">Cintorín Slávičie údolie</h3>
-            <ion-icon src='./assets/icon/disability.svg'></ion-icon>
-            <span class='delayInfoSmall'>meškanie 2 min </span>
-          </div>
-        </ion-col>
-
-        <ion-col size="3">
-          <div class="bold-favourite-time red">
-            o 5 min
+          <div class="bold-favourite-time" *ngIf="line.arrival_time !== 0">
+            o {{line.arrival_time}} min
           </div>
         </ion-col>
       </ion-row>

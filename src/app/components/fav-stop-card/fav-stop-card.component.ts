@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { DeparturesService } from 'src/app/services/api/departures/departures.service';
 
 @Component({
   selector: 'fav-stop-card',
@@ -7,8 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FavStopCardComponent implements OnInit {
 
-  constructor() { }
+  @Input() favStopsData;
+  favStop;
 
-  ngOnInit() {}
+  constructor(
+    private departureService: DeparturesService
+  ) { }
+
+  ngOnInit() {
+
+    // console.log(this.favStopsData);
+    this.departureService.getLinesDeparturesAtStop(this.favStopsData).
+      subscribe(
+        res => {
+          this.favStop = res;
+          // console.log(res);
+      });
+
+  }
 
 }

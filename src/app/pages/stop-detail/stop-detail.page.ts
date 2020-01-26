@@ -7,6 +7,7 @@ import { StopsService } from 'src/app/services/api/stops/stops.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { InternalStorageService } from 'src/app/services/storage/internal-storage.service';
+import { DeparturesService } from 'src/app/services/api/departures/departures.service';
 
 
 @Component({
@@ -29,6 +30,8 @@ export class StopDetailPage implements OnInit {
   public showRightButton: boolean;
   slideOpt: any;
   stopData: any = [];
+  departures: any = [];
+  flag;
 
   constructor(
     private route: ActivatedRoute,
@@ -36,7 +39,8 @@ export class StopDetailPage implements OnInit {
     public toastController: ToastController,
     private animationsUtils: AnimationsUtil,
     private stopsService: StopsService,
-    private storage: InternalStorageService
+    private storage: InternalStorageService,
+    private departureService: DeparturesService
   ) {
     this.slideOpt = {
       initialSlide: 3,
@@ -51,10 +55,14 @@ export class StopDetailPage implements OnInit {
     console.log(this.ionSlides);
 
     this.getStopLineData(this.stopId);
+    this.getDepartures(this.stopId);
 
-    this.storage.getFavouriteStop(this.stopId).then((val) => {
+    this.storage.getFavouriteStops(this.stopId).then((val) => {
       this.isFavouriteStop = val;
-      if (this.isFavouriteStop !== null) {
+      this.isFavouriteStop.filter((item) => {
+        return this.flag = item.indexOf(this.stopId);
+      });
+      if (this.flag === 0) {
         this.buttonIcon = 'heart';
         this.heartClass = 'heartFilled';
       } else {
@@ -68,34 +76,23 @@ export class StopDetailPage implements OnInit {
     // this.viewController.setBackButtonText('My Back Button Text');
   }
 
-  public getStopLineData(idStop) {
-    this.stopsService.getStopLines(idStop)
-      .subscribe(
-        result => {
-          this.stopData = result;
-          console.log(this.stopData);
-      });
-  }
-
-  private initializeCategories(): void {
-
-        // Select it by defaut
-        // this.selectedCategory = this.categories[0];
-
-        // Check which arrows should be shown
-        // this.showLeftButton = false;
-        // this.showRightButton = this.categories.length > 3;
-  }
-
-    // Method executed when the slides are changed
-    public slideChanged(): void {
-
-        // const currentIndex = this.ionSlides.getActiveIndex();
-        // this.showLeftButton = currentIndex !== 0;
-        // this.showRightButton = currentIndex !== Math.ceil(this.ionSlides.length() / 3);
+    public getStopLineData(idStop) {
+      this.stopsService.getStopLines(idStop)
+        .subscribe(
+          result => {
+            this.stopData = result;
+            console.log(this.stopData);
+        });
     }
 
-    // Method that shows the next slide
+    public getDepartures(idStop) {
+      this.departureService.getLinesDeparturesAtStop(idStop).subscribe(
+        res => {
+          this.departures = res;
+          console.log(this.departures);
+      });
+    }
+
     public slideNext(): void {
         this.ionSlides.slideNext();
         this.NextWasClicked = 1;
@@ -119,18 +116,17 @@ export class StopDetailPage implements OnInit {
 
       this.storage.saveNewFavourite(2, this.stopId);
 
-      /*
       if (this.buttonIcon === 'heart-empty') {
         this.buttonIcon = 'heart';
         this.heartClass = 'heartFilled';
-        this.animationsUtils.showMessage('Linka bola pridaná k Obľúbeným');
+        this.animationsUtils.showMessage('Zastávka bola pridaná k Obľúbeným');
       } else if (this.buttonIcon === 'heart') {
           this.buttonIcon = 'heart-empty';
           this.heartClass = '';
           this.animationsUtils.
-            showMessage('linka 39 Televízia bola odobraná z Obľúbených');
+            showMessage('Zastávka bola odobraná z Obľúbených');
       }
-      */
+
     }
 
 }

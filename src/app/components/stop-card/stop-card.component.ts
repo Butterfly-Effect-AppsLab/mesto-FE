@@ -35,8 +35,9 @@ export class StopCardComponent implements OnInit {
       this.heartClass = 'heartFilled';
     }
     this.stopsService.getStopLines(this.stops.stop_id).subscribe(
-      lines => this.lines = lines.lines
-    );
+      lines => {
+        this.lines = lines.lines;
+      });
   }
 
   public saveFavouriteStop(event) {

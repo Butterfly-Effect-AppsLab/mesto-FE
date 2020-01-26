@@ -19,11 +19,13 @@
 <div *ngIf="!noFavsData" #noFavsData>
 
   <div *ngIf="showStopsFlag">
-      <fav-stop-card *ngFor="let stopData of stops" [favStopsData]="stopData"></fav-stop-card>
+      <fav-stop-card *ngFor="let stopData of stops" [favStopsData]="stopData">
+      </fav-stop-card>
   </div>
 
   <div *ngIf="showLinesFlag">
-    <fav-line-card *ngFor="let lineData of lines" [favLineData]="lineData"></fav-line-card>
+    <fav-line-card *ngFor="let lineData of lines" [favLinesData]="lineData">
+    </fav-line-card>
   </div>
 </div>
 <div *ngIf="noFavsData" class='noFavData'>

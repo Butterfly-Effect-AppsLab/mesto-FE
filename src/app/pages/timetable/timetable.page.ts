@@ -39,7 +39,7 @@ export class TimetablePage implements OnInit {
     this.getStopData(this.idStop);
     this.getTimetable(this.idLine, this.idDirection, this. idStop);
 
-    this.storage.getFavouriteLines(this.idLine).then((val) => {
+    this.storage.getFavouriteLines().then((val) => {
       this.isFavouriteLine = val;
       this.isFavouriteLine.filter((item) => {
         this.flag = item.indexOf(this.idLine);

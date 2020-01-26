@@ -16,6 +16,7 @@ import * as L from 'leaflet';
 export class LeafletMapComponent implements OnInit {
 
   @Input() bikeData;
+  @Input() platformData;
 
   map: L;
   results: any;
@@ -52,8 +53,6 @@ export class LeafletMapComponent implements OnInit {
                        location.Icon
                       );
       }
-
-      console.log(this.bikeData);
 
       for (const busLocation of this.busStops.stops) {
         this.addStops(busLocation.lat, busLocation.long, busLocation.stopId, busLocation.linky);

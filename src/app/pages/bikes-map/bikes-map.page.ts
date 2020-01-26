@@ -29,12 +29,16 @@ export class BikesMapPage implements OnInit {
       results => this.bikeData = results.Info
     );
 
-    this.departures.getPlatforms().subscribe(
+    this.getPlatformsData().subscribe(
       results => {
         this.platformData = results;
-        console.log(this.platformData);
+        console.log('plt: ' + results);
     });
 
+  }
+
+  public getPlatformsData() {
+    return this.departures.getPlatforms();
   }
 
 }

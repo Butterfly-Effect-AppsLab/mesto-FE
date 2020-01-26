@@ -12,10 +12,10 @@ export class DeparturesService {
 
   public lineDeparturesEndpoint = environment.apiUrl + 'line_departures/';
   public linesAtStopDeparturesEndpoint = environment.apiUrl + 'departures/';
-  public platformsEndpoint = environment.apiUrl + 'platform/departures';
+  public platformsEndpoint = environment.apiUrl + 'platform/directions';
   public lineDepartures: any;
   public linesAtStopsDepartures: any;
-  public platform: any;
+  public platform: any = [];
 
   constructor(public http: HttpClient) { }
 
@@ -56,11 +56,12 @@ export class DeparturesService {
     return this.fetchLinesDeparturesAtStop$(idStop);
   }
 
-  private fetchPlatform$(): Observable<any> {
+  public fetchPlatform$(): Observable<any> {
     return this.http.get(this.platformsEndpoint).pipe(
-      map(data => {
-        this.platform = data;
-        console.log(this.platform);
+      map(dataP => {
+        this.platform = dataP;
+        console.log(dataP);
+        return dataP;
       })
     );
   }

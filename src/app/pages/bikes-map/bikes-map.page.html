@@ -6,5 +6,7 @@
 </ion-header>
 
 <ion-content>
-  <leaflet-map *ngIf="bikeData" [bikeData]="bikeData"></leaflet-map>
+  <leaflet-map *ngIf="bikeData" [bikeData]="bikeData"
+               [platformData]='platformData'>
+  </leaflet-map>
 </ion-content>

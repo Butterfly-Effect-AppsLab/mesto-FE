@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { StopsService } from 'src/app/services/api/stops/stops.service';
 import AnimationsUtil from 'src/app/services/animations.util';
 import { InternalStorageService } from 'src/app/services/storage/internal-storage.service';
+import { FavouriteService } from 'src/app/services/favourites/favourite.service';
 
 @Component({
   selector: 'app-timetable',
@@ -26,6 +27,7 @@ export class TimetablePage implements OnInit {
               private router: Router,
               private stopService: StopsService,
               private animationsUtil: AnimationsUtil,
+              private favouriteService: FavouriteService,
               private storage: InternalStorageService
   ) { }
 
@@ -38,6 +40,17 @@ export class TimetablePage implements OnInit {
     console.log(this.idLine, '/', this.idDirection, '/', this.idStop);
     this.getStopData(this.idStop);
     this.getTimetable(this.idLine, this.idDirection, this. idStop);
+
+    this.favouriteService.getFavouriteLines$().subscribe(lines => {
+      const isFavouriteLine = lines.find(line => line.id === this.idLine && line.direction === this.idDirection);
+      if (typeof isFavouriteLine === 'undefined') {
+        this.buttonIcon = 'heart-empty';
+        this.heartClass = '';
+      } else {
+        this.buttonIcon = 'heart';
+        this.heartClass = 'heartFilled';
+      }
+    });
 
     /*
     this.storage.getFavouriteLines().then((val) => {
@@ -76,20 +89,20 @@ export class TimetablePage implements OnInit {
       });
   }
 
-  public saveFavouriteStop(event) {
+  public toggleFavouriteLine(event) {
     event.stopPropagation();
     event.preventDefault();
 
-    this.storage.saveNewFavourite(1, this.idLine);
-
     if (this.buttonIcon === 'heart-empty') {
+      this.favouriteService.addLineToFavourites(this.idLine, this.idDirection, this.idStop);
       this.buttonIcon = 'heart';
       this.heartClass = 'heartFilled';
       this.animationsUtil.showMessage('Linka bola pridaná k Obľúbeným');
-    } else if (this.buttonIcon === 'heart') {
-        this.buttonIcon = 'heart-empty';
-        this.heartClass = '';
-        this.animationsUtil.showMessage('Linka bola pridaná k Obľúbeným');
+    } else {
+      this.favouriteService.removeLineFromFavourites(this.idLine, this.idDirection, this.idStop);
+      this.buttonIcon = 'heart-empty';
+      this.heartClass = '';
+      this.animationsUtil.showMessage('Linka bola odstránená z Obľúbených');
     }
   }
 

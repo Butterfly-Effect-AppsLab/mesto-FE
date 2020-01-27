@@ -1,7 +1,7 @@
 <!-- Stop card -->
 <ion-card button class="shadow" color="white">
   <ion-card-content class="ion-no-padding">
-    <ion-grid>
+    <ion-grid *ngIf="favLine">
       <ion-row class="ion-no-padding divider">
         <ion-col size="2">
           <div class='lineSquereIcon'>
@@ -22,7 +22,7 @@
           <div class="favouriteTapDiv">
             <ion-icon name="heart"
                       class="heartFilled"
-                      (click)="removeFavouriteLine($event)"></ion-icon>
+                      (click)="removeFavouriteLine($event, favLinesData.line_id)"></ion-icon>
           </div>
         </ion-col>
       </ion-row>
@@ -34,7 +34,7 @@
           <ion-col size="2" class='divider2 borderRight'
                    *ngFor="let closestDeps of favLine.closest_departures">
             <div class="ion-text-nowrap boldCentered">
-              23:40
+              {{ closestDeps }}
             </div>
           </ion-col>
       </ion-row>

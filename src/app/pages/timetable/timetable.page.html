@@ -29,14 +29,18 @@
           </div>
         </ion-col>
         <ion-col size="2" class='padding-top'>
-          <!--
-          <div class="favouriteTapDiv-stopDetail">
-            <ion-icon [name]="buttonIcon"
-                      [ngClass]="heartClass"
-                      (click)="saveFavouriteStop($event)">
-            </ion-icon>
+
+          <div class="favouriteTapDiv-stopDetail" (click)="toggleFavouriteLine($event)">
+            <ion-icon
+              *ngIf="buttonIcon == 'heart'"
+              name="heart" class="heartFilled"
+            ></ion-icon>
+            <ion-icon
+              *ngIf="buttonIcon == 'heart-empty'"
+              name="heart-empty"
+            ></ion-icon>
           </div>
-          -->
+
         </ion-col>
       </ion-row>
   </ion-grid>

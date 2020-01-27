@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { InternalStorageService } from 'src/app/services/storage/internal-storage.service';
 import { DeparturesService } from 'src/app/services/api/departures/departures.service';
+import { FavouriteService } from 'src/app/services/favourites/favourite.service';
 
 
 @Component({
@@ -41,6 +42,7 @@ export class StopDetailPage implements OnInit {
     private router: Router,
     public toastController: ToastController,
     private animationsUtils: AnimationsUtil,
+    private favouriteService: FavouriteService,
     private stopsService: StopsService,
     private storage: InternalStorageService,
     private departureService: DeparturesService,
@@ -71,24 +73,37 @@ export class StopDetailPage implements OnInit {
     // console.log(this.stopId);
     // console.log(this.ionSlides);
 
-    this.storage.getFavouriteStops().then((val) => {
-      this.isFavouriteStop = val;
-      console.log('isstop: ' + this.isFavouriteStop);
-      if (this.isFavouriteStop === null) {
-        this.buttonIcon = 'heart-empty';
-        this.flag = -1;
+    this.favouriteService.getFavouriteStops$().subscribe(stops => {
+      const isFavourite = stops.find(stop => {
+        return stop === this.stopId;
+      });
+      console.log(isFavourite);
+      if (typeof isFavourite !== 'undefined') {
+        this.buttonIcon = 'heart';
+        this.heartClass = 'heartFilled';
       } else {
-        this.isFavouriteStop.filter((item) => {
-          return this.flag = item.indexOf(this.stopId);
-        });
-        if (this.flag === 0) {
-          this.buttonIcon = 'heart';
-          this.heartClass = 'heartFilled';
-        } else {
-          this.buttonIcon = 'heart-empty';
-        }
+        this.buttonIcon = 'heart-empty';
       }
     });
+
+    // this.storage.getFavouriteStops().then((val) => {
+    //   this.isFavouriteStop = val;
+    //   console.log('isstop: ' + this.isFavouriteStop);
+    //   if (this.isFavouriteStop === null) {
+    //     this.buttonIcon = 'heart-empty';
+    //     this.flag = -1;
+    //   } else {
+    //     this.isFavouriteStop.filter((item) => {
+    //       return this.flag = item.indexOf(this.stopId);
+    //     });
+    //     if (this.flag === 0) {
+    //       this.buttonIcon = 'heart';
+    //       this.heartClass = 'heartFilled';
+    //     } else {
+    //       this.buttonIcon = 'heart-empty';
+    //     }
+    //   }
+    // });
 }
 
   ionViewDidLoad() {
@@ -139,26 +154,14 @@ export class StopDetailPage implements OnInit {
       event.stopPropagation();
       event.preventDefault();
 
-      console.log('flag:' + this.flag);
-
-      if (this.flag === -1) {
-        console.log('save');
-        this.storage.saveNewFavourite(2, this.stopId);
-      }
-      if (this.flag === 0) {
-        console.log('remve');
-        this.storage.removeFromFavourite(2, this.stopId);
-      }
-
       if (this.buttonIcon === 'heart-empty') {
+        this.favouriteService.addStopToFavourites(this.stopId);
         this.buttonIcon = 'heart';
-        this.heartClass = 'heartFilled';
         this.animationsUtils.showMessage('Zastávka bola pridaná k Obľúbeným');
-      } else if (this.buttonIcon === 'heart') {
-          this.buttonIcon = 'heart-empty';
-          this.heartClass = '';
-          this.animationsUtils.
-            showMessage('Zastávka bola odobraná z Obľúbených');
+      } else {
+        this.favouriteService.removeStopFromFavourites(this.stopId);
+        this.buttonIcon = 'heart-empty';
+        this.animationsUtils.showMessage('Zastávka bola odobraná z Obľúbených');
       }
 
     }

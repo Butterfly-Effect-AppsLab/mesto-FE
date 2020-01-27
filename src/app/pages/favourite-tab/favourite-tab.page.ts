@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { InternalStorageService } from 'src/app/services/storage/internal-storage.service';
 import { DeparturesService } from 'src/app/services/api/departures/departures.service';
 import { Storage } from '@ionic/storage';
+import { FavouriteService } from 'src/app/services/favourites/favourite.service';
 
 @Component({
   selector: 'app-favourite-tab',
@@ -32,11 +33,19 @@ export class FavouriteTabPage implements OnInit {
   constructor(
     private router: Router,
     private storage: InternalStorageService,
-    private storage2: Storage
+    private favouriteService: FavouriteService
   ) { }
 
   ngOnInit() {
 
+    this.favouriteService.getFavouriteLines$().subscribe(lines => {
+      console.log(lines);
+      this.lines = lines;
+    });
+    this.favouriteService.getFavouriteStops$().subscribe(stops => {
+      console.log(stops);
+      this.stops = stops;
+    });
     // importnut service storageService
     // zavolat getLines, getStops zo storage service
     /*
@@ -61,18 +70,20 @@ export class FavouriteTabPage implements OnInit {
     */
   }
 
-  ionViewWillEnter() {
-    this.storage.getFavouriteStops().then((valStops) => {
-      this.stops = valStops;
-      console.log('Fav stops: ' + this.stops);
-      if (this.stops !== null) {
-        this.noFavsData = false;
-      } else {
-        this.noFavsData = true;
-      }
-      this.favStopsData = this.stops;
-    });
-  }
+  // ionViewWillEnter() {
+  //
+  //
+  //   this.storage.getFavouriteStops().then((valStops) => {
+  //     this.stops = valStops;
+  //     console.log('Fav stops: ' + this.stops);
+  //     if (this.stops !== null) {
+  //       this.noFavsData = false;
+  //     } else {
+  //       this.noFavsData = true;
+  //     }
+  //     this.favStopsData = this.stops;
+  //   });
+  // }
 
   public showAll() {
     this.showLinesFlag = true;

@@ -16,7 +16,7 @@
   </ion-row>
 </ion-grid>
 
-<div *ngIf="!noFavsData" #noFavsData>
+<div *ngIf="stops.length || lines.length" #noFavsData>
 
   <div *ngIf="showStopsFlag">
       <fav-stop-card *ngFor="let stopData of stops" [favStopsData]="stopData">
@@ -28,7 +28,7 @@
     </fav-line-card>
   </div>
 </div>
-<div *ngIf="noFavsData" class='noFavData'>
+<div *ngIf="!(stops.length || lines.length)" class='noFavData'>
   <!-- Je tu prázdno, pridaj si niečo kliknutím na tlačidlo dole. -->
   Pridanie obľúbených bude dostupné v ďalšej verzii aplikácie.
 </div>

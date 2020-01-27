@@ -17,6 +17,7 @@ export class BikesMapPage implements OnInit {
 
   bikeData: any;
   platformData: any = [];
+  platformDataSet = false;
   platData: any;
 
   constructor(private geolocation: Geolocation,
@@ -39,6 +40,7 @@ export class BikesMapPage implements OnInit {
         this.platformData[i] = this.platData[i];
         // console.log(this.platformData[i].platform_name);
         }
+        this.platformDataSet = true;
     });
   }
 

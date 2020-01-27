@@ -29,7 +29,11 @@ export class InternalStorageService {
     return this.favLines = lineVal;
   }
 
-  public saveNewFavourite(type, favouriteValue) {
+  public setFavourites(type, data) {
+    this.storage.set(type, data);
+  }
+
+  public saveNewFavourite(type, favouriteValue, direction = null, stop = null) {
 
     /*
     *   type = 1 - line || 2 - stop
@@ -39,7 +43,11 @@ export class InternalStorageService {
     // this.storage.remove('stops');
     if (type === 1) {
       this.storage.get('lines').then((val) => {
-        this.savedLines.push(favouriteValue),
+        this.savedLines.push({
+          id: favouriteValue,
+          direction,
+          stop
+        }),
         console.log(this.savedLines);
         this.storage.set('lines', this.savedLines);
       });
@@ -68,22 +76,18 @@ export class InternalStorageService {
     }
   }
 
-  public removeFromFavourite(type, idStop) {
-    this.storage.get('stops').then((hod) => {
-      console.log(hod);
-      const index = hod.indexOf(hod);
-      console.log('oind: ' + index);
-      hod.splice(index, 1);
-      console.log('po remove:' + hod);
-      if (hod.length === 0) {
-        console.log('aaaempty');
-        this.storage.remove('stops');
-      } else {
-        console.log('not empty');
-        this.storage.remove('stops');
-        this.storage.set('stops', hod);
-      }
-    });
+  public removeFromFavourite(type, id, direction = null) {
+    if (type === 1) {
+      this.storage.get('lines').then(lines => {
+        const newLines = lines.filter(line => line.id !== id && line.direction !== direction);
+        this.storage.set('lines', newLines);
+      });
+    } else {
+      this.storage.get('stops').then(stops => {
+        const newStops = stops.filter(stop => stop !== id);
+        this.storage.set('stops', newStops);
+      });
+    }
     // this.storage.remove('stops');
   }
 

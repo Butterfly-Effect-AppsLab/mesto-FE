@@ -1,9 +1,9 @@
 <!-- LINE -->
 <ion-card button class="shadow"
           color="white" style="margin-top: 15px;"
-          (click)="removeFavouriteStop(event, '1', favStop.stop_id, favStop)">
+          (click)="removeFavouriteStop($event, favStop.stop_id)">
   <ion-card-content class="ion-no-padding">
-    <ion-grid>
+    <ion-grid *ngIf="favStop">
       <ion-row class="ion-no-padding divider">
         <ion-col size="2">
           <div class='lineSquereIconNoBorder'>

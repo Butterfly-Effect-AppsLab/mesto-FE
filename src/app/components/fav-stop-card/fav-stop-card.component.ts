@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DeparturesService } from 'src/app/services/api/departures/departures.service';
 import { InternalStorageService } from 'src/app/services/storage/internal-storage.service';
+import { FavouriteService } from 'src/app/services/favourites/favourite.service';
 
 @Component({
   selector: 'fav-stop-card',
@@ -14,6 +15,7 @@ export class FavStopCardComponent implements OnInit {
 
   constructor(
     private departureService: DeparturesService,
+    private favouriteService: FavouriteService,
     private storageService: InternalStorageService
   ) { }
 
@@ -29,10 +31,10 @@ export class FavStopCardComponent implements OnInit {
 
   ionViewDidEnter() {
 
-    this.removeFavouriteStop(event, 1, this.favStopsData);
+    // this.removeFavouriteStop(event, 1, this.favStopsData);
   }
 
-  public removeFavouriteStop(event, type, idStop) {
-    this.storageService.removeFromFavourite(type, idStop);
+  public removeFavouriteStop(event, idStop) {
+    this.favouriteService.removeStopFromFavourites(idStop);
   }
 }

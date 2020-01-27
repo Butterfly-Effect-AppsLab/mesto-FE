@@ -34,12 +34,10 @@
 
         <ion-col size="2" class='padding-top'>
 
-          <div class="favouriteTapDiv-stopDetail">
-            <ion-icon [name]="buttonIcon"
-                      [ngClass]="heartClass"
-                      (click)="saveFavouriteStop($event)">
-            </ion-icon>
-          </div>          
+          <div class="favouriteTapDiv-stopDetail" (click)="saveFavouriteStop($event)">
+            <ion-icon *ngIf="buttonIcon == 'heart'" name="heart" class="heartFilled"></ion-icon>
+            <ion-icon *ngIf="buttonIcon == 'heart-empty'" name="heart-empty"></ion-icon>
+          </div>
         </ion-col>
       </ion-row>
   </ion-grid>
@@ -56,6 +54,7 @@
             <ion-col no-padding col-10 class='linesSlider'>
                 <ion-slides
                       #slides
+                      [options]="slideOpt"
                       (ionSlideDidChange)="slideChanged()"
                       *ngIf='!fromMap'>
                        <ion-slide style='width: 60px !important'
@@ -65,6 +64,7 @@
                 </ion-slides>
                 <ion-slides
                       #slides
+                      [options]="slideOpt"
                       (ionSlideDidChange)="slideChanged()"
                       *ngIf='fromMap'>
                        <ion-slide

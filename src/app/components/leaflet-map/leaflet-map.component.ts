@@ -21,13 +21,6 @@ export class LeafletMapComponent implements OnInit {
   map: L;
   results: any;
   iconStatusClass;
-  busStops = {
-      stops: [
-         {stopId: '1234', lat: '48.14790', long: '17.12530', linky: '4, 201, 209'},
-         {stopId: '1211', lat: '48.14441', long: '17.12690', linky: '50, 68'},
-         {stopId: '9232', lat: '48.14555', long: '17.12940', linky: '4'}
-      ]
-   };
 
   constructor(
     private geolocation: Geolocation,
@@ -60,17 +53,15 @@ export class LeafletMapComponent implements OnInit {
         // this.addMarker(location.GpsLat, location.GpsLon, location.Name);
       }
       */
-      console.log(this.platformData);
-      for (let i = 0; i <= this.platformData.length; i++) {
-        console.log(this.platformData[i].platform_lat);
 
-        this.addStops(this.platformData[i].platform_lat,
-                      this.platformData[i].platform_long,
-                      this.platformData[i].platform_id,
-                      this.platformData.platform_name);
-        // this.addMarker(location.GpsLat, location.GpsLon, location.Name);
-      }
+    }
 
+    for (let i = 0; i <= this.platformData.length; i++) {
+      this.addStops(this.platformData[i].platform_lat,
+                    this.platformData[i].platform_long,
+                    this.platformData[i].platform_id,
+                    this.platformData[i].platform_name);
+      // this.addMarker(location.GpsLat, location.GpsLon, location.Name);
     }
 
     // this.addStops(48.14816, 17.10674, 'Trnavske myto');
@@ -104,7 +95,7 @@ export class LeafletMapComponent implements OnInit {
         this.geolocation.getCurrentPosition().then((resp) => {
          // resp.coords.latitude
          // resp.coords.longitude
-         // console.log(resp);
+         console.log(resp);
         }).catch((error) => {
           console.log('Error getting location', error);
         });
@@ -157,8 +148,6 @@ export class LeafletMapComponent implements OnInit {
 
     // pridanie slovnaftbajk markeru
     addStops(latitude, longitude, stopId, text) {
-
-      console.log('lat:' + latitude);
       const icon = L.icon({
         iconUrl: './assets/icon/mapa/zastavka.png',
         shadowUrl: 'dot-shadow.png',
@@ -179,7 +168,8 @@ export class LeafletMapComponent implements OnInit {
         });
       */
 
-      const mapBusMarker = L.marker([latitude, longitude], { icon }, 15)
+      const mapBusMarker = L.marker([latitude, longitude], { icon }, 15);
+      mapBusMarker
         .addTo(this.map)
         .on('click', (e) => {
           this.router.navigateByUrl('tabs/stops/stop-detail/' + stopId

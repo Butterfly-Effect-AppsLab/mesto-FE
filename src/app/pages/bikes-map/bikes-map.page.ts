@@ -16,7 +16,8 @@ import { DeparturesService } from 'src/app/services/api/departures/departures.se
 export class BikesMapPage implements OnInit {
 
   bikeData: any;
-  platformData: any;
+  platformData: any = [];
+  platData: any;
 
   constructor(private geolocation: Geolocation,
               private plt: Platform,
@@ -31,11 +32,12 @@ export class BikesMapPage implements OnInit {
 
     this.getPlatformsData().subscribe(
       results => {
-        this.platformData = results.platforms;
-        // console.log('plt: ' + this.platformData);
+        this.platData = results.platforms;
+        // console.log('plt: ' + this.platData);
 
-        for (let i = 0; i <= this.platformData.length; i++) {
-        // console.log(this.platformData[i]);
+        for (let i = 0; i <= this.platData.length; i++) {
+        this.platformData[i] = this.platData[i];
+        // console.log(this.platformData[i].platform_name);
         }
     });
   }

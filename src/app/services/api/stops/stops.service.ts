@@ -48,15 +48,19 @@ export class StopsService {
     headers.set('Access-Control-Allow-Headers', 'Content-Type');
     headers.set('Content-Type', 'application/json');
 
+    /*
     return this.http.get(
-      this.stopLinesEndpoint + 'stops/stop/' + stopId + '/lines', {headers}).
-      pipe(
-        map( data => {
-          this.stopLines = data;
-          return data;
-        })
-    );
-
+      this.stopLinesEndpoint + 'stops/stop/' + stopId + '/lines', {headers})
+      .pipe(
+        map(
+          data => {
+            this.stopLines = data;
+            console.log('fromServ:' + data);
+          }
+      ));
+    */
+    return this.http.get(
+      this.stopLinesEndpoint + 'stops/stop/' + stopId + '/lines', {headers});
   }
 
   public getStopLines(stopId) {
@@ -64,7 +68,8 @@ export class StopsService {
   }
 
   /*
-  * Return line timetable at particular stop GET: /timetable/:idLine/:idDirection/:idStop/:Type
+  * Return line timetable at particular
+  * stop GET: /timetable/:idLine/:idDirection/:idStop/:Type
   * type = work/holiday/offDays
   */
   private fetchStopTimetable$(idLine, idDirection, idStop): Observable<any> {

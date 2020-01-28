@@ -7,6 +7,7 @@ import { SlovnaftService } from '../../services/slovnaft.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { DeparturesService } from 'src/app/services/api/departures/departures.service';
+import { UtilsService } from 'src/app/services/utils/utils.service';
 
 @Component({
   selector: 'app-bikes-map',
@@ -31,6 +32,7 @@ export class BikesMapPage implements OnInit {
       results => this.bikeData = results.Info
     );
 
+    /*
     this.getPlatformsData().subscribe(
       results => {
         this.platData = results.platforms;
@@ -42,10 +44,26 @@ export class BikesMapPage implements OnInit {
         }
         this.platformDataSet = true;
     });
+    */
+    this.getStops();
   }
 
   public getPlatformsData() {
     return this.departures.getPlatforms();
+  }
+
+  public getStops() {
+    this.getPlatformsData().subscribe(
+      results => {
+        this.platData = results.platforms;
+        // console.log('plt: ' + this.platData);
+
+        for (let i = 0; i <= this.platData.length; i++) {
+        this.platformData[i] = this.platData[i];
+        // console.log(this.platformData[i].platform_name);
+        }
+        this.platformDataSet = true;
+    });
   }
 
 }

@@ -4,6 +4,7 @@ import { StopsService } from 'src/app/services/api/stops/stops.service';
 import AnimationsUtil from 'src/app/services/animations.util';
 import { InternalStorageService } from 'src/app/services/storage/internal-storage.service';
 import { FavouriteService } from 'src/app/services/favourites/favourite.service';
+import { LinesService } from 'src/app/services/api/lines.service';
 
 @Component({
   selector: 'app-timetable',
@@ -22,13 +23,15 @@ export class TimetablePage implements OnInit {
   flag;
   isFavouriteLine;
   stopData: any = [];
+  lineData: any = [];
 
   constructor(private route: ActivatedRoute,
               private router: Router,
               private stopService: StopsService,
               private animationsUtil: AnimationsUtil,
               private favouriteService: FavouriteService,
-              private storage: InternalStorageService
+              private storage: InternalStorageService,
+              private linesService: LinesService
   ) { }
 
   ngOnInit() {
@@ -37,9 +40,9 @@ export class TimetablePage implements OnInit {
     this.idDirection = this.route.snapshot.paramMap.get('directionId');
     this.idStop = this.route.snapshot.paramMap.get('stopId');
 
-    console.log(this.idLine, '/', this.idDirection, '/', this.idStop);
     this.getStopData(this.idStop);
     this.getTimetable(this.idLine, this.idDirection, this. idStop);
+    this.getLineData(this.idLine);
 
     this.favouriteService.getFavouriteLines$().subscribe(lines => {
       const isFavouriteLine = lines.find(line => line.id === this.idLine && line.direction === this.idDirection);
@@ -52,21 +55,6 @@ export class TimetablePage implements OnInit {
       }
     });
 
-    /*
-    this.storage.getFavouriteLines().then((val) => {
-      this.isFavouriteLine = val;
-      this.isFavouriteLine.filter((item) => {
-        this.flag = item.indexOf(this.idLine);
-        console.log('flag: ' + this.flag);
-      });
-      if (val !== null) {
-        this.buttonIcon = 'heart';
-        this.heartClass = 'heartFilled';
-      } else {
-        this.buttonIcon = 'heart-empty';
-      }
-    });
-    */
     this.buttonIcon = 'heart-empty';
   }
 
@@ -87,6 +75,14 @@ export class TimetablePage implements OnInit {
             this.timetableData = res;
             console.log(this.timetableData);
       });
+  }
+
+  public getLineData(line) {
+    this.linesService.fetchSingleLine$(line).subscribe(
+      vys => {
+        this.lineData = vys[0].line_name;
+        console.log('linka: ' + this.lineData);
+    });
   }
 
   public toggleFavouriteLine(event) {

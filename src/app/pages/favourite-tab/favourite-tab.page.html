@@ -10,9 +10,18 @@
 
 <ion-grid class='secondMenuTabs'>
   <ion-row class='tabsContentMenu'>
-    <ion-col size='4'><a class='active' (click)="showAll()">Všetko</a></ion-col>
-    <ion-col size='4'><a (click)="showLines()">Linky</a></ion-col>
-    <ion-col size='4'><a (click)="showStops()">Zastávky</a></ion-col>
+    <ion-col size='4'>
+      <a *ngIf='activeAll == false' (click)="showAll()">Všetko</a>
+      <a *ngIf='activeAll == true' class='active' (click)="showAll()">Všetko</a>
+    </ion-col>
+    <ion-col size='4'>
+      <a *ngIf='activeLines == false' (click)="showLines()">Linky</a>
+      <a *ngIf='activeLines == true' class='active' (click)="showLines()">Linky</a>
+    </ion-col>
+    <ion-col size='4'>
+      <a *ngIf='activeStops == false' (click)="showStops()">Zastávky</a>
+      <a *ngIf='activeStops == true' class='active' (click)="showStops()">Zastávky</a>
+    </ion-col>
   </ion-row>
 </ion-grid>
 
@@ -29,8 +38,7 @@
   </div>
 </div>
 <div *ngIf="!(stops.length || lines.length)" class='noFavData'>
-  <!-- Je tu prázdno, pridaj si niečo kliknutím na tlačidlo dole. -->
-  Pridanie obľúbených bude dostupné v ďalšej verzii aplikácie.
+  Je tu prázdno, pridaj si niečo kliknutím na tlačidlo dole.
 </div>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="backdrop = !backdrop">

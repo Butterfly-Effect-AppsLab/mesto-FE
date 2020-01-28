@@ -24,30 +24,15 @@ export class StopsTabPage implements OnInit {
     public toastController: ToastController,
     private router: Router,
     private stopsService: StopsService,
-    private utilsService: UtilsService,
-    // private storageService: StoreageService
+    private utilsService: UtilsService
   ) { }
 
   ngOnInit() {
 
-    /*
-    this.storageService().getFavoruites(lines/stops);
-      // toto dat do storafge service.
-      // this.storage.get('lines').then((val) =>
-    // priradit do lokalnek premennej hodnotu pola zo storage
-  );
-  */
   }
 
   ionViewWillEnter() {
-    // console.log('ionViewWillEnter');
     this.getAllStopsData();
-    // this.getStoLinesData(4);
-  }
-
-  public isFavourite(stop) {
-    // volanie storage ci sa stop nachadza v DB
-    // lines.indexOf(....);
   }
 
   public getAllStopsData() {
@@ -58,7 +43,6 @@ export class StopsTabPage implements OnInit {
         this.stopsData = results.stops;
         this.utilsService.dismissLoader();
         this.filterStopsData = this.stopsData;
-        console.log(this.stopsData);
       }
     );
   }
@@ -92,7 +76,6 @@ export class StopsTabPage implements OnInit {
   public openStopDetail(event) {
     event.stopPropagation();
     this.router.navigateByUrl('tabs/stops/stop-detail/');
-    // console.log(idStop);
   }
 
 }

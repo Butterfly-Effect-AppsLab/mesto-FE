@@ -50,7 +50,7 @@ export class StopDetailPage implements OnInit {
   ) {
     this.slideOpt = {
       initialSlide: 3,
-      slidesPerView: 6
+      slidesPerView: 5
     };
   }
 

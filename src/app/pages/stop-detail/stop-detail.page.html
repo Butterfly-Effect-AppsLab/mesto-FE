@@ -33,10 +33,11 @@
         </ion-col>
 
         <ion-col size="2" class='padding-top'>
-
-          <div class="favouriteTapDiv-stopDetail" (click)="saveFavouriteStop($event)">
-            <ion-icon *ngIf="buttonIcon == 'heart'" name="heart" class="heartFilled"></ion-icon>
-            <ion-icon *ngIf="buttonIcon == 'heart-empty'" name="heart-empty"></ion-icon>
+          <div *ngIf=!fromMap>
+            <div class="favouriteTapDiv-stopDetail" (click)="saveFavouriteStop($event)">
+              <ion-icon *ngIf="buttonIcon == 'heart'" name="heart" class="heartFilled"></ion-icon>
+              <ion-icon *ngIf="buttonIcon == 'heart-empty'" name="heart-empty"></ion-icon>
+            </div>
           </div>
         </ion-col>
       </ion-row>
@@ -44,12 +45,15 @@
 
   <ion-toolbar>
         <ion-row class="filters">
+
             <ion-col class="col-with-arrow"
                      no-padding col-1>
+              <!--
                 <ion-icon *ngIf="showLeftButton"
                           name="arrow-back"
                           (click)="slidePrev()">
                 </ion-icon>
+              -->
             </ion-col>
             <ion-col no-padding col-10 class='linesSlider'>
                 <ion-slides
@@ -62,20 +66,21 @@
                         <p class='lineSquereIcon'>{{stopLine.line_name}} </p>
                        </ion-slide>
                 </ion-slides>
-                <ion-slides
-                      #slides
-                      [options]="slideOpt"
-                      (ionSlideDidChange)="slideChanged()"
+
+                <ion-slides [options]="slideOpt"
                       *ngIf='fromMap'>
                        <ion-slide
                             *ngFor="let departure of departures.departures">
                         <p class='lineSquereIcon'>{{departure.line_name}} </p>
                        </ion-slide>
                 </ion-slides>
+
             </ion-col>
+
             <ion-col class="col-with-arrow" (click)="slideNext()" no-padding col-1>
-                <ion-icon name="arrow-forward"></ion-icon>
+                <!-- <ion-icon name="arrow-forward"></ion-icon> -->
             </ion-col>
+
         </ion-row>
     </ion-toolbar><br/>
     <div *ngIf="!fromMap">
@@ -90,79 +95,4 @@
         </virtual-table-card>
       </div>
     </div>
-    <!--
-    <ion-card button class="shadow" color="white" [routerLink]="">
-        <ion-card-content class="ion-no-padding">
-          <ion-grid>
-            <ion-row class="ion-no-padding">
-              <ion-col size="2">
-                <div class='lineSquereIconGrey'>
-                  <div>212</div>
-                </div>
-              </ion-col>
-              <ion-col size="8">
-                <div class="ion-no-padding">
-                  <h2 class="bustStopNameCard">ŽST Železná studienka</h2>
-                </div>
-              </ion-col>
-
-              <ion-col size="2">
-                <div class="bold-favourite-time">
-                  <ion-img src="./assets/icon/bodky.gif" class="waitingDots-stopDetail"></ion-img>
-                </div>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-card-content>
-      </ion-card>
-    <ion-card button class="shadow" color="white" [routerLink]="">
-        <ion-card-content class="ion-no-padding">
-          <ion-grid>
-            <ion-row class="ion-no-padding">
-              <ion-col size="2">
-                <div class='lineSquereIconGrey'>
-                  <div>208</div>
-                </div>
-              </ion-col>
-              <ion-col size="7">
-                <div class="ion-wrap ion-no-padding">
-                  <h2 class="bustStopNameCard">ŽST Železná studienka</h2>
-                </div>
-              </ion-col>
-
-              <ion-col size="3">
-                <div class="bold-favourite-time">
-                  o 2min
-                </div>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-card-content>
-      </ion-card>
-    <ion-card button class="shadow" color="white" [routerLink]="">
-        <ion-card-content class="ion-no-padding">
-          <ion-grid>
-            <ion-row class="ion-no-padding">
-              <ion-col size="2">
-                <div class='lineSquereIconGrey'>
-                  <div>39</div>
-                </div>
-              </ion-col>
-              <ion-col size="7">
-                <div class="ion-wrap ion-no-padding">
-                  <h2 class="bustStopNameCard">Cintorín Slávičie údolie</h2>
-                  <span class='red'>meškanie: 2 min</span>
-                </div>
-              </ion-col>
-
-              <ion-col size="3">
-                <div class="bold-favourite-time red">
-                  o 5min
-                </div>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-card-content>
-      </ion-card>
-    -->
 </ion-content>

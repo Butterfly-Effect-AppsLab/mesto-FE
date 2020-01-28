@@ -27,6 +27,10 @@ export class FavouriteTabPage implements OnInit {
   favStopsData;
   favLinesData;
   favArray;
+  activeAll = true;
+  activeLines = false;
+  activeStops = false;
+  notActive = 'active';
 
   // TODO premenna pre favourites z DB
 
@@ -46,56 +50,30 @@ export class FavouriteTabPage implements OnInit {
       console.log(stops);
       this.stops = stops;
     });
-    // importnut service storageService
-    // zavolat getLines, getStops zo storage service
-    /*
-    this.storage.getFavouriteLines().then((valLines) => {
-      this.lines = valLines;
-      // console.log('Fav Lines: ' + this.lines);
-      if (this.stops !== null) {
-        this.noFavsData = false;
-      }
-      this.favLinesData = this.lines;
-    });
-    */
 
     this.storage.showDataAlert();
-
-    // this.favourite = this.storage.get('line').then((val) =>
-    // this.saveNewFavouite(1, 4);
-    /*
-    this.getFavourites().then((va) =>
-      console.log(va)
-    );
-    */
   }
-
-  // ionViewWillEnter() {
-  //
-  //
-  //   this.storage.getFavouriteStops().then((valStops) => {
-  //     this.stops = valStops;
-  //     console.log('Fav stops: ' + this.stops);
-  //     if (this.stops !== null) {
-  //       this.noFavsData = false;
-  //     } else {
-  //       this.noFavsData = true;
-  //     }
-  //     this.favStopsData = this.stops;
-  //   });
-  // }
 
   public showAll() {
     this.showLinesFlag = true;
     this.showStopsFlag = true;
+    this.activeAll = true;
+    this.activeLines = false;
+    this.activeStops = false;
    }
   public showLines() {
     this.showLinesFlag = true;
     this.showStopsFlag = false;
+    this.activeLines = true;
+    this.activeAll = false;
+    this.activeStops = false;
   }
   public showStops() {
     this.showLinesFlag = false;
     this.showStopsFlag = true;
+    this.activeStops = true;
+    this.activeAll = false;
+    this.activeLines = false;
   }
 
   public navTo(type) {

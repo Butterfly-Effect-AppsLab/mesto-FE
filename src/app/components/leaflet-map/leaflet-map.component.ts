@@ -21,6 +21,8 @@ export class LeafletMapComponent implements OnInit {
   map: L;
   results: any;
   iconStatusClass;
+  lat;
+  long;
 
   constructor(
     private geolocation: Geolocation,
@@ -73,6 +75,28 @@ export class LeafletMapComponent implements OnInit {
 
   leafletMap() {
 
+    this.plt.ready().then(() => {
+
+        this.geolocation.getCurrentPosition().then((resp) => {
+         // resp.coords.latitude
+         // resp.coords.longitude
+         this.lat = resp.coords.latitude;
+         this.long = resp.coords.longitude;
+         // console.log(resp.coords.latitude);
+         // console.log(resp.coords.longitude);
+        }).catch((error) => {
+          console.log('Error getting location', error);
+        });
+
+        const watch = this.geolocation.watchPosition();
+        watch.subscribe((data) => {
+         // data can be a set of coordinates, or an error (if an error occurred).
+         // data.coords.latitude
+         // data.coords.longitude
+         // console.log(data);
+        });
+      }); // plt
+
     // In setView add latLng and zoom
     this.map = new L.Map(this.mapElement.nativeElement).setView([48.14790, 17.12530], 15);
     // this.map = new Map(this.mapElement.nativeElement).setView([11.206051, 122.447886], 8);
@@ -90,24 +114,6 @@ export class LeafletMapComponent implements OnInit {
 
     }
 */
-    this.plt.ready().then(() => {
-
-        this.geolocation.getCurrentPosition().then((resp) => {
-         // resp.coords.latitude
-         // resp.coords.longitude
-         console.log(resp);
-        }).catch((error) => {
-          console.log('Error getting location', error);
-        });
-
-        const watch = this.geolocation.watchPosition();
-        watch.subscribe((data) => {
-         // data can be a set of coordinates, or an error (if an error occurred).
-         // data.coords.latitude
-         // data.coords.longitude
-        });
-      }); // plt
-
     } // leafletMap
 
     ionViewWillLeave() {
@@ -150,7 +156,7 @@ export class LeafletMapComponent implements OnInit {
     addStops(latitude, longitude, stopId, text) {
       const icon = L.icon({
         iconUrl: './assets/icon/mapa/zastavka.png',
-        shadowUrl: 'dot-shadow.png',
+        // shadowUrl: 'dot-shadow.png',
         iconSize: [45, 55], // size of the icon
         popupAnchor: [0, -15], // point from which the popup should open relative..
         title: 'hello'

@@ -62,7 +62,7 @@ export class DeparturesService {
     return this.http.get(this.platformsEndpoint).pipe(
       map(dataP => {
         this.platform = dataP;
-        console.log(dataP);
+        // console.log(dataP);
         return dataP;
       })
     );

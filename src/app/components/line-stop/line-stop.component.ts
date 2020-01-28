@@ -39,7 +39,7 @@ export class LineStopComponent implements OnInit {
   public saveFavouriteStop(event) {
     event.preventDefault();
     event.stopPropagation();
-    alert('ffoo');
+
     if (this.buttonIcon === 'heart-empty') {
       this.buttonIcon = 'heart';
       this.heartClass = 'heartFilled';
@@ -52,7 +52,7 @@ export class LineStopComponent implements OnInit {
   }
 
   public openLineTimetable(event, idStop, idLine, idDirection) {
-    console.log(idStop, ' / ', idLine, idDirection);
+    // console.log(idStop, ' / ', idLine, idDirection);
     this.router.navigateByUrl(
       'tabs/lines/line-detail/' + idLine + '/' + idDirection + '/' + idStop +
       '/timetable'

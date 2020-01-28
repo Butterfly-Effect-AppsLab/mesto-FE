@@ -25,7 +25,7 @@ export class LineCardComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.linesData);
+    // console.log(this.linesData);
   }
 
   openLineDetail(event) {

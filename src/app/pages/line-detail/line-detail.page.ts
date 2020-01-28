@@ -45,7 +45,7 @@ export class LineDetailPage implements OnInit {
         .subscribe(
           result => {
             this.lineStops = result;
-            console.log(this.lineStops.stops);
+            // console.log(this.lineStops.stops);
           }
       );
   }

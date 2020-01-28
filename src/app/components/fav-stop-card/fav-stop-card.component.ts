@@ -26,7 +26,7 @@ export class FavStopCardComponent implements OnInit {
           this.favStop = res;
           // console.log(res);
       });
-    console.log(this.favStopsData);
+    // console.log(this.favStopsData);
   }
 
   ionViewDidEnter() {

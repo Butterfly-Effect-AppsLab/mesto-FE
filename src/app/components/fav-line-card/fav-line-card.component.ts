@@ -23,11 +23,10 @@ export class FavLineCardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(this.favLinesData);
     this.pom = this.getLineDep(this.favLinesData.id, this.favLinesData.direction, this.favLinesData.stop).subscribe(
       resp => {
         this.favLine = resp;
-        console.log(this.favLine);
+        // console.log(this.favLine);
       }
     );
 

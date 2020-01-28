@@ -73,7 +73,7 @@ export class TimetablePage implements OnInit {
       subscribe(
           res => {
             this.timetableData = res;
-            console.log(this.timetableData);
+            // console.log(this.timetableData);
       });
   }
 
@@ -81,7 +81,7 @@ export class TimetablePage implements OnInit {
     this.linesService.fetchSingleLine$(line).subscribe(
       vys => {
         this.lineData = vys[0].line_name;
-        console.log('linka: ' + this.lineData);
+        // console.log('linka: ' + this.lineData);
     });
   }
 

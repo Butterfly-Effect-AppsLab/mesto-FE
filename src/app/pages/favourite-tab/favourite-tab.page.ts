@@ -32,8 +32,6 @@ export class FavouriteTabPage implements OnInit {
   activeStops = false;
   notActive = 'active';
 
-  // TODO premenna pre favourites z DB
-
   constructor(
     private router: Router,
     private storage: InternalStorageService,
@@ -43,11 +41,9 @@ export class FavouriteTabPage implements OnInit {
   ngOnInit() {
 
     this.favouriteService.getFavouriteLines$().subscribe(lines => {
-      console.log(lines);
       this.lines = lines;
     });
     this.favouriteService.getFavouriteStops$().subscribe(stops => {
-      console.log(stops);
       this.stops = stops;
     });
 

@@ -48,7 +48,7 @@ export class InternalStorageService {
           direction,
           stop
         }),
-        console.log(this.savedLines);
+        // console.log(this.savedLines);
         this.storage.set('lines', this.savedLines);
       });
 
@@ -58,7 +58,7 @@ export class InternalStorageService {
       // this.storage.set('stop-' + favouriteValue, this.savedStops);
       this.storage.get('stops').then((val) => {
         this.savedStops = val;
-        console.log('ulozene: ' + this.savedStops);
+        // console.log('ulozene: ' + this.savedStops);
         if (this.savedStops === null) {
           this.savedStops = [favouriteValue];
           this.storage.set('stops', this.savedStops);

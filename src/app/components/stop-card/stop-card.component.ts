@@ -56,7 +56,6 @@ export class StopCardComponent implements OnInit {
   }
 
   public openVirtualTable(event, idStop) {
-    console.log('aaa');
     this.router.navigateByUrl(
       'tabs/stops/stop-detail/' + idStop
     );

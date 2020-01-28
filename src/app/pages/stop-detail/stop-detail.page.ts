@@ -77,7 +77,7 @@ export class StopDetailPage implements OnInit {
       const isFavourite = stops.find(stop => {
         return stop === this.stopId;
       });
-      console.log(isFavourite);
+      // console.log(isFavourite);
       if (typeof isFavourite !== 'undefined') {
         this.buttonIcon = 'heart';
         this.heartClass = 'heartFilled';
@@ -115,7 +115,7 @@ export class StopDetailPage implements OnInit {
         .subscribe(
           result => {
             this.stopData = result;
-            console.log(this.stopData);
+            // console.log(this.stopData);
         });
     }
 
@@ -123,7 +123,7 @@ export class StopDetailPage implements OnInit {
       this.departureService.getLinesDeparturesAtStop(idStop).subscribe(
         res => {
           this.departures = res;
-          console.log(this.departures);
+          // console.log(this.departures);
       });
     }
 
@@ -131,7 +131,7 @@ export class StopDetailPage implements OnInit {
       this.departureService.getVirtualTableOneDirection(idPlatform).subscribe(
         re => {
           this.departures = re;
-          console.log(this.departures);
+          // console.log(this.departures);
       });
     }
 

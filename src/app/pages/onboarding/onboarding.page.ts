@@ -22,7 +22,7 @@ export class OnboardingPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log(this.pagerStatus2);
+    // console.log(this.pagerStatus2);
     // this.ionSlides.lockSwipeToPrev(true);
   }
 
